@@ -59,6 +59,44 @@ export const styles = StyleSheet.create({
     marginTop: 25,
     borderRadius: 8
   },
+  decAndIncItemsBox: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: 50,
+    marginTop: 25,
+    borderWidth: 0.8,
+    borderColor: COLORS.SECONDARY,
+    borderRadius: 8
+  },
+  decItemBtn: {
+    width: '30%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: COLORS.SECONDARY,
+    borderTopStartRadius: 8,
+    borderBottomStartRadius: 8
+  },
+  incItemBtn: {
+    width: '30%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: COLORS.SECONDARY,
+    borderTopEndRadius: 8,
+    borderBottomEndRadius: 8
+  },
+  numOfItemsInputStyles: {
+    width: '40%',
+    height: '100%',
+    textAlign: 'center',
+    alignItems: 'center',
+    color: COLORS.PRIMARY,
+    fontSize: 16,
+    fontWeight: '500'
+  },
   addToFavBtn: {
     width: 30,
     height: 30,

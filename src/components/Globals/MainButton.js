@@ -12,7 +12,7 @@ const MainButton = props => {
       rippleContainerBorderRadius={props.rippleBorderRadius ? props.rippleBorderRadius : 7}
       rippleOpacity={props.rippleOpacity ? rippleOpacity : 0.7}
       rippleDuration={props.rippleDuration ? props.rippleDuration : 300}
-      disabled={props.disabled || props.loading} // Arrived Here ....
+      disabled={props.disabled || props.loading}
       style={[styles.mainBtnStyles, Array.isArray(props.style) ? props.style : {...props.style}]}
       onPress={props.onPress}>
       {props.loading ? 
