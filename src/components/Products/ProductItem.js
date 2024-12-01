@@ -1,4 +1,4 @@
-import React, {memo, useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {View, Text, TouchableOpacity, Image, TextInput} from 'react-native';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -21,23 +21,25 @@ const ProductItem = props => {
       ? ProductStyles.singleViewStyles
       : ProductStyles.gridViewStyles;
 
-const handleNumOfItems = useCallback((value) => {
-  if(value === '') {
-    setNumOfItems('');
-    return;
-  }
-  setNumOfItems(Number(value));
-  console.log('Number of Items: ', value);
-}, [numOfItems, setNumOfItems]);
+  const handleNumOfItems = useCallback(
+    value => {
+      if (value === '') {
+        setNumOfItems('');
+        return;
+      }
+      setNumOfItems(Number(value));
+      console.log('Number of Items: ', value);
+    },
+    [numOfItems, setNumOfItems]
+  );
 
+  const handleCartIncrementBtn = () => {
+    setNumOfItems(prevCount => prevCount + 1);
+  };
 
-const handleCartIncrementBtn = () => {
-  setNumOfItems(prevCount => prevCount + 1);
-}
-
-const handleCartDecrementBtn = () => {
-  setNumOfItems(prevCount => prevCount < 1 ? 0 : prevCount - 1);
-}
+  const handleCartDecrementBtn = () => {
+    setNumOfItems(prevCount => (prevCount < 1 ? 0 : prevCount - 1));
+  };
 
   return (
     <TouchableOpacity
@@ -58,15 +60,30 @@ const handleCartDecrementBtn = () => {
         <View style={customStyles.productActionBtnsBox}>
           {props.addedToCart || numOfItems === '' || numOfItems >= 1 ? (
             <View style={customStyles.decAndIncItemsBox}>
-              <TouchableOpacity style={customStyles.decItemBtn} onPress={handleCartDecrementBtn}>
-                <FontAwesome6 name='minus' size={25} color={COLORS.PRIMARY} />
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={customStyles.decItemBtn}
+                onPress={handleCartDecrementBtn}>
+                {numOfItems > 1 ? (
+                  <FontAwesome6 name="minus" size={22} color={COLORS.PRIMARY} />
+                ) : (
+                  <FontAwesome6
+                    name="trash-can"
+                    size={22}
+                    color={COLORS.PRIMARY}
+                  />
+                )}
               </TouchableOpacity>
               <TextInput
-              style={customStyles.numOfItemsInputStyles}
-              value={numOfItems.toString()}
-              onChangeText={(value) => handleNumOfItems(value)} />
-              <TouchableOpacity style={customStyles.incItemBtn} onPress={handleCartIncrementBtn}>
-                <FontAwesome6 name='plus' size={25} color={COLORS.PRIMARY} />
+                style={customStyles.numOfItemsInputStyles}
+                value={numOfItems.toString()}
+                onChangeText={value => handleNumOfItems(value)}
+              />
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={customStyles.incItemBtn}
+                onPress={handleCartIncrementBtn}>
+                <FontAwesome6 name="plus" size={22} color={COLORS.PRIMARY} />
               </TouchableOpacity>
             </View>
           ) : (

@@ -155,6 +155,18 @@ export const gridViewStyles = StyleSheet.create({
     width: '100%',
     alignSelf: 'center'
   },
+  decAndIncItemsBox: {
+    ...styles.decAndIncItemsBox
+  },
+  decItemBtn: {
+    ...styles.decItemBtn
+  },
+  incItemBtn: {
+    ...styles.incItemBtn
+  },
+  numOfItemsInputStyles: {
+    ...styles.numOfItemsInputStyles
+  },
   addToFavBtn: {
     ...styles.addToFavBtn
   }
@@ -206,6 +218,18 @@ export const singleViewStyles = StyleSheet.create({
     ...styles.addToCartBtn,
     width: '100%',
     alignSelf: 'center'
+  },
+  decAndIncItemsBox: {
+    ...styles.decAndIncItemsBox
+  },
+  decItemBtn: {
+    ...styles.decItemBtn
+  },
+  incItemBtn: {
+    ...styles.incItemBtn
+  },
+  numOfItemsInputStyles: {
+    ...styles.numOfItemsInputStyles
   },
   addToFavBtn: {
     ...styles.addToFavBtn
