@@ -4,6 +4,7 @@ import SignUpScreen from '../screens/Auth/SignUp/SignUpScreen';
 import ContactUs from '../screens/ContactUs/ContactUs';
 import Feedback from '../screens/Feedback/Feedback';
 import HomeScreen from '../screens/Home/HomeScreen';
+import ProductViewScreen from '../screens/ProductView/ProductViewScreen';
 import UserProfile from '../screens/UserProfile/UserProfile';
 
 const AuthScreensList = [
@@ -56,6 +57,14 @@ const HomeScreensList = [
         screenOptions: {
             headerShown: false,
             title: 'Contact Us'
+        }
+    },
+    {
+        name: 'ProductView',
+        component: ProductViewScreen,
+        screenOptions: {
+            headerShown: false, // The customized header will be shown!
+            title: 'Product View' // Default and will be customized by the product's name!
         }
     }
 ]

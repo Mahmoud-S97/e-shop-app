@@ -1,13 +1,18 @@
 import React, {useCallback, useState} from 'react';
 import {View, Text, TouchableOpacity, Image, TextInput} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {COLORS} from '../../constants/styles/Styles';
 import constants from '../../constants';
 import * as ProductStyles from './ProductItemsStyle';
 import MainButton from '../Globals/MainButton';
+import SCREENS from '../../constants/screens';
 
 const ProductItem = props => {
+
+  const navigation = useNavigation();
+
   const {title, price, images, thumbnail} = props.item;
   const {productsViewType} = props;
 
@@ -41,10 +46,15 @@ const ProductItem = props => {
     setNumOfItems(prevCount => (prevCount < 1 ? 0 : prevCount - 1));
   };
 
+  const viewProductHandler = (item) => {
+    navigation.navigate(SCREENS.PRODUCT_VIEW, { item: props.item });
+  }
+
   return (
     <TouchableOpacity
       activeOpacity={0.9}
-      style={[customStyles.productCard, {...props.style}]}>
+      style={[customStyles.productCard, {...props.style}]}
+      onPress={viewProductHandler}>
       <View style={customStyles.productImageBox}>
         <Image source={{uri: thumbnail}} style={customStyles.productImage} />
       </View>

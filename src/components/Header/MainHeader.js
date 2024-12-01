@@ -13,7 +13,7 @@ const MainHeader = props => {
           ]}>
           {props.headerLeft.headerLeftBtn1_content && (
             <TouchableOpacity
-            activeOpacity={0.6}
+            activeOpacity={0.8}
               style={[
                 styles.headerLeftAction1Styles,
                 {...props.headerLeft.headerLeftAction1Styles}
@@ -24,7 +24,7 @@ const MainHeader = props => {
           )}
           {props.headerLeft.headerLeftBtn2_content && (
             <TouchableOpacity
-            activeOpacity={0.6}
+            activeOpacity={0.8}
               style={[
                 styles.headerLeftAction2Styles,
                 {...props.headerLeft.headerLeftAction2Styles}
@@ -36,7 +36,7 @@ const MainHeader = props => {
         </View>
       ) : null}
       {props.headerTitle ? (
-        <Text style={[styles.headerTitleStyles, {...props.headerTitleStyles}]}>
+        <Text style={[styles.headerTitleStyles, {...props.headerTitleStyles}]} numberOfLines={2}>
           {props.headerTitle}
         </Text>
       ) : null}
@@ -48,7 +48,7 @@ const MainHeader = props => {
           ]}>
           {props.headerRight.headerRightBtn1_content && (
             <TouchableOpacity
-            activeOpacity={0.6}
+            activeOpacity={0.8}
               style={[
                 styles.headerRightAction1Styles,
                 {...props.headerRight.headerRightAction1Styles}
@@ -59,7 +59,7 @@ const MainHeader = props => {
           )}
           {props.headerRight.headerRightBtn2_content && (
             <TouchableOpacity
-            activeOpacity={0.6}
+            activeOpacity={0.8}
               style={[
                 styles.headerRightAction2Styles,
                 {...props.headerRight.headerRightAction2Styles}
@@ -108,11 +108,12 @@ const styles = StyleSheet.create({
     borderRadius: 22.5
   },
   headerTitleStyles: {
-    width: '50%',
+    width: '48%',
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: COLORS.BLACK
+    color: COLORS.PRIMARY,
+    marginHorizontal: '2%'
   },
   headerRightBoxStyles: {
     width: '25%',
