@@ -10,7 +10,8 @@ export const COLORS = {
   GREEN: 'green',
   ORANGE: 'orange',
   BLUE: 'rgb(0, 153, 255)',
-  GOLD: '#e1b12c'
+  GOLD: '#e1b12c',
+  RED: '#e74c3c'
 };
 
 export const GENERAL_STYLES = {

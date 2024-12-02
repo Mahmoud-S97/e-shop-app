@@ -1,9 +1,10 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import {COLORS, GENERAL_STYLES} from '../../constants/styles/Styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import MainHeader from '../../components/Header/MainHeader';
+import ProductViewStyles from './ProductViewScreenStyles';
 
 const ProductViewScreen = props => {
   const {
@@ -54,14 +55,14 @@ const ProductViewScreen = props => {
             headerRightAction1Styles: { backgroundColor: 'transparent' },
             action1: addToFavHandler,
             headerRightBtn2_content: (
-              <View style={{ justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+              <View style={ProductViewStyles.headerRightCartBtnBox}>
                 <FontAwesome6
                 name="cart-shopping"
                 size={22}
-                color={COLORS.PRIMARY}  // Arrived Here ...
+                color={COLORS.PRIMARY}
               />
-              <View style={{ justifyContent: 'center', alignItems: 'center', width: 22, height: 22, borderRadius: 11, backgroundColor: 'red', padding: .5, position: 'absolute', top: -12, end: -10, zIndex: 1000}}>
-                <Text style={{ fontSize: 14, fontWeight: 'bold', textAlign: 'center' }}>1</Text>
+              <View style={ProductViewStyles.headerRightCartBtn}>
+                <Text style={ProductViewStyles.cartNumOfItemsText}>1</Text>
               </View>
               </View>
             ),
@@ -69,7 +70,9 @@ const ProductViewScreen = props => {
             action2: gotToCartHandler
           }}
         />
-        <Text style={{color: 'black'}}>{item.title}</Text>
+        <View style={[GENERAL_STYLES.container, ProductViewStyles.customContainer]}>
+          <Text style={{color: 'black'}}>{item.title}</Text>
+        </View>
       </View>
     </ScrollView>
   );

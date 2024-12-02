@@ -19,13 +19,17 @@ import HomeHeader from '../../components/Header/Home/HomeHeader';
 import constants from '../../constants';
 import ProductItem from '../../components/Products/ProductItem';
 import MainButton from '../../components/Globals/MainButton';
+import {useDispatch, useSelector} from 'react-redux';
+import {setProducts} from '../../store/reducers/productsSlice';
 
 const image = {uri: 'https://legacy.reactjs.org/logo-og.png'};
 
 const HomeScreen = props => {
   const {navigation} = props;
 
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+  const products = useSelector(state => state.productsSlice.products);
+
   const [viewType, setViewType] = useState(constants.LIST);
   const [productsLimit, setProductsLimit] = useState(10);
   const [productsSkipped, setProductsSkipped] = useState(0);
@@ -33,24 +37,11 @@ const HomeScreen = props => {
   const [hasMoreData, setHasMoreData] = useState(true);
 
   useEffect(() => {
-    loadMoreProductsHandler();
-  }, []);
-
-  useEffect(() => {
-    console.log('productsLimit:: ', productsLimit);
-    console.log('productsSkipped:: ', productsSkipped);
-  }, [productsLimit, setProductsLimit, productsSkipped, setProductsSkipped]);
-
-  useEffect(() => {
-    console.log('Final-Products-State:: ', products);
-  }, [
-    products,
-    setProducts,
-    productsLimit,
-    setProductsLimit,
-    productsSkipped,
-    setProductsSkipped
-  ]);
+    console.log('Redux-Products:: ', products);
+    if (products.length === 0) {
+      loadMoreProductsHandler();
+    }
+  }, [products, props.navigation]);
 
   const loadMoreProductsHandler = async () => {
     if (isLoading || !hasMoreData) return;
@@ -67,10 +58,7 @@ const HomeScreen = props => {
         jsonFetchedProducts?.products.length > 0 &&
         products.length < jsonFetchedProducts.total
       ) {
-        setProducts(prevState => [
-          ...prevState,
-          ...jsonFetchedProducts.products
-        ]);
+        dispatch(setProducts(jsonFetchedProducts.products));
         setProductsSkipped(productsSkipped => productsSkipped + 10);
       } else {
         setHasMoreData(false);
