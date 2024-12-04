@@ -231,6 +231,13 @@ export const singleViewStyles = StyleSheet.create({
   numOfItemsInputStyles: {
     ...styles.numOfItemsInputStyles
   },
+  quantityTitle: {
+    fontSize: 18,
+    color: COLORS.GRAY,
+    width: '100%',
+    marginTop: 12,
+    marginBottom: -12
+  },
   addToFavBtn: {
     ...styles.addToFavBtn
   }

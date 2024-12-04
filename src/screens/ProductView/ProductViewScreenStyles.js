@@ -1,5 +1,6 @@
-import {StyleSheet} from 'react-native';
+import {I18nManager, StyleSheet} from 'react-native';
 import {COLORS} from '../../constants/styles/Styles';
+import { getScreenWidth } from '../../utils';
 
 const ProductViewStyles = StyleSheet.create({
   headerRightCartBtnBox: {
@@ -27,7 +28,69 @@ const ProductViewStyles = StyleSheet.create({
   },
   customContainer: {
     paddingTop: 0,
-    backgroundColor: COLORS.SECONDARY
+    backgroundColor: COLORS.WHITE
+  },
+  customProductItemStyles: {
+    width: '100%',
+    height: 400,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    borderWidth: 0,
+    borderColor: 'transparent',
+    borderRadius: 0,
+    padding: 10,
+    marginBottom: 15
+  },
+  productImageBox: {
+    width: '100%',
+    height: '50%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  productImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain'
+  },
+  productDetails: {
+    width: '100%',
+    height: 'auto',
+    paddingStart: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  productTitle: {
+    width: '65%',
+    fontSize: 18,
+    fontWeight: '500',
+    textAlign: 'left'
+  },
+  productPrice: {
+    width: '30%',
+    fontSize: 20,
+    fontWeight: '700',
+    textAlign: 'right'
+  },
+  descSeparator: {
+    width: getScreenWidth() - 50,
+    alignSelf: 'center',
+    height: 1,
+    backgroundColor: COLORS.SECONDARY,
+    marginVertical: 10
+  },
+  descriptionTitle: {
+    fontSize: 18,
+    fontWeight: '500',
+    color: COLORS.GRAY,
+    textAlign: 'left'
+  },
+  descriptionText: {
+    fontSize: 15,
+    fontWeight: '400',
+    color: COLORS.GRAY,
+    marginTop: 15,
+    textAlign: 'left'
   }
 });
 
