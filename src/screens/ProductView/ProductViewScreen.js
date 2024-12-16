@@ -93,7 +93,6 @@ const ProductViewScreen = props => {
           <View style={ProductViewStyles.descSeparator} />
           <Text style={ProductViewStyles.descriptionTitle}>Product Description</Text>
           <Text style={ProductViewStyles.descriptionText}>{item.description}</Text>
-          {/* Arrived Here ... */}
         </View>
       </View>
     </ScrollView>

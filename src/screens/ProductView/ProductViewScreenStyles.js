@@ -82,14 +82,14 @@ const ProductViewStyles = StyleSheet.create({
   descriptionTitle: {
     fontSize: 18,
     fontWeight: '500',
-    color: COLORS.GRAY,
+    color: COLORS.DARK_GRAY,
     textAlign: 'left'
   },
   descriptionText: {
     fontSize: 15,
     fontWeight: '400',
-    color: COLORS.GRAY,
-    marginTop: 15,
+    color: COLORS.DARK_GRAY,
+    marginTop: 12,
     textAlign: 'left'
   }
 });
