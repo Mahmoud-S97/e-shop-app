@@ -7,6 +7,7 @@ import MainHeader from '../../components/Header/MainHeader';
 import ProductViewStyles from './ProductViewScreenStyles';
 import constants from '../../constants';
 import ProductItem from '../../components/Products/ProductItem';
+import {useSelector} from 'react-redux';
 
 const ProductViewScreen = props => {
   const {
@@ -17,6 +18,8 @@ const ProductViewScreen = props => {
   } = props;
 
   console.log('Product-Item: ', item);
+
+  const productsCart = useSelector(state => state.cartSlice.cartItems);
 
   const addToFavHandler = () => {
     return;
@@ -64,7 +67,9 @@ const ProductViewScreen = props => {
                   color={COLORS.PRIMARY}
                 />
                 <View style={ProductViewStyles.headerRightCartBtn}>
-                  <Text style={ProductViewStyles.cartNumOfItemsText}>1</Text>
+                  <Text style={ProductViewStyles.cartNumOfItemsText}>
+                    {productsCart?.length}
+                  </Text>
                 </View>
               </View>
             ),
@@ -91,8 +96,12 @@ const ProductViewScreen = props => {
             }}
           />
           <View style={ProductViewStyles.descSeparator} />
-          <Text style={ProductViewStyles.descriptionTitle}>Product Description</Text>
-          <Text style={ProductViewStyles.descriptionText}>{item.description}</Text>
+          <Text style={ProductViewStyles.descriptionTitle}>
+            Product Description
+          </Text>
+          <Text style={ProductViewStyles.descriptionText}>
+            {item.description}
+          </Text>
         </View>
       </View>
     </ScrollView>

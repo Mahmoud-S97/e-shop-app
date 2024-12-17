@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {View, Text, TouchableOpacity, Image, TextInput} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
@@ -8,12 +8,25 @@ import constants from '../../constants';
 import * as ProductStyles from './ProductItemsStyle';
 import MainButton from '../Globals/MainButton';
 import SCREENS from '../../constants/screens';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  addToCart,
+  decrementCart,
+  incrementCart
+} from '../../store/reducers/cartSlice';
 
 const ProductItem = props => {
   const navigation = useNavigation();
 
-  const {title, price, images, thumbnail} = props.item;
+  const dispatch = useDispatch();
+  const {id, title, price, images, thumbnail} = props.item;
   const {productsViewType} = props;
+
+  const productsCart = useSelector(state => state.cartSlice);
+  const productQTY =
+    useSelector(
+      state => state.cartSlice.cartItems.find(ele => ele.id === id)?.qty
+    ) || 0;
 
   const [numOfItems, setNumOfItems] = useState(0);
   const [isProductFav, setIsProductFav] = useState(false);
@@ -25,25 +38,42 @@ const ProductItem = props => {
       ? ProductStyles.singleViewStyles
       : ProductStyles.gridViewStyles;
 
-  const handleNumOfItems = useCallback(
-    value => {
-      if (value === '') {
-        setNumOfItems('');
-        return;
-      }
-      setNumOfItems(Number(value));
-      console.log('Number of Items: ', value);
-    },
-    [numOfItems, setNumOfItems]
-  );
+  useEffect(() => {
+    console.log('productsCart::: ', productsCart);
+  }, [dispatch, productsCart]);
 
-  const handleCartIncrementBtn = () => {
-    setNumOfItems(prevCount => prevCount + 1);
-  };
+  const handleNumOfItems = useCallback(value => {
+    // Will be handled soon...!
+    return;
+    if (value === '') {
+      return;
+    }
+    console.log('Number of Items: ', value);
+    // Add To Cart
+    const addedToCartItem = {
+      id: id,
+      title: title,
+      price: price,
+      image: thumbnail,
+      qty: Number(value)
+    };
+    dispatch(addToCart(addedToCartItem));
+  }, []);
 
-  const handleCartDecrementBtn = () => {
-    setNumOfItems(prevCount => (prevCount < 1 ? 0 : prevCount - 1));
-  };
+  const incrementCartHandler = useCallback(() => {
+    const addedToCartItem = {
+      id: id,
+      title: title,
+      price: price,
+      image: thumbnail,
+      qty: 1 // initial value
+    };
+    dispatch(incrementCart(addedToCartItem));
+  }, []);
+
+  const decrementCartHandler = useCallback(() => {
+    dispatch(decrementCart(id));
+  }, []);
 
   const viewProductHandler = () => {
     if (!props?.alreadyInProductViewScreen) {
@@ -91,15 +121,16 @@ const ProductItem = props => {
               {...props?.style?.productPrice}
             ]}>{`$${price.toFixed(2)}`}</Text>
         </View>
-        {props?.alreadyInProductViewScreen && (numOfItems === '' || numOfItems >= 1) && (
-          <Text style={customStyles.quantityTitle}>Quantity</Text>
-        )}
+        {props?.alreadyInProductViewScreen &&
+          (productQTY === '' || productQTY >= 1) && (
+            <Text style={customStyles.quantityTitle}>Quantity</Text>
+          )}
         <View
           style={[
             customStyles.productActionBtnsBox,
             {...props?.style?.productActionBtnsBox}
           ]}>
-          {props.addedToCart || numOfItems === '' || numOfItems >= 1 ? (
+          {props.addedToCart || productQTY === '' || productQTY >= 1 ? (
             <View
               style={[
                 customStyles.decAndIncItemsBox,
@@ -108,8 +139,8 @@ const ProductItem = props => {
               <TouchableOpacity
                 activeOpacity={0.7}
                 style={[customStyles.decItemBtn, {...props?.style?.decItemBtn}]}
-                onPress={handleCartDecrementBtn}>
-                {numOfItems > 1 ? (
+                onPress={decrementCartHandler}>
+                {productQTY > 1 ? (
                   <FontAwesome6 name="minus" size={22} color={COLORS.PRIMARY} />
                 ) : (
                   <FontAwesome6
@@ -124,13 +155,14 @@ const ProductItem = props => {
                   customStyles.numOfItemsInputStyles,
                   {...props?.style?.numOfItemsInputStyles}
                 ]}
-                value={numOfItems.toString()}
+                value={productQTY.toString()}
                 onChangeText={value => handleNumOfItems(value)}
+                editable={false}
               />
               <TouchableOpacity
                 activeOpacity={0.7}
                 style={[customStyles.incItemBtn, {...props?.style?.incItemBtn}]}
-                onPress={handleCartIncrementBtn}>
+                onPress={incrementCartHandler}>
                 <FontAwesome6 name="plus" size={22} color={COLORS.PRIMARY} />
               </TouchableOpacity>
             </View>
@@ -147,7 +179,7 @@ const ProductItem = props => {
                   color={COLORS.WHITE}
                 />
               }
-              onPress={() => handleNumOfItems(1)}></MainButton>
+              onPress={incrementCartHandler}></MainButton>
           )}
         </View>
       </View>
