@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import {COLORS, GENERAL_STYLES} from '../../constants/styles/Styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -20,6 +20,8 @@ const ProductViewScreen = props => {
   console.log('Product-Item: ', item);
 
   const productsCart = useSelector(state => state.cartSlice.cartItems);
+
+  const MemoizedProductComponent = memo(ProductItem)
 
   const addToFavHandler = () => {
     return;
@@ -79,7 +81,7 @@ const ProductViewScreen = props => {
         />
         <View
           style={[GENERAL_STYLES.container, ProductViewStyles.customContainer]}>
-          <ProductItem
+          <MemoizedProductComponent
             activeOpacity={1}
             item={item}
             alreadyInProductViewScreen={true}

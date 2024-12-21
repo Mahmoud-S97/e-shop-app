@@ -7,17 +7,14 @@ const cartSlice = createSlice({
         totalPrice: 0
     },
     reducers: {
-        addToCart: (state, action) => {
-            console.log('action: ', action);
-            state.cartItems = [...state.cartItems, action.payload]
-            state.totalPrice = state.totalPrice + (action.payload.price * action.payload.qty);
-        },
         incrementCart: (state, action) => {
             const updateProduct = state.cartItems.find(ele => ele.id === action.payload.id);
             if (updateProduct) {
+                console.log('==UpdateProduct== : ', updateProduct);
                 updateProduct.qty = updateProduct.qty + 1;
                 state.totalPrice = state.totalPrice + updateProduct.price;
             } else {
+                console.log('++AddProduct++ : ', action.payload);
                 state.cartItems = [...state.cartItems, action.payload]
                 state.totalPrice = state.totalPrice + (action.payload.price * action.payload.qty);
             }
@@ -36,6 +33,6 @@ const cartSlice = createSlice({
     }
 });
 
-export const { addToCart, incrementCart, decrementCart } = cartSlice.actions;
+export const { incrementCart, decrementCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

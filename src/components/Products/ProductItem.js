@@ -10,7 +10,6 @@ import MainButton from '../Globals/MainButton';
 import SCREENS from '../../constants/screens';
 import {useDispatch, useSelector} from 'react-redux';
 import {
-  addToCart,
   decrementCart,
   incrementCart
 } from '../../store/reducers/cartSlice';
@@ -28,7 +27,6 @@ const ProductItem = props => {
       state => state.cartSlice.cartItems.find(ele => ele.id === id)?.qty
     ) || 0;
 
-  const [numOfItems, setNumOfItems] = useState(0);
   const [isProductFav, setIsProductFav] = useState(false);
 
   const customStyles =
@@ -42,23 +40,6 @@ const ProductItem = props => {
     console.log('productsCart::: ', productsCart);
   }, [dispatch, productsCart]);
 
-  const handleNumOfItems = useCallback(value => {
-    // Will be handled soon...!
-    return;
-    if (value === '') {
-      return;
-    }
-    console.log('Number of Items: ', value);
-    // Add To Cart
-    const addedToCartItem = {
-      id: id,
-      title: title,
-      price: price,
-      image: thumbnail,
-      qty: Number(value)
-    };
-    dispatch(addToCart(addedToCartItem));
-  }, []);
 
   const incrementCartHandler = useCallback(() => {
     const addedToCartItem = {
@@ -122,7 +103,7 @@ const ProductItem = props => {
             ]}>{`$${price.toFixed(2)}`}</Text>
         </View>
         {props?.alreadyInProductViewScreen &&
-          (productQTY === '' || productQTY >= 1) && (
+          (productQTY >= 1) && (
             <Text style={customStyles.quantityTitle}>Quantity</Text>
           )}
         <View
@@ -130,7 +111,7 @@ const ProductItem = props => {
             customStyles.productActionBtnsBox,
             {...props?.style?.productActionBtnsBox}
           ]}>
-          {props.addedToCart || productQTY === '' || productQTY >= 1 ? (
+          {productQTY >= 1 ? (
             <View
               style={[
                 customStyles.decAndIncItemsBox,
@@ -156,7 +137,7 @@ const ProductItem = props => {
                   {...props?.style?.numOfItemsInputStyles}
                 ]}
                 value={productQTY.toString()}
-                onChangeText={value => handleNumOfItems(value)}
+                onChangeText={() => {}}
                 editable={false}
               />
               <TouchableOpacity
