@@ -5,8 +5,12 @@ import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MainHeader from '../MainHeader';
 import {COLORS} from '../../../constants/styles/Styles';
+import { useSelector } from 'react-redux';
 
 const HomeHeader = props => {
+
+  const productsCart = useSelector(state => state.cartSlice.cartItems);
+
   return (
     <MainHeader
       style={styles.HomeHeader}
@@ -26,7 +30,18 @@ const HomeHeader = props => {
       headerTitle=""
       headerRight={{
         headerRightBtn1_content: (
-          <FontAwesome6 name="cart-shopping" size={22} color={COLORS.PRIMARY} />
+          <View style={styles.headerRightCartBtnBox}>
+            <FontAwesome6
+              name="cart-shopping"
+              size={22}
+              color={COLORS.PRIMARY}
+            />
+            <View style={styles.headerRightCartBtn}>
+              <Text style={styles.cartNumOfItemsText}>
+                {productsCart?.length}
+              </Text>
+            </View>
+          </View>
         ),
         action1: props.headerRightAction1,
         headerRightBtn2_content: (
@@ -40,7 +55,7 @@ const HomeHeader = props => {
 
 const styles = StyleSheet.create({
   HomeHeader: {
-    backgroundColor: 'transparent'
+    backgroundColor: COLORS.WHITE
   },
   customMenuBox: {
     flexDirection: 'row',
@@ -52,6 +67,29 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     marginHorizontal: 5,
     color: COLORS.PRIMARY
+  },
+  headerRightCartBtnBox: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative'
+  },
+  headerRightCartBtn: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: COLORS.RED,
+    position: 'absolute',
+    top: -12,
+    end: -10,
+    zIndex: 1000
+  },
+  cartNumOfItemsText: {
+    fontSize: 11,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: COLORS.WHITE
   }
 });
 
