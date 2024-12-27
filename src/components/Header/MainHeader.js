@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import { COLORS } from '../../constants/styles/Styles';
+import {COLORS} from '../../constants/styles/Styles';
 
 const MainHeader = props => {
   return (
@@ -13,7 +13,7 @@ const MainHeader = props => {
           ]}>
           {props.headerLeft.headerLeftBtn1_content && (
             <TouchableOpacity
-            activeOpacity={0.8}
+              activeOpacity={0.8}
               style={[
                 styles.headerLeftAction1Styles,
                 {...props.headerLeft.headerLeftAction1Styles}
@@ -24,7 +24,7 @@ const MainHeader = props => {
           )}
           {props.headerLeft.headerLeftBtn2_content && (
             <TouchableOpacity
-            activeOpacity={0.8}
+              activeOpacity={0.8}
               style={[
                 styles.headerLeftAction2Styles,
                 {...props.headerLeft.headerLeftAction2Styles}
@@ -36,7 +36,9 @@ const MainHeader = props => {
         </View>
       ) : null}
       {props.headerTitle ? (
-        <Text style={[styles.headerTitleStyles, {...props.headerTitleStyles}]} numberOfLines={2}>
+        <Text
+          style={[styles.headerTitleStyles, {...props.headerTitleStyles}]}
+          numberOfLines={2}>
           {props.headerTitle}
         </Text>
       ) : null}
@@ -48,7 +50,7 @@ const MainHeader = props => {
           ]}>
           {props.headerRight.headerRightBtn1_content && (
             <TouchableOpacity
-            activeOpacity={0.8}
+              activeOpacity={0.8}
               style={[
                 styles.headerRightAction1Styles,
                 {...props.headerRight.headerRightAction1Styles}
@@ -59,7 +61,7 @@ const MainHeader = props => {
           )}
           {props.headerRight.headerRightBtn2_content && (
             <TouchableOpacity
-            activeOpacity={0.8}
+              activeOpacity={0.8}
               style={[
                 styles.headerRightAction2Styles,
                 {...props.headerRight.headerRightAction2Styles}
@@ -82,7 +84,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 8,
-    paddingHorizontal: 12
+    paddingHorizontal: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.SECONDARY
   },
   headerLeftBoxStyles: {
     width: '25%',

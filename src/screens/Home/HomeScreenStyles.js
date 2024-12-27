@@ -14,8 +14,6 @@ const HomeScreenStyles = StyleSheet.create({
     alignSelf: 'center'
   },
   customContainer: {
-    paddingTop: 0,
-    backgroundColor: COLORS.WHITE,
     marginTop: -15,
     paddingHorizontal: 15,
     borderTopRightRadius: 15,

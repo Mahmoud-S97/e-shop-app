@@ -21,6 +21,7 @@ import ProductItem from '../../components/Products/ProductItem';
 import MainButton from '../../components/Globals/MainButton';
 import {useDispatch, useSelector} from 'react-redux';
 import {setProducts} from '../../store/reducers/productsSlice';
+import SCREENS from '../../constants/screens';
 
 const image = {uri: 'https://legacy.reactjs.org/logo-og.png'};
 
@@ -90,7 +91,7 @@ const HomeScreen = props => {
   };
 
   const headerBtn1 = () => {
-    Alert.alert('You pressed Right Action 1');
+    navigation.navigate(SCREENS.CART);
   };
 
   const headerBtn2 = () => {

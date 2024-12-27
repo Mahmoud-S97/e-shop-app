@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, {memo} from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import {COLORS, GENERAL_STYLES} from '../../constants/styles/Styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -8,6 +8,7 @@ import ProductViewStyles from './ProductViewScreenStyles';
 import constants from '../../constants';
 import ProductItem from '../../components/Products/ProductItem';
 import {useSelector} from 'react-redux';
+import SCREENS from '../../constants/screens';
 
 const ProductViewScreen = props => {
   const {
@@ -21,14 +22,14 @@ const ProductViewScreen = props => {
 
   const productsCart = useSelector(state => state.cartSlice.cartItems);
 
-  const MemoizedProductComponent = memo(ProductItem)
+  const MemoizedProductComponent = memo(ProductItem);
 
   const addToFavHandler = () => {
     return;
   };
 
   const gotToCartHandler = () => {
-    return;
+    navigation.navigate(SCREENS.CART);
   };
 
   const goBack = () => {
@@ -79,8 +80,7 @@ const ProductViewScreen = props => {
             action2: gotToCartHandler
           }}
         />
-        <View
-          style={[GENERAL_STYLES.container, ProductViewStyles.customContainer]}>
+        <View style={GENERAL_STYLES.container}>
           <MemoizedProductComponent
             activeOpacity={1}
             item={item}

@@ -7,7 +7,8 @@ const SCREENS = {
     PROFILE: 'UserProfile',
     FEEDBACK: 'Feedback',
     CONTACT_US: 'ContactUs',
-    PRODUCT_VIEW: 'ProductView'
+    PRODUCT_VIEW: 'ProductView',
+    CART: 'Cart'
 };
 
 export default SCREENS;

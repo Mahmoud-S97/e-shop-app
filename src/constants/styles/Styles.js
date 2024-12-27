@@ -26,6 +26,6 @@ export const GENERAL_STYLES = {
   container: {
     flex: 1,
     paddingHorizontal: 12,
-    paddingTop: 70 // Based on the Main Header's Height!
+    backgroundColor: COLORS.WHITE
   }
 }

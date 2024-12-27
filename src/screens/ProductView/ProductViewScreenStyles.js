@@ -1,6 +1,6 @@
-import {I18nManager, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {COLORS} from '../../constants/styles/Styles';
-import { getScreenWidth } from '../../utils';
+import {getScreenWidth} from '../../utils';
 
 const ProductViewStyles = StyleSheet.create({
   headerRightCartBtnBox: {
@@ -25,10 +25,6 @@ const ProductViewStyles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     color: COLORS.WHITE
-  },
-  customContainer: {
-    paddingTop: 0,
-    backgroundColor: COLORS.WHITE
   },
   customProductItemStyles: {
     width: '100%',
