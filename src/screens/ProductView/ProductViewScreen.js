@@ -69,11 +69,13 @@ const ProductViewScreen = props => {
                   size={22}
                   color={COLORS.PRIMARY}
                 />
-                <View style={ProductViewStyles.headerRightCartBtn}>
-                  <Text style={ProductViewStyles.cartNumOfItemsText}>
-                    {productsCart?.length}
-                  </Text>
-                </View>
+                {productsCart?.length > 0 && (
+                  <View style={ProductViewStyles.headerRightCartBtn}>
+                    <Text style={ProductViewStyles.cartNumOfItemsText}>
+                      {productsCart?.length}
+                    </Text>
+                  </View>
+                )}
               </View>
             ),
             headerRightAction2Styles: {backgroundColor: 'transparent'},

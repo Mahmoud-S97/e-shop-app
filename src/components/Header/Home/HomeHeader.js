@@ -36,11 +36,13 @@ const HomeHeader = props => {
               size={22}
               color={COLORS.PRIMARY}
             />
-            <View style={styles.headerRightCartBtn}>
-              <Text style={styles.cartNumOfItemsText}>
-                {productsCart?.length}
-              </Text>
-            </View>
+            {productsCart?.length > 0 && (
+              <View style={styles.headerRightCartBtn}>
+                <Text style={styles.cartNumOfItemsText}>
+                  {productsCart?.length}
+                </Text>
+              </View>
+            )}
           </View>
         ),
         action1: props.headerRightAction1,
