@@ -5,6 +5,8 @@ import MainButton from './src/components/Globals/MainButton';
 import { StyleSheet } from 'react-native';
 import { getScreenWidth } from './src/utils';
 import { useSelector } from 'react-redux';
+import SCREENS from './src/constants/screens';
+import {navigate} from './src/navigation/NavigationService';
 
 const App = () => {
 
@@ -18,7 +20,7 @@ const App = () => {
     <>
       <MainNav />
       {cartTotalPrice > 0 && (
-        <MainButton style={style.orderingBtn} onPress={() => {}}>
+        <MainButton style={style.orderingBtn} onPress={() => navigate(SCREENS.CART)}>
           {`Order Now $${cartTotalPrice.toFixed(2)}`}
         </MainButton>
       )}

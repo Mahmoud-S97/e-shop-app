@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {memo, useCallback, useState} from 'react';
 import {View, Text, ScrollView, TouchableOpacity} from 'react-native';
 import {COLORS, GENERAL_STYLES} from '../../constants/styles/Styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -6,6 +6,7 @@ import MainHeader from '../../components/Header/MainHeader';
 import CartScreenStyles from './CartScreenStyles';
 import constants from '../../constants';
 import {useSelector} from 'react-redux';
+import CartItem from '../../components/Cart/CartItem';
 
 const CartScreen = props => {
   const {navigation} = props;
@@ -15,16 +16,17 @@ const CartScreen = props => {
 
   console.log('productsCart<<>>', productsCart);
 
-  const changeTabHandler = useCallback(
-    value => {
-      setTabType(value);
-    },
-    [tabType, setTabType]
-  );
-
   const goBack = () => {
     navigation.goBack();
   };
+
+  const renderProductItem = useCallback(({item, index}) => {
+    return (
+      <CartItem key={index.toString() || item.id.toString()} item={item} />
+    );
+  }, []);
+
+  const MemoizedProductComponent = memo(renderProductItem);
 
   return (
     <ScrollView
@@ -62,7 +64,7 @@ const CartScreen = props => {
                 tabType === constants.ORDER_SUMMARY &&
                   CartScreenStyles.cartTopTabButton_Active
               ]}
-              onPress={() => changeTabHandler(constants.ORDER_SUMMARY)}>
+              onPress={() => setTabType(constants.ORDER_SUMMARY)}>
               <Text style={CartScreenStyles.cartTopTabButtonText}>
                 Order Summary
               </Text>
@@ -74,17 +76,21 @@ const CartScreen = props => {
                 tabType === constants.FAVORITE &&
                   CartScreenStyles.cartTopTabButton_Active
               ]}
-              onPress={() => changeTabHandler(constants.FAVORITE)}>
+              onPress={() => setTabType(constants.FAVORITE)}>
               <Text style={CartScreenStyles.cartTopTabButtonText}>
                 Favorites
               </Text>
             </TouchableOpacity>
           </View>
-          {productsCart.map((item, index) => (
-            <Text key={index} style={{fontSize: 20, color: 'green'}}>
-              {item.title}
-            </Text>
-          ))}
+          {tabType === constants.ORDER_SUMMARY
+            ? productsCart?.map((item, index) => (
+                <MemoizedProductComponent
+                  key={index.toString() || item.id.toString()}
+                  item={item}
+                  index={index}
+                />
+              ))
+            : null}
         </View>
       </View>
     </ScrollView>

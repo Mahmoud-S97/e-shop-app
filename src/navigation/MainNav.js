@@ -9,6 +9,7 @@ import MainDrawer from '../components/Drawer/MainDrawer';
 import SplashScreen from '../screens/Intro/SplashScreen';
 import { getScreenWidth } from '../utils';
 import { COLORS } from '../constants/styles/Styles';
+import {navigationRef} from './NavigationService';
 
 const AuthStack = createNativeStackNavigator();
 
@@ -58,7 +59,7 @@ const MainNav = () => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <NavigationContainer>
+      <NavigationContainer ref={navigationRef}>
         <MainStack.Navigator screenOptions={{headerShown: false}}>
           <MainStack.Screen name="Splash" component={SplashScreen} />
           <MainStack.Screen name="Auth" component={AuthScreens} />

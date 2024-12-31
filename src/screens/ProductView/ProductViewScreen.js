@@ -10,17 +10,16 @@ import ProductItem from '../../components/Products/ProductItem';
 import {useSelector} from 'react-redux';
 import SCREENS from '../../constants/screens';
 
-const ProductViewScreen = props => {
-  const {
-    navigation,
-    route: {
-      params: {item}
-    }
-  } = props;
+const ProductViewScreen = (props) => {
 
-  console.log('Product-Item: ', item);
+  const { navigation, route: { params: { productId } } } = props;
+
+  console.log('ProductID:::: ', productId);
 
   const productsCart = useSelector(state => state.cartSlice.cartItems);
+  const productItem = useSelector(state => state.productsSlice.products.find(ele => ele.id === productId));
+
+  console.log('Product-Item: ', productItem);
 
   const MemoizedProductComponent = memo(ProductItem);
 
@@ -51,11 +50,11 @@ const ProductViewScreen = props => {
             headerLeftAction1Styles: {backgroundColor: 'transparent'},
             action1: goBack
           }}
-          headerTitle={item.title}
+          headerTitle={productItem.title}
           headerRight={{
             headerRightBtn1_content: (
               <FontAwesome
-                name={!item.id ? 'heart' : 'heart-o'} // Should be isFav ? ... : ...
+                name={!productItem.id ? 'heart' : 'heart-o'} // Should be isFav ? ... : ...
                 size={22}
                 color={COLORS.PRIMARY}
               />
@@ -85,7 +84,7 @@ const ProductViewScreen = props => {
         <View style={GENERAL_STYLES.container}>
           <MemoizedProductComponent
             activeOpacity={1}
-            item={item}
+            item={productItem}
             alreadyInProductViewScreen={true}
             productsViewType={constants.SINGLE}
             titleNumberOfLines={4}
@@ -104,7 +103,7 @@ const ProductViewScreen = props => {
             Product Description
           </Text>
           <Text style={ProductViewStyles.descriptionText}>
-            {item.description}
+            {productItem.description}
           </Text>
         </View>
       </View>

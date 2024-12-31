@@ -4,8 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {COLORS} from '../../constants/styles/Styles';
-import constants from '../../constants';
-import * as ProductStyles from './ProductItemsStyle';
+import CartItemStyles from './CartItemStyles';
 import MainButton from '../Globals/MainButton';
 import SCREENS from '../../constants/screens';
 import {useDispatch, useSelector} from 'react-redux';
@@ -14,12 +13,11 @@ import {
   incrementCart
 } from '../../store/reducers/cartSlice';
 
-const ProductItem = props => {
+const CartItem = props => {
   const navigation = useNavigation();
 
   const dispatch = useDispatch();
-  const {id, title, price, images, thumbnail} = props.item;
-  const {productsViewType} = props;
+  const {id, title, price, image} = props.item;
 
   const productsCart = useSelector(state => state.cartSlice);
   const productQTY =
@@ -28,13 +26,6 @@ const ProductItem = props => {
     ) || 0;
 
   const [isProductFav, setIsProductFav] = useState(false);
-
-  const customStyles =
-    productsViewType === constants.LIST
-      ? ProductStyles.styles
-      : productsViewType === constants.SINGLE
-      ? ProductStyles.singleViewStyles
-      : ProductStyles.gridViewStyles;
 
   useEffect(() => {
     console.log('productsCart::: ', productsCart);
@@ -46,7 +37,7 @@ const ProductItem = props => {
       id: id,
       title: title,
       price: price,
-      image: thumbnail,
+      image: image,
       qty: 1 // initial value
     };
     dispatch(incrementCart(addedToCartItem));
@@ -65,32 +56,32 @@ const ProductItem = props => {
   return (
     <TouchableOpacity
       activeOpacity={props.activeOpacity || 0.9}
-      style={[customStyles.productCard, {...props?.style?.productCard}]}
+      style={[CartItemStyles.productCard, {...props?.style?.productCard}]}
       onPress={viewProductHandler}>
       <View
         style={[
-          customStyles.productImageBox,
+          CartItemStyles.productImageBox,
           {...props?.style?.productImageBox}
         ]}>
         <Image
-          source={{uri: thumbnail}}
-          style={[customStyles.productImage, {...props?.style?.productImage}]}
+          source={{uri: image}}
+          style={[CartItemStyles.productImage, {...props?.style?.productImage}]}
         />
       </View>
       <View
         style={[
-          customStyles.productInnerContainer,
+          CartItemStyles.productInnerContainer,
           {...props?.style?.productInnerContainer}
         ]}>
         <View
           style={[
-            customStyles.productDetails,
+            CartItemStyles.productDetails,
             {...props?.style?.productDetails}
           ]}>
           <Text
             numberOfLines={props?.titleNumberOfLines || 1}
             style={[
-              customStyles.productTitle,
+              CartItemStyles.productTitle,
               {...props?.style?.productTitle}
             ]}>
             {title}
@@ -98,28 +89,28 @@ const ProductItem = props => {
           <Text
             numberOfLines={props?.priceNumberOfLines || 1}
             style={[
-              customStyles.productPrice,
+              CartItemStyles.productPrice,
               {...props?.style?.productPrice}
             ]}>{`$${price.toFixed(2)}`}</Text>
         </View>
         {props?.alreadyInProductViewScreen &&
           (productQTY >= 1) && (
-            <Text style={customStyles.quantityTitle}>Quantity</Text>
+            <Text style={CartItemStyles.quantityTitle}>Quantity</Text>
           )}
         <View
           style={[
-            customStyles.productActionBtnsBox,
+            CartItemStyles.productActionBtnsBox,
             {...props?.style?.productActionBtnsBox}
           ]}>
           {productQTY >= 1 ? (
             <View
               style={[
-                customStyles.decAndIncItemsBox,
+                CartItemStyles.decAndIncItemsBox,
                 {...props?.style?.decAndIncItemsBox}
               ]}>
               <TouchableOpacity
                 activeOpacity={0.7}
-                style={[customStyles.decItemBtn, {...props?.style?.decItemBtn}]}
+                style={[CartItemStyles.decItemBtn, {...props?.style?.decItemBtn}]}
                 onPress={decrementCartHandler}>
                 {productQTY > 1 ? (
                   <FontAwesome6 name="minus" size={22} color={COLORS.PRIMARY} />
@@ -133,7 +124,7 @@ const ProductItem = props => {
               </TouchableOpacity>
               <TextInput
                 style={[
-                  customStyles.numOfItemsInputStyles,
+                  CartItemStyles.numOfItemsInputStyles,
                   {...props?.style?.numOfItemsInputStyles}
                 ]}
                 value={productQTY.toString()}
@@ -142,7 +133,7 @@ const ProductItem = props => {
               />
               <TouchableOpacity
                 activeOpacity={0.7}
-                style={[customStyles.incItemBtn, {...props?.style?.incItemBtn}]}
+                style={[CartItemStyles.incItemBtn, {...props?.style?.incItemBtn}]}
                 onPress={incrementCartHandler}>
                 <FontAwesome6 name="plus" size={22} color={COLORS.PRIMARY} />
               </TouchableOpacity>
@@ -150,7 +141,7 @@ const ProductItem = props => {
           ) : (
             <MainButton
               style={[
-                customStyles.addToCartBtn,
+                CartItemStyles.addToCartBtn,
                 {...props?.style?.addToCartBtn}
               ]}
               icon={
@@ -167,7 +158,7 @@ const ProductItem = props => {
       {!props.alreadyInProductViewScreen && (
         <TouchableOpacity
           activeOpacity={0.5}
-          style={customStyles.addToFavBtn}
+          style={CartItemStyles.addToFavBtn}
           onPress={() => setIsProductFav(!isProductFav)}>
           <FontAwesome
             name={isProductFav ? 'heart' : 'heart-o'}
@@ -180,4 +171,4 @@ const ProductItem = props => {
   );
 };
 
-export default ProductItem;
+export default CartItem;
