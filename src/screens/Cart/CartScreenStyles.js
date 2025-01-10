@@ -11,7 +11,7 @@ const CartScreenStyles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: COLORS.SECONDARY,
     padding: 5,
-    marginTop: 25,
+    marginVertical: 25,
     borderRadius: 12
   },
   cartTopTabButton: {
@@ -35,5 +35,46 @@ const CartScreenStyles = StyleSheet.create({
     color: COLORS.PRIMARY
   }
 });
+
+export const productItemCustomStyles = {
+  productCard: {
+    height: 110
+  },
+  productImageBox: {
+    width: '30%',
+    height: '90%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  productImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain'
+  },
+  productInnerContainer: {
+    flexDirection: 'column',
+    width: '70%',
+    alignItems: 'flex-start'
+  },
+  productDetails: {
+    width: '80%',
+    height: '100%',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    paddingStart: 10
+  },
+  productActionBtnsBox: {
+    justifyContent: 'center',
+    position: 'absolute',
+    bottom: 5,
+    start: 5,
+    zIndex: 10000,
+    height: 45
+  },
+  decAndIncItemsBox: {
+    height: 45,
+    marginTop: 0
+  }
+}
 
 export default CartScreenStyles;

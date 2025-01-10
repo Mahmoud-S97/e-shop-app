@@ -106,6 +106,30 @@ const CartItemStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 1000
+  },
+  removeCartItemBtn: {
+    flexDirection: 'row',
+    width: 35,
+    height: 35,
+    position: 'absolute',
+    bottom: 5,
+    end: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: COLORS.SECONDARY,
+    borderRadius: 17.5,
+    zIndex: 1000
+  },
+  removeCartItemBtnConfirmation: {
+    width: '25%',
+    borderRadius: 15,
+    padding: 5,
+    backgroundColor: COLORS.RED
+  },
+  confirmationBtnText: {
+    fontSize: 14,
+    color: COLORS.WHITE,
+    marginStart: 2
   }
 });
 
