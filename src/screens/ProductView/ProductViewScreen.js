@@ -7,8 +7,9 @@ import MainHeader from '../../components/Header/MainHeader';
 import ProductViewStyles from './ProductViewScreenStyles';
 import constants from '../../constants';
 import ProductItem from '../../components/Products/ProductItem';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import SCREENS from '../../constants/screens';
+import { switchItemAsFavorite } from '../../store/reducers/productsSlice';
 
 const ProductViewScreen = (props) => {
 
@@ -16,16 +17,14 @@ const ProductViewScreen = (props) => {
 
   console.log('ProductID:::: ', productId);
 
+  const dispatch = useDispatch();
   const productsCart = useSelector(state => state.cartSlice.cartItems);
   const productItem = useSelector(state => state.productsSlice.products.find(ele => ele.id === productId));
+  const isFav = useSelector(state => state.productsSlice.favProducts.some(ele => ele.id === productId));
 
   console.log('Product-Item: ', productItem);
 
   const MemoizedProductComponent = memo(ProductItem);
-
-  const addToFavHandler = () => {
-    return;
-  };
 
   const gotToCartHandler = () => {
     navigation.navigate(SCREENS.CART);
@@ -33,6 +32,10 @@ const ProductViewScreen = (props) => {
 
   const goBack = () => {
     navigation.goBack();
+  };
+
+  const productFavoriteHandler = () => {
+    dispatch(switchItemAsFavorite(productItem));
   };
 
   return (
@@ -54,13 +57,13 @@ const ProductViewScreen = (props) => {
           headerRight={{
             headerRightBtn1_content: (
               <FontAwesome
-                name={!productItem.id ? 'heart' : 'heart-o'} // Should be isFav ? ... : ...
+                name={isFav ? 'heart' : 'heart-o'}
                 size={22}
                 color={COLORS.PRIMARY}
               />
             ),
             headerRightAction1Styles: {backgroundColor: 'transparent'},
-            action1: addToFavHandler,
+            action1: productFavoriteHandler,
             headerRightBtn2_content: (
               <View style={ProductViewStyles.headerRightCartBtnBox}>
                 <FontAwesome6

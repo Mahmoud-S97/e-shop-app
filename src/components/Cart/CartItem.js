@@ -1,8 +1,13 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {View, Text, TouchableOpacity, Image, TextInput} from 'react-native';
+import React, {useCallback, useEffect} from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  TextInput
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {COLORS} from '../../constants/styles/Styles';
 import CartItemStyles from './CartItemStyles';
 import MainButton from '../Globals/MainButton';
@@ -29,8 +34,6 @@ const CartItem = props => {
     useSelector(
       state => state.cartSlice.cartItems.find(ele => ele.id === id)?.qty
     ) || 0;
-
-  const [isProductFav, setIsProductFav] = useState(false);
 
   useEffect(() => {
     console.log('productsCart::: ', productsCart);
@@ -175,19 +178,6 @@ const CartItem = props => {
           )}
         </View>
       </View>
-      {!props.alreadyInProductViewScreen ||
-        (!props.alreadyInCartScreen && (
-          <TouchableOpacity
-            activeOpacity={0.5}
-            style={CartItemStyles.addToFavBtn}
-            onPress={() => setIsProductFav(!isProductFav)}>
-            <FontAwesome
-              name={isProductFav ? 'heart' : 'heart-o'}
-              size={22}
-              color={COLORS.PRIMARY}
-            />
-          </TouchableOpacity>
-        ))}
       {props.alreadyInCartScreen && (
         <TouchableOpacity
           activeOpacity={0.5}

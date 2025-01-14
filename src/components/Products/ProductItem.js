@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {View, Text, TouchableOpacity, Image, TextInput} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
@@ -9,10 +9,8 @@ import * as ProductStyles from './ProductItemsStyle';
 import MainButton from '../Globals/MainButton';
 import SCREENS from '../../constants/screens';
 import {useDispatch, useSelector} from 'react-redux';
-import {
-  decrementCart,
-  incrementCart
-} from '../../store/reducers/cartSlice';
+import {decrementCart, incrementCart} from '../../store/reducers/cartSlice';
+import {switchItemAsFavorite} from '../../store/reducers/productsSlice';
 
 const ProductItem = props => {
   const navigation = useNavigation();
@@ -21,13 +19,15 @@ const ProductItem = props => {
   const {id, title, price, images, thumbnail} = props.item;
   const {productsViewType} = props;
 
-  const productsCart = useSelector(state => state.cartSlice);
+  const productsReduxState = useSelector(state => state.productsSlice);
+  const cartReduxState = useSelector(state => state.cartSlice);
   const productQTY =
     useSelector(
       state => state.cartSlice.cartItems.find(ele => ele.id === id)?.qty
     ) || 0;
-
-  const [isProductFav, setIsProductFav] = useState(false);
+  const isFav = useSelector(state =>
+    state.productsSlice.favProducts.some(ele => ele.id === id)
+  );
 
   const customStyles =
     productsViewType === constants.LIST
@@ -37,9 +37,9 @@ const ProductItem = props => {
       : ProductStyles.gridViewStyles;
 
   useEffect(() => {
-    console.log('productsCart::: ', productsCart);
-  }, [dispatch, productsCart]);
-
+    console.log('Products-Redux-State::: ', productsReduxState);
+    console.log('Cart-Redux-State::: ', cartReduxState);
+  }, [dispatch, productsReduxState, cartReduxState]);
 
   const incrementCartHandler = useCallback(() => {
     const addedToCartItem = {
@@ -61,6 +61,10 @@ const ProductItem = props => {
       navigation.navigate(SCREENS.PRODUCT_VIEW, {productId: id});
     }
   };
+
+  const productFavoriteHandler = useCallback(() => {
+    dispatch(switchItemAsFavorite(props.item));
+  }, []);
 
   return (
     <TouchableOpacity
@@ -102,10 +106,9 @@ const ProductItem = props => {
               {...props?.style?.productPrice}
             ]}>{`$${price.toFixed(2)}`}</Text>
         </View>
-        {props?.alreadyInProductViewScreen &&
-          (productQTY >= 1) && (
-            <Text style={customStyles.quantityTitle}>Quantity</Text>
-          )}
+        {props?.alreadyInProductViewScreen && productQTY >= 1 && (
+          <Text style={customStyles.quantityTitle}>Quantity</Text>
+        )}
         <View
           style={[
             customStyles.productActionBtnsBox,
@@ -168,9 +171,9 @@ const ProductItem = props => {
         <TouchableOpacity
           activeOpacity={0.5}
           style={customStyles.addToFavBtn}
-          onPress={() => setIsProductFav(!isProductFav)}>
+          onPress={productFavoriteHandler}>
           <FontAwesome
-            name={isProductFav ? 'heart' : 'heart-o'}
+            name={isFav ? 'heart' : 'heart-o'}
             size={22}
             color={COLORS.PRIMARY}
           />
