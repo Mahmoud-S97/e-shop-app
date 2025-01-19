@@ -240,5 +240,9 @@ export const singleViewStyles = StyleSheet.create({
   },
   addToFavBtn: {
     ...styles.addToFavBtn
+  },
+  addedToCartText: {
+    fontSize: 16,
+    color: COLORS.WHITE
   }
 });

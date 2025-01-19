@@ -9,6 +9,7 @@ export const COLORS = {
   SILVER: '#bdc3c7',
   PINK: 'pink',
   GREEN: 'green',
+  LIGHT_GREEN: '#A3CB38',
   ORANGE: 'orange',
   BLUE: 'rgb(0, 153, 255)',
   GOLD: '#e1b12c',

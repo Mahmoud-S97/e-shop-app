@@ -163,7 +163,11 @@ const ProductItem = props => {
                   color={COLORS.WHITE}
                 />
               }
-              onPress={incrementCartHandler}></MainButton>
+              onPress={incrementCartHandler}>
+              {props.alreadyInProductViewScreen ? (
+                <Text style={customStyles.addedToCartText}>Add To Cart</Text>
+              ) : null}
+            </MainButton>
           )}
         </View>
       </View>

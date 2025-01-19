@@ -107,7 +107,7 @@ const CartItemStyles = StyleSheet.create({
     alignItems: 'center',
     zIndex: 1000
   },
-  removeCartItemBtn: {
+  favAndRemoveCartItemBtn: {
     flexDirection: 'row',
     width: 35,
     height: 35,
@@ -120,17 +120,30 @@ const CartItemStyles = StyleSheet.create({
     borderRadius: 17.5,
     zIndex: 1000
   },
-  removeCartItemBtnConfirmation: {
-    width: '25%',
-    borderRadius: 15,
-    padding: 5,
-    backgroundColor: COLORS.RED
-  },
   confirmationBtnText: {
     fontSize: 14,
     color: COLORS.WHITE,
     marginStart: 2
+  },
+  addedToCartLabelBox: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+  },
+  addedToCartText: {
+    fontSize: 17,
+    color: COLORS.LIGHT_GREEN,
+    marginStart: 5
   }
 });
+
+// Changing the content of the Fav/Remove confirmation button dynamically!
+export const favAndremoveCartItemBtnConfirmation = {
+  width: '25%',
+  borderRadius: 15,
+  padding: 5,
+  backgroundColor: COLORS.RED
+};
 
 export default CartItemStyles;

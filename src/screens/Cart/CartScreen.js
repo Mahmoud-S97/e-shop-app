@@ -14,11 +14,13 @@ import constants from '../../constants';
 import {useDispatch, useSelector} from 'react-redux';
 import CartItem from '../../components/Cart/CartItem';
 import {setRemovedItemID} from '../../store/reducers/cartSlice';
+import {setRemovedFavItemID} from '../../store/reducers/productsSlice';
 
 const CartScreen = props => {
   const {navigation} = props;
   const dispatch = useDispatch();
-  const productsCart = useSelector(state => state.cartSlice.cartItems);
+  const cartProducts = useSelector(state => state.cartSlice.cartItems);
+  const favProducts = useSelector(state => state.productsSlice.favProducts);
 
   const [tabType, setTabType] = useState(constants.ORDER_SUMMARY);
 
@@ -28,20 +30,40 @@ const CartScreen = props => {
 
   const removeCartItemConfirmationHandler = () => {
     dispatch(setRemovedItemID(null));
+    dispatch(setRemovedFavItemID(null));
   };
 
-  const renderProductItem = useCallback(({item, index}) => {
-    return (
-      <CartItem
-        key={index.toString() || item.id.toString()}
-        item={item}
-        style={productItemCustomStyles}
-        alreadyInCartScreen={true}
-      />
-    );
-  }, []);
+  const renderProductItem = useCallback(
+    ({item, index}) => {
+      return (
+        <CartItem
+          key={index.toString() || item.id.toString()}
+          item={item}
+          style={productItemCustomStyles}
+          alreadyInCartScreen={true}
+          itemType={tabType}
+        />
+      );
+    },
+    [navigation, tabType, setTabType]
+  );
 
   const MemoizedProductComponent = memo(renderProductItem);
+
+  const RenderCartItems = () => {
+    console.log('Fav-Products::: ', favProducts);
+    console.log('Cart-Products::: ', cartProducts);
+    console.log('Tab-Type: ', tabType);
+    const renderProducts =
+      tabType === constants.FAVORITE ? favProducts : cartProducts;
+    return renderProducts?.map((item, index) => (
+      <MemoizedProductComponent
+        key={index.toString() || item.id.toString()}
+        item={item}
+        index={index}
+      />
+    ));
+  };
 
   return (
     <ScrollView
@@ -63,7 +85,7 @@ const CartScreen = props => {
               headerLeftAction1Styles: {backgroundColor: 'transparent'},
               action1: goBack
             }}
-            headerTitle={`Cart (${productsCart.length})`}
+            headerTitle={`Cart (${cartProducts.length})`}
             headerRight={{
               headerRightBtn2_content: (
                 <FontAwesome
@@ -102,15 +124,7 @@ const CartScreen = props => {
                 </Text>
               </TouchableOpacity>
             </View>
-            {tabType === constants.ORDER_SUMMARY
-              ? productsCart?.map((item, index) => (
-                  <MemoizedProductComponent
-                    key={index.toString() || item.id.toString()}
-                    item={item}
-                    index={index}
-                  />
-                ))
-              : null}
+            <RenderCartItems />
           </View>
         </View>
       </TouchableWithoutFeedback>
