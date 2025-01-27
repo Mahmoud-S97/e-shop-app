@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback} from 'react';
 import {View, Text, TouchableOpacity, Image, TextInput} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
@@ -19,8 +19,6 @@ const ProductItem = props => {
   const {id, title, price, images, thumbnail} = props.item;
   const {productsViewType} = props;
 
-  const productsReduxState = useSelector(state => state.productsSlice);
-  const cartReduxState = useSelector(state => state.cartSlice);
   const productQTY =
     useSelector(
       state => state.cartSlice.cartItems.find(ele => ele.id === id)?.qty
@@ -36,11 +34,6 @@ const ProductItem = props => {
       ? ProductStyles.singleViewStyles
       : ProductStyles.gridViewStyles;
 
-  useEffect(() => {
-    console.log('Products-Redux-State::: ', productsReduxState);
-    console.log('Cart-Redux-State::: ', cartReduxState);
-  }, [dispatch, productsReduxState, cartReduxState]);
-
   const incrementCartHandler = useCallback(() => {
     const addedToCartItem = {
       id: id,
@@ -50,11 +43,11 @@ const ProductItem = props => {
       qty: 1 // initial value
     };
     dispatch(incrementCart(addedToCartItem));
-  }, []);
+  }, [dispatch]);
 
   const decrementCartHandler = useCallback(() => {
     dispatch(decrementCart(id));
-  }, []);
+  }, [dispatch]);
 
   const viewProductHandler = () => {
     if (!props?.alreadyInProductViewScreen) {
@@ -64,7 +57,7 @@ const ProductItem = props => {
 
   const productFavoriteHandler = useCallback(() => {
     dispatch(switchItemAsFavorite(props.item));
-  }, []);
+  }, [dispatch]);
 
   return (
     <TouchableOpacity

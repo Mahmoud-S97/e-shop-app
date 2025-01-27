@@ -20,8 +20,8 @@ import constants from '../../constants';
 import ProductItem from '../../components/Products/ProductItem';
 import MainButton from '../../components/Globals/MainButton';
 import {useDispatch, useSelector} from 'react-redux';
-import {setProducts} from '../../store/reducers/productsSlice';
 import SCREENS from '../../constants/screens';
+import {fetchProducts} from '../../api/General';
 
 const image = {uri: 'https://legacy.reactjs.org/logo-og.png'};
 
@@ -29,49 +29,32 @@ const HomeScreen = props => {
   const {navigation} = props;
 
   const dispatch = useDispatch();
-  const products = useSelector(state => state.productsSlice.products);
+  const {products, totalAvailableProducts, isLoadingProducts} = useSelector(
+    state => state.productsSlice
+  );
 
   const [viewType, setViewType] = useState(constants.LIST);
   const [productsLimit, setProductsLimit] = useState(10);
   const [productsSkipped, setProductsSkipped] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
   const [hasMoreData, setHasMoreData] = useState(true);
 
   useEffect(() => {
-    console.log('Redux-Products:: ', products);
-    if (products.length === 0) {
-      loadMoreProductsHandler();
-    }
-  }, [products, props.navigation]);
+    dispatch(fetchProducts({productsLimit, productsSkipped}));
+    setProductsSkipped(productsSkipped => productsSkipped + 10);
+  }, [navigation, dispatch]);
 
-  const loadMoreProductsHandler = async () => {
-    if (isLoading || !hasMoreData) return;
+  const loadMoreProducts = () => {
+    if (isLoadingProducts || !hasMoreData) return;
 
-    setIsLoading(true);
-
-    try {
-      const fetchedProducts = await fetch(
-        `https://dummyjson.com/products?limit=${productsLimit}&skip=${productsSkipped}`
-      );
-      const jsonFetchedProducts = await fetchedProducts.json();
-      console.log('Json-Products-LoadMore-API:: ', jsonFetchedProducts);
-      if (
-        jsonFetchedProducts?.products.length > 0 &&
-        products.length < jsonFetchedProducts.total
-      ) {
-        dispatch(setProducts(jsonFetchedProducts.products));
-        setProductsSkipped(productsSkipped => productsSkipped + 10);
-      } else {
-        setHasMoreData(false);
-      }
-    } catch (e) {
-      console.log('Error while fetching the Products: ', e);
-    } finally {
-      setIsLoading(false);
+    if (products.length < totalAvailableProducts) {
+      dispatch(fetchProducts({productsLimit, productsSkipped}));
+      setProductsSkipped(productsSkipped => productsSkipped + 10);
+    } else {
+      setHasMoreData(false);
     }
   };
 
-  const renderProductItem = useCallback(
+  const RenderProductItem = useCallback(
     ({item, index}) => {
       return (
         <ProductItem key={index} item={item} productsViewType={viewType} />
@@ -80,10 +63,10 @@ const HomeScreen = props => {
     [viewType, setViewType]
   );
 
-  const MemoizedProductComponent = memo(renderProductItem);
+  const MemoizedProductComponent = memo(RenderProductItem);
 
-  const renderFooter = () => {
-    return isLoading && hasMoreData ? (
+  const RenderFlatListFooter = () => {
+    return isLoadingProducts && hasMoreData ? (
       <View style={HomeScreenStyles.footerSection}>
         <ActivityIndicator size="large" color={COLORS.PRIMARY} />
       </View>
@@ -102,9 +85,12 @@ const HomeScreen = props => {
     navigation.openDrawer();
   };
 
-  const changeViewTypeHandler = newViewType => {
-    setViewType(newViewType);
-  };
+  const changeViewTypeHandler = useCallback(
+    newViewType => {
+      setViewType(newViewType);
+    },
+    [viewType, setViewType]
+  );
 
   return (
     <ScrollView
@@ -188,9 +174,9 @@ const HomeScreen = props => {
             }
             horizontal={false}
             showsVerticalScrollIndicator={false}
-            onEndReached={loadMoreProductsHandler}
+            onEndReached={loadMoreProducts}
             onEndReachedThreshold={0.5}
-            ListFooterComponent={renderFooter}
+            ListFooterComponent={RenderFlatListFooter}
             renderItem={({item, index}) => (
               <MemoizedProductComponent item={item} index={index} />
             )}

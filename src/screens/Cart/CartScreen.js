@@ -28,12 +28,12 @@ const CartScreen = props => {
     navigation.goBack();
   };
 
-  const removeCartItemConfirmationHandler = () => {
+  const removeCartItemConfirmationHandler = useCallback(() => {
     dispatch(setRemovedItemID(null));
     dispatch(setRemovedFavItemID(null));
-  };
+  }, [dispatch]);
 
-  const renderProductItem = useCallback(
+  const RenderProductItem = useCallback(
     ({item, index}) => {
       return (
         <CartItem
@@ -48,12 +48,9 @@ const CartScreen = props => {
     [navigation, tabType, setTabType]
   );
 
-  const MemoizedProductComponent = memo(renderProductItem);
+  const MemoizedProductComponent = memo(RenderProductItem);
 
   const RenderCartItems = () => {
-    console.log('Fav-Products::: ', favProducts);
-    console.log('Cart-Products::: ', cartProducts);
-    console.log('Tab-Type: ', tabType);
     const renderProducts =
       tabType === constants.FAVORITE ? favProducts : cartProducts;
     return renderProducts?.map((item, index) => (
