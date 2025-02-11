@@ -9,18 +9,26 @@ import constants from '../../constants';
 import ProductItem from '../../components/Products/ProductItem';
 import {useDispatch, useSelector} from 'react-redux';
 import SCREENS from '../../constants/screens';
-import { switchItemAsFavorite } from '../../store/reducers/productsSlice';
+import {switchItemAsFavorite} from '../../store/reducers/productsSlice';
 
-const ProductViewScreen = (props) => {
-
-  const { navigation, route: { params: { productId } } } = props;
+const ProductViewScreen = props => {
+  const {
+    navigation,
+    route: {
+      params: {productId}
+    }
+  } = props;
 
   console.log('ProductID:::: ', productId);
 
   const dispatch = useDispatch();
   const productsCart = useSelector(state => state.cartSlice.cartItems);
-  const productItem = useSelector(state => state.productsSlice.products.find(ele => ele.id === productId));
-  const isFav = useSelector(state => state.productsSlice.favProducts.some(ele => ele.id === productId));
+  const productItem = useSelector(state =>
+    state.productsSlice.products.find(ele => ele.id === productId)
+  );
+  const isFav = useSelector(state =>
+    state.productsSlice.favProducts.some(ele => ele.id === productId)
+  );
 
   console.log('Product-Item: ', productItem);
 
@@ -40,7 +48,7 @@ const ProductViewScreen = (props) => {
 
   return (
     <ScrollView
-      contentContainerStyle={GENERAL_STYLES.scrollingView}
+      style={GENERAL_STYLES.scrollingView}
       showsVerticalScrollIndicator={false}>
       <View style={GENERAL_STYLES.screen}>
         <MainHeader
@@ -93,7 +101,7 @@ const ProductViewScreen = (props) => {
             titleNumberOfLines={4}
             priceNumberOfLines={2}
             style={{
-              productCard: ProductViewStyles.customProductItemStyles,
+              product_View_Style: ProductViewStyles.customProductItemViewStyles,
               productImageBox: ProductViewStyles.productImageBox,
               productImage: ProductViewStyles.productImage,
               productDetails: ProductViewStyles.productDetails,

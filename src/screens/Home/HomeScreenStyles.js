@@ -62,6 +62,13 @@ const HomeScreenStyles = StyleSheet.create({
   viewTypeBtn: {
     marginEnd: 4
   },
+  footerLoading: {
+    width: '100%',
+    height: 100,
+    backgroundColor: COLORS.WHITE,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   footerBtnsBox: {
     width: '100%',
     flexDirection: 'row',
@@ -70,18 +77,11 @@ const HomeScreenStyles = StyleSheet.create({
     marginVertical: 25
   },
   feedbackBtn: {
-    width: '48%',
+    width: '48%'
   },
   contactBtn: {
     width: '48%',
     backgroundColor: COLORS.GOLD
-  },
-  footerSection: {
-    width: '100%',
-    height: 100,
-    backgroundColor: COLORS.WHITE,
-    justifyContent: 'center',
-    alignItems: 'center'
   }
 });
 

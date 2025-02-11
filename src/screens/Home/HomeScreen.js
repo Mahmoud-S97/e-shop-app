@@ -7,9 +7,10 @@ import {
   TextInput,
   TouchableOpacity,
   FlatList,
-  ActivityIndicator
+  ActivityIndicator,
+  KeyboardAvoidingView,
+  Platform
 } from 'react-native';
-import {ScrollView} from 'react-native-virtualized-view';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -32,19 +33,26 @@ const HomeScreen = props => {
   const {products, totalAvailableProducts, isLoadingProducts} = useSelector(
     state => state.productsSlice
   );
-
   const [viewType, setViewType] = useState(constants.LIST);
   const [productsLimit, setProductsLimit] = useState(10);
   const [productsSkipped, setProductsSkipped] = useState(0);
   const [hasMoreData, setHasMoreData] = useState(true);
 
+  const [search, setSearch] = useState('');
+
   useEffect(() => {
-    dispatch(fetchProducts({productsLimit, productsSkipped}));
-    setProductsSkipped(productsSkipped => productsSkipped + 10);
+    console.log('Searched-Home:: ', search);
+  }, [search]);
+
+  useEffect(() => {
+    if (products.length === 0) {
+      dispatch(fetchProducts({productsLimit, productsSkipped}));
+      setProductsSkipped(productsSkipped => productsSkipped + 10);
+    }
   }, [navigation, dispatch]);
 
   const loadMoreProducts = () => {
-    if (isLoadingProducts || !hasMoreData) return;
+    if (isLoadingProducts || !hasMoreData || search.trim()) return;
 
     if (products.length < totalAvailableProducts) {
       dispatch(fetchProducts({productsLimit, productsSkipped}));
@@ -65,14 +73,6 @@ const HomeScreen = props => {
 
   const MemoizedProductComponent = memo(RenderProductItem);
 
-  const RenderFlatListFooter = () => {
-    return isLoadingProducts && hasMoreData ? (
-      <View style={HomeScreenStyles.footerSection}>
-        <ActivityIndicator size="large" color={COLORS.PRIMARY} />
-      </View>
-    ) : null;
-  };
-
   const headerBtn1 = () => {
     navigation.navigate(SCREENS.CART);
   };
@@ -92,10 +92,9 @@ const HomeScreen = props => {
     [viewType, setViewType]
   );
 
-  return (
-    <ScrollView
-      contentContainerStyle={GENERAL_STYLES.scrollingView}
-      showsVerticalScrollIndicator={false}>
+  // FlatList-Screen Header
+  const RenderFlatListHeader = () => {
+    return (
       <View style={GENERAL_STYLES.screen}>
         <ImageBackground
           source={image}
@@ -119,6 +118,8 @@ const HomeScreen = props => {
                 style={HomeScreenStyles.searchInputStyles}
                 placeholder="Search Products"
                 placeholderTextColor={COLORS.PRIMARY}
+                value={search}
+                onChangeText={setSearch}
               />
             </View>
             <View style={HomeScreenStyles.viewTypesBox}>
@@ -162,42 +163,74 @@ const HomeScreen = props => {
               </TouchableOpacity>
             </View>
           </View>
-          <FlatList
-            data={products}
-            keyExtractor={(item, index) =>
-              item.id.toString() || index.toString()
-            }
-            numColumns={
-              viewType === constants.LIST || viewType === constants.SINGLE
-                ? 1
-                : 2
-            }
-            horizontal={false}
-            showsVerticalScrollIndicator={false}
-            onEndReached={loadMoreProducts}
-            onEndReachedThreshold={0.5}
-            ListFooterComponent={RenderFlatListFooter}
-            renderItem={({item, index}) => (
-              <MemoizedProductComponent item={item} index={index} />
-            )}
-            initialNumToRender={products.length}
-            maintainVisibleContentPosition={{minIndexForVisible: 0}}
-          />
-          <View style={HomeScreenStyles.footerBtnsBox}>
-            <MainButton
-              style={HomeScreenStyles.feedbackBtn}
-              onPress={() => alert('You pressed the FeedBack Button')}>
-              Feedback
-            </MainButton>
-            <MainButton
-              style={HomeScreenStyles.contactBtn}
-              onPress={() => alert('You pressed the ContactUs Button')}>
-              Contact Us
-            </MainButton>
-          </View>
         </View>
       </View>
-    </ScrollView>
+    );
+  };
+
+  // FlatList-Screen Products Content
+  const RenderContentAndFlatListProducts = () => {
+    let filteredProducts = [...products];
+    if (search.trim()) {
+      filteredProducts = filteredProducts.filter(product =>
+        product.title.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+    return (
+      <FlatList
+        data={filteredProducts}
+        keyExtractor={(item, index) => item.id.toString() || index.toString()}
+        numColumns={viewType === constants.GRID ? 2 : 1}
+        columnWrapperStyle={
+          viewType === constants.GRID && {justifyContent: 'space-between'}
+        }
+        horizontal={false}
+        showsVerticalScrollIndicator={false}
+        onEndReached={loadMoreProducts}
+        onEndReachedThreshold={0.5}
+        ListHeaderComponent={RenderFlatListHeader}
+        renderItem={({item, index}) => (
+          <MemoizedProductComponent item={item} index={index} />
+        )}
+        ListFooterComponent={RenderFlatListFooter}
+        initialNumToRender={filteredProducts.length}
+        maintainVisibleContentPosition={{minIndexForVisible: 0}}
+        keyboardShouldPersistTaps="handled"
+      />
+    );
+  };
+
+  // FlatList-Screen Footer
+  const RenderFlatListFooter = () => {
+    return (
+      <View style={GENERAL_STYLES.container}>
+        {isLoadingProducts && hasMoreData && (
+          <View style={HomeScreenStyles.footerLoading}>
+            <ActivityIndicator size="large" color={COLORS.PRIMARY} />
+          </View>
+        )}
+        <View style={HomeScreenStyles.footerBtnsBox}>
+          <MainButton
+            style={HomeScreenStyles.feedbackBtn}
+            onPress={() => alert('You pressed the FeedBack Button')}>
+            Feedback
+          </MainButton>
+          <MainButton
+            style={HomeScreenStyles.contactBtn}
+            onPress={() => alert('You pressed the ContactUs Button')}>
+            Contact Us
+          </MainButton>
+        </View>
+      </View>
+    );
+  };
+
+  return (
+    <KeyboardAvoidingView
+      style={{flex: 1}}
+      behavior={Platform.OS === 'android' ? 'height' : 'padding'}>
+      <RenderContentAndFlatListProducts />
+    </KeyboardAvoidingView>
   );
 };
 

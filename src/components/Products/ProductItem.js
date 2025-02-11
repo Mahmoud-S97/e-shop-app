@@ -66,116 +66,132 @@ const ProductItem = props => {
       onPress={viewProductHandler}>
       <View
         style={[
-          customStyles.productImageBox,
-          {...props?.style?.productImageBox}
-        ]}>
-        <Image
-          source={{uri: thumbnail}}
-          style={[customStyles.productImage, {...props?.style?.productImage}]}
-        />
-      </View>
-      <View
-        style={[
-          customStyles.productInnerContainer,
-          {...props?.style?.productInnerContainer}
+          customStyles.product_View_Style,
+          {...props?.style?.product_View_Style}
         ]}>
         <View
           style={[
-            customStyles.productDetails,
-            {...props?.style?.productDetails}
+            customStyles.productImageBox,
+            {...props?.style?.productImageBox}
           ]}>
-          <Text
-            numberOfLines={props?.titleNumberOfLines || 1}
-            style={[
-              customStyles.productTitle,
-              {...props?.style?.productTitle}
-            ]}>
-            {title}
-          </Text>
-          <Text
-            numberOfLines={props?.priceNumberOfLines || 1}
-            style={[
-              customStyles.productPrice,
-              {...props?.style?.productPrice}
-            ]}>{`$${price.toFixed(2)}`}</Text>
-        </View>
-        {props?.alreadyInProductViewScreen && productQTY >= 1 && (
-          <Text style={customStyles.quantityTitle}>Quantity</Text>
-        )}
-        <View
-          style={[
-            customStyles.productActionBtnsBox,
-            {...props?.style?.productActionBtnsBox}
-          ]}>
-          {productQTY >= 1 ? (
-            <View
-              style={[
-                customStyles.decAndIncItemsBox,
-                {...props?.style?.decAndIncItemsBox}
-              ]}>
-              <TouchableOpacity
-                activeOpacity={0.7}
-                style={[customStyles.decItemBtn, {...props?.style?.decItemBtn}]}
-                onPress={decrementCartHandler}>
-                {productQTY > 1 ? (
-                  <FontAwesome6 name="minus" size={22} color={COLORS.PRIMARY} />
-                ) : (
-                  <FontAwesome6
-                    name="trash-can"
-                    size={22}
-                    color={COLORS.PRIMARY}
-                  />
-                )}
-              </TouchableOpacity>
-              <TextInput
-                style={[
-                  customStyles.numOfItemsInputStyles,
-                  {...props?.style?.numOfItemsInputStyles}
-                ]}
-                value={productQTY.toString()}
-                onChangeText={() => {}}
-                editable={false}
-              />
-              <TouchableOpacity
-                activeOpacity={0.7}
-                style={[customStyles.incItemBtn, {...props?.style?.incItemBtn}]}
-                onPress={incrementCartHandler}>
-                <FontAwesome6 name="plus" size={22} color={COLORS.PRIMARY} />
-              </TouchableOpacity>
-            </View>
-          ) : (
-            <MainButton
-              style={[
-                customStyles.addToCartBtn,
-                {...props?.style?.addToCartBtn}
-              ]}
-              icon={
-                <FontAwesome6
-                  name="cart-shopping"
-                  size={18}
-                  color={COLORS.WHITE}
-                />
-              }
-              onPress={incrementCartHandler}>
-              {props.alreadyInProductViewScreen ? (
-                <Text style={customStyles.addedToCartText}>Add To Cart</Text>
-              ) : null}
-            </MainButton>
-          )}
-        </View>
-      </View>
-      {!props.alreadyInProductViewScreen && (
-        <TouchableOpacity
-          activeOpacity={0.5}
-          style={customStyles.addToFavBtn}
-          onPress={productFavoriteHandler}>
-          <FontAwesome
-            name={isFav ? 'heart' : 'heart-o'}
-            size={22}
-            color={COLORS.PRIMARY}
+          <Image
+            source={{uri: thumbnail}}
+            style={[customStyles.productImage, {...props?.style?.productImage}]}
           />
-        </TouchableOpacity>
-      )}
+        </View>
+        <View
+          style={[
+            customStyles.productInnerContainer,
+            {...props?.style?.productInnerContainer}
+          ]}>
+          <View
+            style={[
+              customStyles.productDetails,
+              {...props?.style?.productDetails}
+            ]}>
+            <Text
+              numberOfLines={props?.titleNumberOfLines || 1}
+              style={[
+                customStyles.productTitle,
+                {...props?.style?.productTitle}
+              ]}>
+              {title}
+            </Text>
+            <Text
+              numberOfLines={props?.priceNumberOfLines || 1}
+              style={[
+                customStyles.productPrice,
+                {...props?.style?.productPrice}
+              ]}>{`$${price.toFixed(2)}`}</Text>
+          </View>
+          {props?.alreadyInProductViewScreen && productQTY >= 1 && (
+            <Text style={customStyles.quantityTitle}>Quantity</Text>
+          )}
+          <View
+            style={[
+              customStyles.productActionBtnsBox,
+              {...props?.style?.productActionBtnsBox}
+            ]}>
+            {productQTY >= 1 ? (
+              <View
+                style={[
+                  customStyles.decAndIncItemsBox,
+                  {...props?.style?.decAndIncItemsBox}
+                ]}>
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  style={[
+                    customStyles.decItemBtn,
+                    {...props?.style?.decItemBtn}
+                  ]}
+                  onPress={decrementCartHandler}>
+                  {productQTY > 1 ? (
+                    <FontAwesome6
+                      name="minus"
+                      size={22}
+                      color={COLORS.PRIMARY}
+                    />
+                  ) : (
+                    <FontAwesome6
+                      name="trash-can"
+                      size={22}
+                      color={COLORS.PRIMARY}
+                    />
+                  )}
+                </TouchableOpacity>
+                <TextInput
+                  style={[
+                    customStyles.numOfItemsInputStyles,
+                    {...props?.style?.numOfItemsInputStyles}
+                  ]}
+                  value={productQTY.toString()}
+                  onChangeText={() => {}}
+                  editable={false}
+                />
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  style={[
+                    customStyles.incItemBtn,
+                    {...props?.style?.incItemBtn}
+                  ]}
+                  onPress={incrementCartHandler}>
+                  <FontAwesome6 name="plus" size={22} color={COLORS.PRIMARY} />
+                </TouchableOpacity>
+              </View>
+            ) : (
+              <MainButton
+                style={[
+                  customStyles.addToCartBtn,
+                  {...props?.style?.addToCartBtn}
+                ]}
+                icon={
+                  <FontAwesome6
+                    name="cart-shopping"
+                    size={18}
+                    color={COLORS.WHITE}
+                  />
+                }
+                onPress={incrementCartHandler}>
+                {props.alreadyInProductViewScreen ? (
+                  <Text style={customStyles.addedToCartText}>Add To Cart</Text>
+                ) : null}
+              </MainButton>
+            )}
+          </View>
+        </View>
+        {!props.alreadyInProductViewScreen && (
+          <TouchableOpacity
+            activeOpacity={0.5}
+            style={customStyles.addToFavBtn}
+            onPress={productFavoriteHandler}>
+            <FontAwesome
+              name={isFav ? 'heart' : 'heart-o'}
+              size={22}
+              color={COLORS.PRIMARY}
+            />
+          </TouchableOpacity>
+        )}
+      </View>
     </TouchableOpacity>
   );
 };

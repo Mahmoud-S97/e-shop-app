@@ -26,7 +26,7 @@ const ProductViewStyles = StyleSheet.create({
     textAlign: 'center',
     color: COLORS.WHITE
   },
-  customProductItemStyles: {
+  customProductItemViewStyles: {
     width: '100%',
     height: 400,
     flexDirection: 'column',
@@ -35,7 +35,8 @@ const ProductViewStyles = StyleSheet.create({
     borderColor: 'transparent',
     borderRadius: 0,
     padding: 10,
-    marginBottom: 15
+    marginBottom: 15,
+    margin: 0
   },
   productImageBox: {
     width: '100%',
@@ -86,6 +87,7 @@ const ProductViewStyles = StyleSheet.create({
     fontWeight: '400',
     color: COLORS.DARK_GRAY,
     marginTop: 12,
+    marginBottom: 50,
     textAlign: 'left'
   }
 });

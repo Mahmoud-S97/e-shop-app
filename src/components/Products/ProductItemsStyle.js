@@ -1,10 +1,13 @@
 import {StyleSheet} from 'react-native';
 import {COLORS} from '../../constants/styles/Styles';
-import {getScreenWidth} from '../../utils';
 
 export const styles = StyleSheet.create({
   productCard: {
-    width: '100%',
+    flex: 1,
+    paddingHorizontal: 12,
+    backgroundColor: COLORS.WHITE
+  },
+  product_View_Style: {
     height: 100,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -111,15 +114,19 @@ export const styles = StyleSheet.create({
 
 export const gridViewStyles = StyleSheet.create({
   productCard: {
-    width: (getScreenWidth() - 45) / 2,
+    flex: 1,
+    padding: 5,
+    backgroundColor: COLORS.WHITE
+  },
+  product_View_Style: {
     height: 300,
     flexDirection: 'column',
     justifyContent: 'space-between',
     borderWidth: 1,
     borderColor: COLORS.SECONDARY,
     borderRadius: 5,
-    padding: 10,
-    margin: 7.5
+    padding: 15,
+    margin: 5
   },
   productImageBox: {
     ...styles.productImageBox,
@@ -174,15 +181,12 @@ export const gridViewStyles = StyleSheet.create({
 
 export const singleViewStyles = StyleSheet.create({
   productCard: {
-    width: getScreenWidth() - 30,
-    height: 300,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    borderWidth: 1,
-    borderColor: COLORS.SECONDARY,
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 15
+    flex: 1,
+    padding: 5,
+    backgroundColor: COLORS.WHITE
+  },
+  product_View_Style: {
+    ...gridViewStyles.product_View_Style
   },
   productImageBox: {
     ...styles.productImageBox,

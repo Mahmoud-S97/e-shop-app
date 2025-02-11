@@ -18,7 +18,8 @@ export const COLORS = {
 
 export const GENERAL_STYLES = {
   scrollingView: {
-    flexGrow: 1
+    flexGrow: 1,
+    backgroundColor: COLORS.WHITE
   },
   screen: {
     flex: 1,
@@ -29,4 +30,4 @@ export const GENERAL_STYLES = {
     paddingHorizontal: 12,
     backgroundColor: COLORS.WHITE
   }
-}
+};
