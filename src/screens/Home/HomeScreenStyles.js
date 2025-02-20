@@ -34,7 +34,7 @@ const HomeScreenStyles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20
   },
-  searchInputBox: {
+  searchBox: {
     width: '50%',
     height: 50,
     flexDirection: 'row',
@@ -46,11 +46,10 @@ const HomeScreenStyles = StyleSheet.create({
     borderRadius: 5,
     borderColor: COLORS.SECONDARY
   },
-  searchInputStyles: {
+  searchTextStyles: {
     width: '80%',
-    height: '100%',
-    padding: 5,
     marginStart: 4,
+    fontSize: 14,
     color: COLORS.PRIMARY
   },
   viewTypesBox: {

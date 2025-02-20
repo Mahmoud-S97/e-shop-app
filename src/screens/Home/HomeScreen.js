@@ -4,12 +4,9 @@ import {
   Text,
   Alert,
   ImageBackground,
-  TextInput,
   TouchableOpacity,
   FlatList,
-  ActivityIndicator,
-  KeyboardAvoidingView,
-  Platform
+  ActivityIndicator
 } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -23,6 +20,7 @@ import MainButton from '../../components/Globals/MainButton';
 import {useDispatch, useSelector} from 'react-redux';
 import SCREENS from '../../constants/screens';
 import {fetchProducts} from '../../api/General';
+import SearchProductsModal from '../../components/Home/SearchProductsModal';
 
 const image = {uri: 'https://legacy.reactjs.org/logo-og.png'};
 
@@ -38,11 +36,12 @@ const HomeScreen = props => {
   const [productsSkipped, setProductsSkipped] = useState(0);
   const [hasMoreData, setHasMoreData] = useState(true);
 
+  const [searchModalVisible, setSearchModalVisible] = useState(false);
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    console.log('Searched-Home:: ', search);
-  }, [search]);
+    console.log('Searched-Modal-Value:: ', search);
+  }, [search, setSearch]);
 
   useEffect(() => {
     if (products.length === 0) {
@@ -112,16 +111,15 @@ const HomeScreen = props => {
           style={[GENERAL_STYLES.container, HomeScreenStyles.customContainer]}>
           <Text style={HomeScreenStyles.productsText}>Products</Text>
           <View style={HomeScreenStyles.filterationBox}>
-            <View style={HomeScreenStyles.searchInputBox}>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              style={HomeScreenStyles.searchBox}
+              onPress={() => setSearchModalVisible(true)}>
               <FontAwesome name="search" size={20} color={COLORS.PRIMARY} />
-              <TextInput
-                style={HomeScreenStyles.searchInputStyles}
-                placeholder="Search Products"
-                placeholderTextColor={COLORS.PRIMARY}
-                value={search}
-                onChangeText={setSearch}
-              />
-            </View>
+              <Text style={HomeScreenStyles.searchTextStyles}>{`${
+                search.trim() ? search : 'Search Products...'
+              }`}</Text>
+            </TouchableOpacity>
             <View style={HomeScreenStyles.viewTypesBox}>
               <TouchableOpacity
                 activeOpacity={0.5}
@@ -176,6 +174,7 @@ const HomeScreen = props => {
         product.title.toLowerCase().includes(search.toLowerCase())
       );
     }
+    console.log('Fetched-Products: ', filteredProducts);
     return (
       <FlatList
         data={filteredProducts}
@@ -193,6 +192,7 @@ const HomeScreen = props => {
           <MemoizedProductComponent item={item} index={index} />
         )}
         ListFooterComponent={RenderFlatListFooter}
+        ListEmptyComponent={() => {}} // Will be handled later on..
         initialNumToRender={filteredProducts.length}
         maintainVisibleContentPosition={{minIndexForVisible: 0}}
         keyboardShouldPersistTaps="handled"
@@ -212,12 +212,12 @@ const HomeScreen = props => {
         <View style={HomeScreenStyles.footerBtnsBox}>
           <MainButton
             style={HomeScreenStyles.feedbackBtn}
-            onPress={() => alert('You pressed the FeedBack Button')}>
+            onPress={() => Alert.alert('You pressed the FeedBack Button')}>
             Feedback
           </MainButton>
           <MainButton
             style={HomeScreenStyles.contactBtn}
-            onPress={() => alert('You pressed the ContactUs Button')}>
+            onPress={() => Alert.alert('You pressed the ContactUs Button')}>
             Contact Us
           </MainButton>
         </View>
@@ -226,11 +226,16 @@ const HomeScreen = props => {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={{flex: 1}}
-      behavior={Platform.OS === 'android' ? 'height' : 'padding'}>
+    <View style={GENERAL_STYLES.screen}>
       <RenderContentAndFlatListProducts />
-    </KeyboardAvoidingView>
+      <SearchProductsModal
+        visible={searchModalVisible}
+        animationType="fade"
+        transparent={true}
+        onRequestClose={() => setSearchModalVisible(false)}
+        setSearchState={setSearch}
+      />
+    </View>
   );
 };
 
