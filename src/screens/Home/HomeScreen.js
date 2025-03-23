@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback, memo} from 'react';
+import React, {useState, useEffect, useCallback, memo, useMemo} from 'react';
 import {
   View,
   Text,
@@ -35,13 +35,11 @@ const HomeScreen = props => {
   const [productsLimit, setProductsLimit] = useState(10);
   const [productsSkipped, setProductsSkipped] = useState(0);
   const [hasMoreData, setHasMoreData] = useState(true);
-
   const [searchModalVisible, setSearchModalVisible] = useState(false);
   const [search, setSearch] = useState('');
 
-  useEffect(() => {
-    console.log('Searched-Modal-Value:: ', search);
-  }, [search, setSearch]);
+  const numColumns = viewType === constants.GRID ? 2 : 1;
+  const columnWrapperStyle = viewType === constants.GRID && {justifyContent: 'space-between'};
 
   useEffect(() => {
     if (products.length === 0) {
@@ -72,11 +70,11 @@ const HomeScreen = props => {
 
   const MemoizedProductComponent = memo(RenderProductItem);
 
-  const headerBtn1 = () => {
+  const cartButtonHandler = () => {
     navigation.navigate(SCREENS.CART);
   };
 
-  const headerBtn2 = () => {
+  const userLoginHandler = () => {
     Alert.alert('You pressed Right Action 2');
   };
 
@@ -92,7 +90,7 @@ const HomeScreen = props => {
   );
 
   // FlatList-Screen Header
-  const RenderFlatListHeader = () => {
+  const RenderFlatListHeader = useCallback(() => {
     return (
       <View style={GENERAL_STYLES.screen}>
         <ImageBackground
@@ -100,8 +98,8 @@ const HomeScreen = props => {
           style={HomeScreenStyles.imageBackground}>
           <HomeHeader
             headerLeftHomeBtn={headerHomeMenuBtn}
-            headerRightAction1={headerBtn1}
-            headerRightAction2={headerBtn2}
+            headerRightAction1={cartButtonHandler}
+            headerRightAction2={userLoginHandler}
           />
           <Text style={HomeScreenStyles.imgBgTitle}>
             Electronics Shopping App
@@ -164,44 +162,10 @@ const HomeScreen = props => {
         </View>
       </View>
     );
-  };
+  }, [viewType, setViewType, search]);
 
-  // FlatList-Screen Products Content
-  const RenderContentAndFlatListProducts = () => {
-    let filteredProducts = [...products];
-    if (search.trim()) {
-      filteredProducts = filteredProducts.filter(product =>
-        product.title.toLowerCase().includes(search.toLowerCase())
-      );
-    }
-    console.log('Fetched-Products: ', filteredProducts);
-    return (
-      <FlatList
-        data={filteredProducts}
-        keyExtractor={(item, index) => item.id.toString() || index.toString()}
-        numColumns={viewType === constants.GRID ? 2 : 1}
-        columnWrapperStyle={
-          viewType === constants.GRID && {justifyContent: 'space-between'}
-        }
-        horizontal={false}
-        showsVerticalScrollIndicator={false}
-        onEndReached={loadMoreProducts}
-        onEndReachedThreshold={0.5}
-        ListHeaderComponent={RenderFlatListHeader}
-        renderItem={({item, index}) => (
-          <MemoizedProductComponent item={item} index={index} />
-        )}
-        ListFooterComponent={RenderFlatListFooter}
-        ListEmptyComponent={() => {}} // Will be handled later on..
-        initialNumToRender={filteredProducts.length}
-        maintainVisibleContentPosition={{minIndexForVisible: 0}}
-        keyboardShouldPersistTaps="handled"
-      />
-    );
-  };
-
-  // FlatList-Screen Footer
-  const RenderFlatListFooter = () => {
+   // FlatList-Screen Footer
+   const RenderFlatListFooter = useCallback(() => {
     return (
       <View style={GENERAL_STYLES.container}>
         {isLoadingProducts && hasMoreData && (
@@ -223,11 +187,39 @@ const HomeScreen = props => {
         </View>
       </View>
     );
-  };
+  }, [viewType, setViewType, loadMoreProducts, search]);
+
+  // FlatList Data with Conditionally Filtration
+  const filteredProducts = useMemo(() => {
+    if (!search.trim()) return [...products];
+
+    let filteredProducts = [...products];
+      filteredProducts = filteredProducts.filter(product =>
+        product.title.toLowerCase().includes(search.toLowerCase())
+      );
+    console.log('Fetched-filteredProducts: ', filteredProducts);
+    return filteredProducts;
+  }, [search, products]);
 
   return (
     <View style={GENERAL_STYLES.screen}>
-      <RenderContentAndFlatListProducts />
+      <FlatList
+        data={filteredProducts}
+        keyExtractor={(item, index) => item.id.toString() || index.toString()}
+        key={numColumns}
+        numColumns={numColumns}
+        columnWrapperStyle={columnWrapperStyle}
+        showsVerticalScrollIndicator={false}
+        onEndReached={loadMoreProducts}
+        onEndReachedThreshold={0.5}
+        ListHeaderComponent={RenderFlatListHeader}
+        renderItem={({item, index}) => (
+          <MemoizedProductComponent item={item} index={index} />
+        )}
+        ListFooterComponent={RenderFlatListFooter}
+        ListEmptyComponent={() => {}} // Will be handled later on..
+        initialNumToRender={productsSkipped}
+      />
       <SearchProductsModal
         visible={searchModalVisible}
         animationType="fade"

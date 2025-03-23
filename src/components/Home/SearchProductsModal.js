@@ -44,7 +44,7 @@ const SearchProductsModal = props => {
     onBackButtonPressed();
   }, [searchProduct, setSearchProduct]);
 
-  return (
+  return visible ? (
     <KeyboardAvoidingView
       style={{flex: 1}}
       behavior={Platform.OS === 'android' ? 'height' : 'padding'}>
@@ -117,7 +117,7 @@ const SearchProductsModal = props => {
         </Modal>
       </View>
     </KeyboardAvoidingView>
-  );
+  ) : null;
 };
 
 export default SearchProductsModal;
