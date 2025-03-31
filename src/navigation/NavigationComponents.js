@@ -1,4 +1,3 @@
-// import SplashScreen from '../Intro/SplashScreen';
 import LoginScreen from '../screens/Auth/Login/LoginScreen';
 import SignUpScreen from '../screens/Auth/SignUp/SignUpScreen';
 import CartScreen from '../screens/Cart/CartScreen';
@@ -35,7 +34,26 @@ const HomeScreensList = [
       headerShown: false,
       title: 'Home'
     }
+  },  
+  {
+    name: 'ProductView',
+    component: ProductViewScreen,
+    screenOptions: {
+      headerShown: false, // The customized header will be shown!
+      title: 'Product View' // The title is default and will be customized by the product's name!
+    }
   },
+  {
+    name: 'Cart',
+    component: CartScreen,
+    screenOptions: {
+      headerShown: false,
+      title: 'Cart'
+    }
+  }
+];
+
+const GeneralScreensList = [
   {
     name: 'UserProfile',
     component: UserProfile,
@@ -59,23 +77,7 @@ const HomeScreensList = [
       headerShown: false,
       title: 'Contact Us'
     }
-  },
-  {
-    name: 'ProductView',
-    component: ProductViewScreen,
-    screenOptions: {
-      headerShown: false, // The customized header will be shown!
-      title: 'Product View' // Default and will be customized by the product's name!
-    }
-  },
-  {
-    name: 'Cart',
-    component: CartScreen,
-    screenOptions: {
-      headerShown: false,
-      title: 'Cart'
-    }
   }
-];
+]
 
-export {AuthScreensList, HomeScreensList};
+export {AuthScreensList, HomeScreensList, GeneralScreensList};

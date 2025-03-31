@@ -4,6 +4,7 @@ const SCREENS = {
     LOGIN: 'Login',
     SIGNUP: 'SignUp',
     HOME: 'Home',
+    HOME_SCREENS: 'HomeScreens',
     PROFILE: 'UserProfile',
     FEEDBACK: 'Feedback',
     CONTACT_US: 'ContactUs',

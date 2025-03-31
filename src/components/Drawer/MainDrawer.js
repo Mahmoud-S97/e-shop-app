@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text} from 'react-native';
 import MainDrawerStyles from './MainDrawerStyles';
 import {DrawerContentScrollView} from '@react-navigation/drawer';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -24,12 +24,12 @@ const MainDrawer = props => {
       id: 1,
       name: SCREENS.HOME,
       title: 'Home',
-      itemFocused: focused === SCREENS.HOME,
+      itemFocused: focused === SCREENS.HOME_SCREENS,
       icon: () => (
         <Octicons
           name="home"
           size={25}
-          color={focused === SCREENS.HOME ? COLORS.GRAY : COLORS.BLACK}
+          color={focused === SCREENS.HOME_SCREENS ? COLORS.GRAY : COLORS.BLACK}
         />
       )
     },
