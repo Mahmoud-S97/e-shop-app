@@ -33,6 +33,7 @@ const HomeScreen = props => {
   const {products, totalAvailableProducts, isLoadingProducts} = useSelector(
     state => state.productsSlice
   );
+  const cartTotalPrice = useSelector(state => state.cartSlice.totalPrice);
   const [viewType, setViewType] = useState(constants.LIST);
   const [productsLimit, setProductsLimit] = useState(10);
   const [productsSkipped, setProductsSkipped] = useState(0);
@@ -185,21 +186,21 @@ const HomeScreen = props => {
     return (
       <View style={GENERAL_STYLES.container}>
         {isLoadingProducts && hasMoreData && <Spinner />}
-        <View style={HomeScreenStyles.footerBtnsBox}>
+        <View style={[HomeScreenStyles.footerBtnsBox, cartTotalPrice > 0 && { marginBottom: 70 }]}>
           <MainButton
             style={HomeScreenStyles.feedbackBtn}
-            onPress={() => Alert.alert('You pressed the FeedBack Button')}>
+            onPress={() => navigation.navigate(SCREENS.FEEDBACK)}>
             Feedback
           </MainButton>
           <MainButton
             style={HomeScreenStyles.contactBtn}
-            onPress={() => Alert.alert('You pressed the ContactUs Button')}>
+            onPress={() => navigation.navigate(SCREENS.CONTACT_US)}>
             Contact Us
           </MainButton>
         </View>
       </View>
     );
-  }, [viewType, setViewType, isLoadingProducts, search]);
+  }, [viewType, setViewType, isLoadingProducts, search, cartTotalPrice]);
 
   return (
     <View style={GENERAL_STYLES.screen}>
@@ -231,6 +232,11 @@ const HomeScreen = props => {
         onRequestClose={() => setSearchModalVisible(false)}
         setSearchState={setSearch}
       />
+      {cartTotalPrice > 0 && (
+        <MainButton style={HomeScreenStyles.orderingBtn} onPress={() => navigation.navigate(SCREENS.CART)}>
+          {`Order Now $${cartTotalPrice.toFixed(2)}`}
+        </MainButton>
+      )}
     </View>
   );
 };

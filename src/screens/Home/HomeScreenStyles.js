@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {COLORS} from '../../constants/styles/Styles';
+import {getScreenWidth} from '../../utils';
 
 const HomeScreenStyles = StyleSheet.create({
   imageBackground: {
@@ -74,6 +75,12 @@ const HomeScreenStyles = StyleSheet.create({
   contactBtn: {
     width: '48%',
     backgroundColor: COLORS.GOLD
+  },
+  orderingBtn: {
+    width: getScreenWidth() - 30,
+    alignSelf: 'center',
+    position: 'absolute',
+    bottom: 10
   }
 });
 
