@@ -4,5 +4,7 @@ export default CONSTANTS = {
     SINGLE: 'SINGLE',
     IS_LOGGED_IN: 'isLoggedIn',
     ORDER_SUMMARY: 'Order Summary',
-    FAVORITE: 'Favorite'
+    FAVORITE: 'Favorite',
+    LARGE: 'large',
+    SMALL: 'small'
 }

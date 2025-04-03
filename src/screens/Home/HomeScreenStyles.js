@@ -61,13 +61,6 @@ const HomeScreenStyles = StyleSheet.create({
   viewTypeBtn: {
     marginEnd: 4
   },
-  footerLoading: {
-    width: '100%',
-    height: 100,
-    backgroundColor: COLORS.WHITE,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
   footerBtnsBox: {
     width: '100%',
     flexDirection: 'row',

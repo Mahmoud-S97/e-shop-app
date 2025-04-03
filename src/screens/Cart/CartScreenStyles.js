@@ -33,6 +33,10 @@ const CartScreenStyles = StyleSheet.create({
   cartTopTabButtonText: {
     fontSize: 15,
     color: COLORS.PRIMARY
+  },
+  emptyMessageTextStyles: {
+    fontSize: 22,
+    fontWeight: 'bold'
   }
 });
 
@@ -75,6 +79,6 @@ export const productItemCustomStyles = {
     height: 45,
     marginTop: 0
   }
-}
+};
 
 export default CartScreenStyles;

@@ -15,6 +15,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import CartItem from '../../components/Cart/CartItem';
 import {setRemovedItemID} from '../../store/reducers/cartSlice';
 import {setRemovedFavItemID} from '../../store/reducers/productsSlice';
+import GeneralEmptyMessage from '../../components/Globals/GeneralEmptyMessage';
+import MainButton from '../../components/Globals/MainButton';
 
 const CartScreen = props => {
   const {navigation} = props;
@@ -50,10 +52,30 @@ const CartScreen = props => {
 
   const MemoizedProductComponent = memo(RenderProductItem);
 
-  const RenderCartItems = () => {
-    const renderProducts =
-      tabType === constants.FAVORITE ? favProducts : cartProducts;
-    return renderProducts?.map((item, index) => (
+  const RenderEmptyMessage = () => {
+    return (
+      <GeneralEmptyMessage
+        messageTextStyles={CartScreenStyles.emptyMessageTextStyles}
+        button={
+          tabType === constants.ORDER_SUMMARY ? (
+            <MainButton onPress={() => navigation.navigate('Home')}>
+              Go Shop!
+            </MainButton>
+          ) : null
+        }>
+        {tabType === constants.ORDER_SUMMARY
+          ? 'Your Cart is Empty'
+          : 'No Favorite Products Yet!'}
+      </GeneralEmptyMessage>
+    );
+  };
+
+  const RenderOrderSummary = () => {
+    if (!cartProducts.length) {
+      return <RenderEmptyMessage />;
+    }
+
+    return cartProducts?.map((item, index) => (
       <MemoizedProductComponent
         key={index.toString() || item.id.toString()}
         item={item}
@@ -61,6 +83,41 @@ const CartScreen = props => {
       />
     ));
   };
+
+  const RenderFavorites = () => {
+    if (!favProducts.length) {
+      return <RenderEmptyMessage />;
+    }
+
+    return favProducts?.map((item, index) => (
+      <MemoizedProductComponent
+        key={index.toString() || item.id.toString()}
+        item={item}
+        index={index}
+      />
+    ));
+  };
+
+  const RenderCartItems = useCallback(() => {
+    if (!favProducts.length && !cartProducts.length) {
+      return (
+        <GeneralEmptyMessage
+          messageTextStyles={CartScreenStyles.emptyMessageTextStyles}
+          button={
+            <MainButton onPress={() => navigation.navigate('Home')}>
+              Go Shop!
+            </MainButton>
+          }>
+          Your Cart is Empty
+        </GeneralEmptyMessage>
+      );
+    }
+    if (tabType === constants.ORDER_SUMMARY) {
+      return <RenderOrderSummary />;
+    } else {
+      return <RenderFavorites />;
+    }
+  }, [favProducts, cartProducts, tabType, setTabType]);
 
   return (
     <ScrollView
@@ -95,32 +152,34 @@ const CartScreen = props => {
             }}
           />
           <View style={GENERAL_STYLES.container}>
-            <View style={CartScreenStyles.cartTopTab}>
-              <TouchableOpacity
-                activeOpacity={0.7}
-                style={[
-                  CartScreenStyles.cartTopTabButton,
-                  tabType === constants.ORDER_SUMMARY &&
-                    CartScreenStyles.cartTopTabButton_Active
-                ]}
-                onPress={() => setTabType(constants.ORDER_SUMMARY)}>
-                <Text style={CartScreenStyles.cartTopTabButtonText}>
-                  Order Summary
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                activeOpacity={0.7}
-                style={[
-                  CartScreenStyles.cartTopTabButton,
-                  tabType === constants.FAVORITE &&
-                    CartScreenStyles.cartTopTabButton_Active
-                ]}
-                onPress={() => setTabType(constants.FAVORITE)}>
-                <Text style={CartScreenStyles.cartTopTabButtonText}>
-                  Favorites
-                </Text>
-              </TouchableOpacity>
-            </View>
+            {favProducts.length || cartProducts.length ? (
+              <View style={CartScreenStyles.cartTopTab}>
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  style={[
+                    CartScreenStyles.cartTopTabButton,
+                    tabType === constants.ORDER_SUMMARY &&
+                      CartScreenStyles.cartTopTabButton_Active
+                  ]}
+                  onPress={() => setTabType(constants.ORDER_SUMMARY)}>
+                  <Text style={CartScreenStyles.cartTopTabButtonText}>
+                    Order Summary
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  style={[
+                    CartScreenStyles.cartTopTabButton,
+                    tabType === constants.FAVORITE &&
+                      CartScreenStyles.cartTopTabButton_Active
+                  ]}
+                  onPress={() => setTabType(constants.FAVORITE)}>
+                  <Text style={CartScreenStyles.cartTopTabButtonText}>
+                    Favorites
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            ) : null}
             <RenderCartItems />
           </View>
         </View>

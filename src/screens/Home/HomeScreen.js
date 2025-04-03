@@ -21,6 +21,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import SCREENS from '../../constants/screens';
 import {fetchProducts} from '../../api/General';
 import SearchProductsModal from '../../components/Home/SearchProductsModal';
+import GeneralEmptyMessage from '../../components/Globals/GeneralEmptyMessage';
+import Spinner from '../../components/Globals/Spinner';
 
 const image = {uri: 'https://legacy.reactjs.org/logo-og.png'};
 
@@ -39,7 +41,9 @@ const HomeScreen = props => {
   const [search, setSearch] = useState('');
 
   const numColumns = viewType === constants.GRID ? 2 : 1;
-  const columnWrapperStyle = viewType === constants.GRID && {justifyContent: 'space-between'};
+  const columnWrapperStyle = viewType === constants.GRID && {
+    justifyContent: 'space-between'
+  };
 
   useEffect(() => {
     if (products.length === 0) {
@@ -88,6 +92,18 @@ const HomeScreen = props => {
     },
     [viewType, setViewType]
   );
+
+  // FlatList Data with Conditionally Filtration
+  const filteredProducts = useMemo(() => {
+    if (!search.trim()) return [...products];
+
+    let filteredProducts = [...products];
+    filteredProducts = filteredProducts.filter(product =>
+      product.title.toLowerCase().includes(search.toLowerCase())
+    );
+    console.log('Fetched-filteredProducts: ', filteredProducts);
+    return filteredProducts;
+  }, [search, products]);
 
   // FlatList-Screen Header
   const RenderFlatListHeader = useCallback(() => {
@@ -164,15 +180,11 @@ const HomeScreen = props => {
     );
   }, [viewType, setViewType, search]);
 
-   // FlatList-Screen Footer
-   const RenderFlatListFooter = useCallback(() => {
+  // FlatList-Screen Footer
+  const RenderFlatListFooter = useCallback(() => {
     return (
       <View style={GENERAL_STYLES.container}>
-        {isLoadingProducts && hasMoreData && (
-          <View style={HomeScreenStyles.footerLoading}>
-            <ActivityIndicator size="large" color={COLORS.PRIMARY} />
-          </View>
-        )}
+        {isLoadingProducts && hasMoreData && <Spinner />}
         <View style={HomeScreenStyles.footerBtnsBox}>
           <MainButton
             style={HomeScreenStyles.feedbackBtn}
@@ -187,19 +199,7 @@ const HomeScreen = props => {
         </View>
       </View>
     );
-  }, [viewType, setViewType, loadMoreProducts, search]);
-
-  // FlatList Data with Conditionally Filtration
-  const filteredProducts = useMemo(() => {
-    if (!search.trim()) return [...products];
-
-    let filteredProducts = [...products];
-      filteredProducts = filteredProducts.filter(product =>
-        product.title.toLowerCase().includes(search.toLowerCase())
-      );
-    console.log('Fetched-filteredProducts: ', filteredProducts);
-    return filteredProducts;
-  }, [search, products]);
+  }, [viewType, setViewType, isLoadingProducts, search]);
 
   return (
     <View style={GENERAL_STYLES.screen}>
@@ -217,7 +217,11 @@ const HomeScreen = props => {
           <MemoizedProductComponent item={item} index={index} />
         )}
         ListFooterComponent={RenderFlatListFooter}
-        ListEmptyComponent={() => {}} // Will be handled later on..
+        ListEmptyComponent={() =>
+          !isLoadingProducts && (
+            <GeneralEmptyMessage>No Products Found!</GeneralEmptyMessage>
+          )
+        }
         initialNumToRender={productsSkipped}
       />
       <SearchProductsModal
