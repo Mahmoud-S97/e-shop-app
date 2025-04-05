@@ -34,9 +34,25 @@ const CartScreenStyles = StyleSheet.create({
     fontSize: 15,
     color: COLORS.PRIMARY
   },
+  emptyCartIconBox: {
+    width: 200,
+    height: 200,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: -50
+  },
+  emptyCartIconStyles: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain'
+  },
   emptyMessageTextStyles: {
     fontSize: 22,
-    fontWeight: 'bold'
+    letterSpacing: 1
+  },
+  startShoppingBtnText: {
+    fontSize: 17,
+    letterSpacing: 0.9
   }
 });
 

@@ -4,7 +4,8 @@ import {
   Text,
   ScrollView,
   TouchableOpacity,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Image
 } from 'react-native';
 import {COLORS, GENERAL_STYLES} from '../../constants/styles/Styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -17,6 +18,7 @@ import {setRemovedItemID} from '../../store/reducers/cartSlice';
 import {setRemovedFavItemID} from '../../store/reducers/productsSlice';
 import GeneralEmptyMessage from '../../components/Globals/GeneralEmptyMessage';
 import MainButton from '../../components/Globals/MainButton';
+import {LOCAL_IMAGES} from '../../constants/images/LocalImages';
 
 const CartScreen = props => {
   const {navigation} = props;
@@ -58,14 +60,17 @@ const CartScreen = props => {
         messageTextStyles={CartScreenStyles.emptyMessageTextStyles}
         button={
           tabType === constants.ORDER_SUMMARY ? (
-            <MainButton onPress={() => navigation.navigate('Home')}>
-              Go Shop!
+            <MainButton
+              btnTextStyles={CartScreenStyles.startShoppingBtnText}
+              onPress={() => navigation.navigate('Home')}>
+              Start Shopping!
             </MainButton>
           ) : null
-        }>
+        }
+        icon={<RenderEmptyCartIcon />}>
         {tabType === constants.ORDER_SUMMARY
-          ? 'Your Cart is Empty'
-          : 'No Favorite Products Yet!'}
+          ? 'Your Cart is Empty!'
+          : "You haven't favorited any product yet!"}
       </GeneralEmptyMessage>
     );
   };
@@ -98,17 +103,35 @@ const CartScreen = props => {
     ));
   };
 
+  const RenderEmptyCartIcon = useCallback(() => {
+    return (
+      <View style={CartScreenStyles.emptyCartIconBox}>
+        <Image
+          source={
+            tabType === constants.ORDER_SUMMARY
+              ? LOCAL_IMAGES.EMPTY_CART
+              : LOCAL_IMAGES.EMPTY_FAV_PRODUCT
+          }
+          style={CartScreenStyles.emptyCartIconStyles}
+        />
+      </View>
+    );
+  }, [tabType, setTabType]);
+
   const RenderCartItems = useCallback(() => {
     if (!favProducts.length && !cartProducts.length) {
       return (
         <GeneralEmptyMessage
           messageTextStyles={CartScreenStyles.emptyMessageTextStyles}
           button={
-            <MainButton onPress={() => navigation.navigate('Home')}>
-              Go Shop!
+            <MainButton
+              btnTextStyles={CartScreenStyles.startShoppingBtnText}
+              onPress={() => navigation.navigate('Home')}>
+              Start Shopping!
             </MainButton>
-          }>
-          Your Cart is Empty
+          }
+          icon={<RenderEmptyCartIcon />}>
+          Your Cart is Empty!
         </GeneralEmptyMessage>
       );
     }
