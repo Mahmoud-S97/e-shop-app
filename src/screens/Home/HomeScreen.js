@@ -186,21 +186,35 @@ const HomeScreen = props => {
     return (
       <View style={GENERAL_STYLES.container}>
         {isLoadingProducts && hasMoreData && <Spinner />}
-        <View style={[HomeScreenStyles.footerBtnsBox, cartTotalPrice > 0 && { marginBottom: 70 }]}>
-          <MainButton
-            style={HomeScreenStyles.feedbackBtn}
-            onPress={() => navigation.navigate(SCREENS.FEEDBACK)}>
-            Feedback
-          </MainButton>
-          <MainButton
-            style={HomeScreenStyles.contactBtn}
-            onPress={() => navigation.navigate(SCREENS.CONTACT_US)}>
-            Contact Us
-          </MainButton>
-        </View>
+        {!hasMoreData && (
+          <View
+            style={[
+              HomeScreenStyles.footerBtnsBox,
+              cartTotalPrice > 0 && {marginBottom: 70}
+            ]}>
+            <MainButton
+              style={HomeScreenStyles.feedbackBtn}
+              onPress={() => navigation.navigate(SCREENS.FEEDBACK)}>
+              Feedback
+            </MainButton>
+            <MainButton
+              style={HomeScreenStyles.contactBtn}
+              onPress={() => navigation.navigate(SCREENS.CONTACT_US)}>
+              Contact Us
+            </MainButton>
+          </View>
+        )}
       </View>
     );
-  }, [viewType, setViewType, isLoadingProducts, search, cartTotalPrice]);
+  }, [
+    viewType,
+    setViewType,
+    hasMoreData,
+    setHasMoreData,
+    isLoadingProducts,
+    search,
+    cartTotalPrice
+  ]);
 
   return (
     <View style={GENERAL_STYLES.screen}>
@@ -233,7 +247,9 @@ const HomeScreen = props => {
         setSearchState={setSearch}
       />
       {cartTotalPrice > 0 && (
-        <MainButton style={HomeScreenStyles.orderingBtn} onPress={() => navigation.navigate(SCREENS.CART)}>
+        <MainButton
+          style={HomeScreenStyles.orderingBtn}
+          onPress={() => navigation.navigate(SCREENS.CART)}>
           {`Order Now $${cartTotalPrice.toFixed(2)}`}
         </MainButton>
       )}
