@@ -134,7 +134,7 @@ const CartItem = props => {
             CartItemStyles.addToCartBtn,
             props.itemType === constants.FAVORITE && {
               width: '90%',
-              height: 45,
+              height: 40,
               alignSelf: 'flex-start',
               marginTop: 0
             },
