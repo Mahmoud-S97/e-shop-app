@@ -19,6 +19,7 @@ import {setRemovedFavItemID} from '../../store/reducers/productsSlice';
 import GeneralEmptyMessage from '../../components/Globals/GeneralEmptyMessage';
 import MainButton from '../../components/Globals/MainButton';
 import {LOCAL_IMAGES} from '../../constants/images/LocalImages';
+import GoBackIcon from '../../components/Globals/GoBackIcon';
 
 const CartScreen = props => {
   const {navigation} = props;
@@ -151,13 +152,7 @@ const CartScreen = props => {
           <MainHeader
             style={{height: 80}}
             headerLeft={{
-              headerLeftBtn1_content: (
-                <FontAwesome
-                  name="angle-left"
-                  size={30}
-                  color={COLORS.PRIMARY}
-                />
-              ),
+              headerLeftBtn1_content: <GoBackIcon />,
               headerLeftBoxStyles: {width: '12.5%'},
               headerLeftAction1Styles: {backgroundColor: 'transparent'},
               action1: goBack

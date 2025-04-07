@@ -6,6 +6,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import MainHeader from '../MainHeader';
 import {COLORS} from '../../../constants/styles/Styles';
 import { useSelector } from 'react-redux';
+import MenuIcon from '../../Globals/MenuIcon';
 
 const HomeHeader = props => {
 
@@ -16,10 +17,7 @@ const HomeHeader = props => {
       style={styles.HomeHeader}
       headerLeft={{
         headerLeftBtn1_content: (
-          <View style={styles.customMenuBox}>
-            <Entypo name="menu" size={30} color={COLORS.PRIMARY} />
-            <Text style={styles.customMenuBoxText}>MENU</Text>
-          </View>
+          <MenuIcon />
         ),
         headerLeftAction1Styles: {
           width: 95,
@@ -58,17 +56,6 @@ const HomeHeader = props => {
 const styles = StyleSheet.create({
   HomeHeader: {
     backgroundColor: COLORS.WHITE
-  },
-  customMenuBox: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  customMenuBoxText: {
-    fontSize: 13,
-    fontWeight: '500',
-    marginHorizontal: 5,
-    color: COLORS.PRIMARY
   },
   headerRightCartBtnBox: {
     justifyContent: 'center',

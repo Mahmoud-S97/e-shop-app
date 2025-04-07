@@ -10,6 +10,7 @@ import ProductItem from '../../components/Products/ProductItem';
 import {useDispatch, useSelector} from 'react-redux';
 import SCREENS from '../../constants/screens';
 import {switchItemAsFavorite} from '../../store/reducers/productsSlice';
+import GoBackIcon from '../../components/Globals/GoBackIcon';
 
 const ProductViewScreen = props => {
   const {
@@ -54,9 +55,7 @@ const ProductViewScreen = props => {
         <MainHeader
           style={{height: 80}}
           headerLeft={{
-            headerLeftBtn1_content: (
-              <FontAwesome name="angle-left" size={30} color={COLORS.PRIMARY} />
-            ),
+            headerLeftBtn1_content: <GoBackIcon />,
             headerLeftBoxStyles: {width: '12.5%'},
             headerLeftAction1Styles: {backgroundColor: 'transparent'},
             action1: goBack

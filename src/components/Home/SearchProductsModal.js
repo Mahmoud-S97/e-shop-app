@@ -10,10 +10,10 @@ import {
   TouchableWithoutFeedback
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import SearchProductsModalStyles from './SearchProducts.ModalStyles';
 import {COLORS, GENERAL_STYLES} from '../../constants/styles/Styles';
 import MainButton from '../Globals/MainButton';
+import GoBackIcon from '../Globals/GoBackIcon';
 
 const SearchProductsModal = props => {
   const {visible, animationType, transparent, onRequestClose, setSearchState} =
@@ -68,11 +68,7 @@ const SearchProductsModal = props => {
                   activeOpacity={0.7}
                   style={SearchProductsModalStyles.backBtn}
                   onPress={onBackButtonPressed}>
-                  <FontAwesome6
-                    name="arrow-left"
-                    size={20}
-                    color={COLORS.BLACK}
-                  />
+                  <GoBackIcon />
                 </TouchableOpacity>
                 <View style={SearchProductsModalStyles.searchBox}>
                   <TextInput
