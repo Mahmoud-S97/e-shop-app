@@ -183,14 +183,11 @@ const HomeScreen = props => {
   // FlatList-Screen Footer
   const RenderFlatListFooter = useCallback(() => {
     return (
-      <View style={GENERAL_STYLES.container}>
+      <View style={[GENERAL_STYLES.container, cartTotalPrice > 0 && { paddingBottom: 80 }]}>
         {isLoadingProducts && hasMoreData && <Spinner />}
         {!hasMoreData && (
           <View
-            style={[
-              HomeScreenStyles.footerBtnsBox,
-              cartTotalPrice > 0 && {marginBottom: 70}
-            ]}>
+            style={HomeScreenStyles.footerBtnsBox}>
             <MainButton
               style={HomeScreenStyles.feedbackBtn}
               onPress={() => navigation.navigate(SCREENS.FEEDBACK)}>
