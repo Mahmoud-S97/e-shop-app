@@ -7,7 +7,7 @@ const Spinner = props => {
   return (
     <View style={[styles.container, {...props.containerStyles}]}>
       <ActivityIndicator
-        size={constants.LARGE || props.size}
+        size={props.size || constants.LARGE}
         color={props.color || COLORS.PRIMARY}
       />
     </View>
