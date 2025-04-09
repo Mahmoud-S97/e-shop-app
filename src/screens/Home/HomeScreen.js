@@ -22,6 +22,10 @@ import {fetchProducts} from '../../api/General';
 import SearchProductsModal from '../../components/Home/SearchProductsModal';
 import GeneralEmptyMessage from '../../components/Globals/GeneralEmptyMessage';
 import Spinner from '../../components/Globals/Spinner';
+import {
+  setProductsSkipped,
+  setHasMoreData
+} from '../../store/reducers/productsSlice';
 
 const image = {uri: 'https://legacy.reactjs.org/logo-og.png'};
 
@@ -29,14 +33,17 @@ const HomeScreen = props => {
   const {navigation} = props;
 
   const dispatch = useDispatch();
-  const {products, totalAvailableProducts, isLoadingProducts} = useSelector(
-    state => state.productsSlice
-  );
+  const {
+    products,
+    totalAvailableProducts,
+    productsLimit,
+    productsSkipped,
+    hasMoreData,
+    isLoadingProducts,
+    isFetchingMoreProducts
+  } = useSelector(state => state.productsSlice);
   const cartTotalPrice = useSelector(state => state.cartSlice.totalPrice);
   const [viewType, setViewType] = useState(constants.LIST);
-  const [productsLimit, setProductsLimit] = useState(10);
-  const [productsSkipped, setProductsSkipped] = useState(0);
-  const [hasMoreData, setHasMoreData] = useState(true);
   const [searchModalVisible, setSearchModalVisible] = useState(false);
   const [search, setSearch] = useState('');
 
@@ -48,18 +55,18 @@ const HomeScreen = props => {
   useEffect(() => {
     if (products.length === 0) {
       dispatch(fetchProducts({productsLimit, productsSkipped}));
-      setProductsSkipped(productsSkipped => productsSkipped + 10);
+      dispatch(setProductsSkipped(10));
     }
   }, [navigation, dispatch]);
 
   const loadMoreProducts = () => {
-    if (isLoadingProducts || !hasMoreData || search.trim()) return;
+    if (isFetchingMoreProducts || !hasMoreData || search.trim()) return;
 
     if (products.length < totalAvailableProducts) {
       dispatch(fetchProducts({productsLimit, productsSkipped}));
-      setProductsSkipped(productsSkipped => productsSkipped + 10);
+      dispatch(setProductsSkipped(10));
     } else {
-      setHasMoreData(false);
+      dispatch(setHasMoreData(false));
     }
   };
 
@@ -183,11 +190,14 @@ const HomeScreen = props => {
   // FlatList-Screen Footer
   const RenderFlatListFooter = useCallback(() => {
     return (
-      <View style={[GENERAL_STYLES.container, cartTotalPrice > 0 && { paddingBottom: 80 }]}>
-        {isLoadingProducts && hasMoreData && <Spinner />}
+      <View
+        style={[
+          GENERAL_STYLES.container,
+          cartTotalPrice > 0 && {paddingBottom: 80}
+        ]}>
+        {isFetchingMoreProducts && hasMoreData && <Spinner />}
         {!hasMoreData && (
-          <View
-            style={HomeScreenStyles.footerBtnsBox}>
+          <View style={HomeScreenStyles.footerBtnsBox}>
             <MainButton
               style={HomeScreenStyles.feedbackBtn}
               onPress={() => navigation.navigate(SCREENS.FEEDBACK)}>
@@ -206,8 +216,7 @@ const HomeScreen = props => {
     viewType,
     setViewType,
     hasMoreData,
-    setHasMoreData,
-    isLoadingProducts,
+    isFetchingMoreProducts,
     search,
     cartTotalPrice
   ]);
@@ -229,7 +238,7 @@ const HomeScreen = props => {
         )}
         ListFooterComponent={RenderFlatListFooter}
         ListEmptyComponent={() =>
-          !isLoadingProducts && (
+          (!isFetchingMoreProducts && !isLoadingProducts) && (
             <GeneralEmptyMessage>No Products Found!</GeneralEmptyMessage>
           )
         }

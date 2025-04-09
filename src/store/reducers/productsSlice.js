@@ -7,13 +7,20 @@ const productsSlice = createSlice({
     products: [],
     favProducts: [],
     totalAvailableProducts: null,
+    productsLimit: 10,
+    productsSkipped: 0,
+    hasMoreData: true,
     isLoadingProducts: false,
+    isFetchingMoreProducts: false,
     errors: null,
     onHoldRemovedFavItemID: null
   },
   reducers: {
-    setProducts: (state, action) => {
-      state.products = [...state.products, ...action.payload];
+    setProductsSkipped: (state, action) => {
+      state.productsSkipped = state.productsSkipped + action.payload
+    },
+    setHasMoreData: (state, action) => {
+      state.hasMoreData = action.payload;
     },
     switchItemAsFavorite: (state, action) => {
       const selectedItem = state.favProducts.find(
@@ -39,11 +46,15 @@ const productsSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(fetchProducts.pending, state => {
-      state.isLoadingProducts = true;
+      if(state.products.length === 0) { // First time products loading
+        state.isLoadingProducts = true;
+      }
+      state.isFetchingMoreProducts = true;
       state.errors = null;
       console.log('Fetching Product is Pending...');
     });
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
+      state.isFetchingMoreProducts = false;
       state.isLoadingProducts = false;
       state.errors = null;
       state.products = [...state.products, ...action.payload.products];
@@ -51,6 +62,7 @@ const productsSlice = createSlice({
       console.log('Redux-Fetched-Products: ', action.payload.products);
     });
     builder.addCase(fetchProducts.rejected, (state, action) => {
+      state.isFetchingMoreProducts = false;
       state.isLoadingProducts = false;
       state.errors = action.payload;
       console.log('Error/Rejected While Fetching Products... ', action.payload);
@@ -59,7 +71,8 @@ const productsSlice = createSlice({
 });
 
 export const {
-  setProducts,
+  setProductsSkipped,
+  setHasMoreData,
   switchItemAsFavorite,
   setRemovedFavItemID,
   removeItemFromFavorites
