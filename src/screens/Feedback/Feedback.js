@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {View, Text, ImageBackground, Image, ScrollView} from 'react-native';
+import React, {useCallback, useEffect, memo} from 'react';
+import {View, Text, ImageBackground, ScrollView} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Carousel from 'react-native-reanimated-carousel';
 import FeedbackStyles from './FeedbackStyles';
@@ -13,6 +13,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {fetchReviewersQuotes} from '../../api/General';
 import MainHeader from '../../components/Header/MainHeader';
 import MenuIcon from '../../components/Globals/MenuIcon';
+import FastImage from 'react-native-fast-image';
+import Spinner from '../../components/Globals/Spinner';
 
 const Feedback = ({navigation}) => {
   const dispatch = useDispatch();
@@ -21,6 +23,38 @@ const Feedback = ({navigation}) => {
   useEffect(() => {
     dispatch(fetchReviewersQuotes());
   }, [navigation, dispatch]);
+
+  const RenderCarouselItem = useCallback(({item}) => {
+    return (
+      <View style={FeedbackStyles.carouselItemBox}>
+        <View style={FeedbackStyles.reviewerImgBox}>
+          <FastImage
+            style={FeedbackStyles.reviewerImg}
+            source={{
+              uri: item.image,
+              priority: FastImage.priority.high,
+              cache: FastImage.cacheControl.immutable
+            }}
+            resizeMode={FastImage.resizeMode.cover}
+          />
+        </View>
+        <StarRatingDisplay
+          rating={item.rating}
+          color={COLORS.PRIMARY}
+          starSize={35}
+          style={{marginVertical: 10}}
+        />
+        <Text style={FeedbackStyles.reviewerText} numberOfLines={8}>
+          {item.quote}
+        </Text>
+        <Text
+          style={FeedbackStyles.reviewerName}
+          numberOfLines={1}>{`~ ${item.author}`}</Text>
+      </View>
+    )
+  }, []);
+
+  const MemoizedCarouselItem = memo(RenderCarouselItem);
 
   return (
     <ScrollView
@@ -47,37 +81,20 @@ const Feedback = ({navigation}) => {
           <Text style={FeedbackStyles.feedbackText}>Feedback Form</Text>
         </ImageBackground>
         <View style={FeedbackStyles.carouselBox}>
-          <Carousel
-            loop
-            width={getScreenWidth() - 24}
-            height={450}
-            autoPlay={true}
-            autoPlayInterval={3000}
-            data={reviewersQuotes}
-            scrollAnimationDuration={1000}
-            renderItem={({item}) => (
-              <View style={FeedbackStyles.carouselItemBox}>
-                <View style={FeedbackStyles.reviewerImgBox}>
-                  <Image
-                    style={FeedbackStyles.reviewerImg}
-                    source={{uri: item.image}}
-                  />
-                </View>
-                <StarRatingDisplay
-                  rating={item.rating}
-                  color={COLORS.PRIMARY}
-                  starSize={35}
-                  style={{marginVertical: 10}}
-                />
-                <Text style={FeedbackStyles.reviewerText} numberOfLines={5}>
-                  {item.quote}
-                </Text>
-                <Text
-                  style={FeedbackStyles.reviewerName}
-                  numberOfLines={1}>{`~ ${item.author}`}</Text>
-              </View>
-            )}
-          />
+          {reviewersQuotes.length > 0 ? (
+            <Carousel
+              data={reviewersQuotes}
+              loop
+              mode='parallax'
+              windowSize={3}
+              width={getScreenWidth() - 48}
+              height={450}
+              autoPlay={true}
+              autoPlayInterval={3000}
+              scrollAnimationDuration={1000}
+              renderItem={({item}) => <MemoizedCarouselItem item={item} />}
+            />
+          ) : <Spinner />}
         </View>
         <View style={FeedbackStyles.footerBtnsBox}>
           <MainButton

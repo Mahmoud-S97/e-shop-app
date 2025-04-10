@@ -31,15 +31,14 @@ const FeedbackStyles = StyleSheet.create({
     alignItems: 'center'
   },
   reviewerImgBox: {
-    width: 300,
-    height: 250,
+    width: 320,
+    height: 270,
     justifyContent: 'center',
     alignItems: 'center'
   },
   reviewerImg: {
     width: '100%',
-    height: '100%',
-    resizeMode: 'contain'
+    height: '100%'
   },
   reviewerText: {
     width: '95%',
@@ -51,7 +50,8 @@ const FeedbackStyles = StyleSheet.create({
   reviewerName: {
     width: '100%',
     textAlign: 'right',
-    marginVertical: 20,
+    marginTop: 25,
+    marginBottom: 15,
     fontSize: 15,
     fontWeight: '400',
     color: COLORS.PRIMARY
