@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">E-Shop</string>
+    <string name="google_maps_api_key">REMOVED_GOOGLE_API_KEY</string>
 </resources>
