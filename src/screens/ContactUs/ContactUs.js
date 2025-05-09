@@ -185,7 +185,7 @@ const ContactUs = ({navigation}) => {
     }
   };
 
-  const socialMediaClickHandler = async mediaType => {
+  const socialMediaClickHandler = mediaType => {
     switch (mediaType) {
       case constants.FACEBOOK:
         goToMediaProfile(constants.FACEBOOK);
