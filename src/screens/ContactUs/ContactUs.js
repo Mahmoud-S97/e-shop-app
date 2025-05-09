@@ -204,6 +204,7 @@ const ContactUs = ({navigation}) => {
   return (
     <ScrollView
       style={GENERAL_STYLES.scrollingView}
+      showsVerticalScrollIndicator={false}
       refreshControl={
         !grantedLocation ? (
           <RefreshControl
