@@ -27,7 +27,8 @@ const ContactUsStyles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: COLORS.GOLD,
     borderRadius: 10,
-    marginHorizontal: 8
+    marginHorizontal: 8,
+    marginBottom: 25
   }
 });
 

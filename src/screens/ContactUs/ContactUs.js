@@ -1,14 +1,22 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useCallback} from 'react';
 import {
   View,
-  PermissionsAndroid,
   Platform,
   Image,
   Linking,
   Alert,
   ScrollView,
+  RefreshControl,
   TouchableOpacity
 } from 'react-native';
+import {
+  check,
+  request,
+  openSettings,
+  PERMISSIONS,
+  RESULTS
+} from 'react-native-permissions';
+import {useFocusEffect} from '@react-navigation/native';
 import ContactUsStyles from './ContactUsStyles';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import Geolocation from 'react-native-geolocation-service';
@@ -24,40 +32,84 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import MainHeader from '../../components/Header/MainHeader';
 import MenuIcon from '../../components/Globals/MenuIcon';
 import constants, {SOCIAL_MEDIA_LINKS} from '../../constants';
+import GeneralEmptyMessage from '../../components/Globals/GeneralEmptyMessage';
 
 const ContactUs = ({navigation}) => {
   const [myOriginCoords, setMyOriginCoords] = useState(null);
+  const [grantedLocation, setGrantedLocation] = useState(false);
+  const [isMapsLoading, setIsMapsLoading] = useState(true);
 
   const destinationCoords = {
     latitude: 53.968451,
     longitude: -6.703923
   };
 
-  useEffect(() => {
-    getMyOriginCoordsHandler();
-    console.log('MY-CURRENT-LOCATION-STATE:: ', myOriginCoords);
-  }, [navigation]);
+  useFocusEffect(
+    useCallback(() => {
+      requestLocationPermission();
+      console.log('MY-CURRENT-LOCATION-STATE:: ', myOriginCoords);
+    }, [])
+  );
 
   const requestLocationPermission = async () => {
-    if (Platform.OS === 'android') {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
-      );
+    const permission = Platform.select({
+      android: PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+      ios: PERMISSIONS.IOS.LOCATION_WHEN_IN_USE
+    });
 
-      return granted === PermissionsAndroid.RESULTS.GRANTED;
+    const result = await check(permission);
+
+    switch (result) {
+      case RESULTS.UNAVAILABLE:
+        console.log('Sorry, Maps feature is not available');
+        setGrantedLocation(false);
+        setIsMapsLoading(false);
+        break;
+      case RESULTS.LIMITED:
+      case RESULTS.GRANTED:
+        console.log('Maps permission is granted!-1');
+        setGrantedLocation(true);
+        getMyOriginCoordsHandler();
+        break;
+      case RESULTS.DENIED:
+        const req = await request(permission);
+        console.log('New Location Request:: ', req);
+        if (req === RESULTS.GRANTED || req === RESULTS.LIMITED) {
+          console.log('Maps permission is granted!');
+          setGrantedLocation(true);
+          getMyOriginCoordsHandler();
+        } else {
+          console.log('Maps location is not granted!');
+          setGrantedLocation(false);
+          setIsMapsLoading(false);
+          Alert.alert(
+            'Permission Required',
+            'Location permission is blocked. Please enable it in settings.',
+            [
+              {text: 'Cancel', style: 'cancel'},
+              {text: 'Open Settings', onPress: () => openSettings()}
+            ]
+          );
+        }
+        break;
+      case RESULTS.BLOCKED:
+        setGrantedLocation(false);
+        setIsMapsLoading(false);
+        Alert.alert(
+          'Permission Required',
+          'Location permission is blocked. Please enable it in settings.',
+          [
+            {text: 'Cancel', style: 'cancel'},
+            {text: 'Open Settings', onPress: () => openSettings()}
+          ]
+        );
+        break;
     }
 
-    return true;
+    console.log(':::Location-Permission-Result::: ', result);
   };
 
   const getMyOriginCoordsHandler = async () => {
-    const hasPermission = await requestLocationPermission();
-    console.log('Has Location Permission?? ', hasPermission);
-    if (!hasPermission) {
-      Alert.alert('Permission Denied', 'Location permission is not granted!');
-      return;
-    }
-
     Geolocation.getCurrentPosition(
       position => {
         console.log('position: ', position);
@@ -65,9 +117,19 @@ const ContactUs = ({navigation}) => {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude
         });
+        setIsMapsLoading(false);
       },
       error => {
         console.log('Get current location error: ', error);
+        setIsMapsLoading(false);
+        if(error?.code === 3) {
+          Alert.alert(
+            'Location Timeout',
+            "We couldn't get your location. Try moving to an open area or check your GPS settings."
+          );
+        } else {
+          Alert.alert('Maps Error', "Cannot get your current location, please try again.");
+        }
       },
       {
         enableHighAccuracy: true,
@@ -137,10 +199,19 @@ const ContactUs = ({navigation}) => {
     }
   };
 
-  if (myOriginCoords === null) return <Spinner />;
+  if (isMapsLoading) return <Spinner />;
 
   return (
-    <ScrollView style={GENERAL_STYLES.scrollingView}>
+    <ScrollView
+      style={GENERAL_STYLES.scrollingView}
+      refreshControl={
+        !grantedLocation ? (
+          <RefreshControl
+            refreshing={isMapsLoading}
+            onRefresh={requestLocationPermission}
+          />
+        ) : null
+      }>
       <View style={GENERAL_STYLES.screen}>
         <MainHeader
           headerLeft={{
@@ -154,36 +225,42 @@ const ContactUs = ({navigation}) => {
           headerTitle="Contact Us"
           headerRight={{}}
         />
-        <MapView
-          style={ContactUsStyles.mapView}
-          provider={PROVIDER_GOOGLE}
-          initialRegion={{
-            latitude: destinationCoords?.latitude,
-            longitude: destinationCoords?.longitude,
-            latitudeDelta: 0.05,
-            longitudeDelta: 0.05
-          }}
-          showsUserLocation
-          showsMyLocationButton>
-          <Marker
-            coordinate={destinationCoords}
-            title="Gold Store Jo"
-            description="The new location of Gold Store Jo in Ireland">
-            <Image
-              style={{width: 40, height: 40}}
-              source={LOCAL_IMAGES.STORE_LOGO}
+        {grantedLocation ? (
+          <MapView
+            style={ContactUsStyles.mapView}
+            provider={PROVIDER_GOOGLE}
+            initialRegion={{
+              latitude: destinationCoords?.latitude,
+              longitude: destinationCoords?.longitude,
+              latitudeDelta: 0.01,
+              longitudeDelta: 0.01
+            }}
+            showsUserLocation
+            showsMyLocationButton>
+            <Marker
+              coordinate={destinationCoords}
+              title="Gold Store Jo"
+              description="The new location of Gold Store Jo in Ireland">
+              <Image
+                style={{width: 40, height: 40}}
+                source={LOCAL_IMAGES.STORE_LOGO}
+              />
+            </Marker>
+            <MapViewDirections
+              origin={myOriginCoords}
+              destination={destinationCoords}
+              latitudeDelta={0.01}
+              longitudeDelta={0.01}
+              apikey={GOOGLE_MAPS_API_KEY}
+              strokeWidth={5}
+              strokeColor={COLORS.PRIMARY}
             />
-          </Marker>
-          <MapViewDirections
-            origin={myOriginCoords}
-            destination={destinationCoords}
-            latitudeDelta={0.05}
-            longitudeDelta={0.05}
-            apikey={GOOGLE_MAPS_API_KEY}
-            strokeWidth={5}
-            strokeColor={COLORS.PRIMARY}
-          />
-        </MapView>
+          </MapView>
+        ) : (
+          <GeneralEmptyMessage style={{height: 300}}>
+            Can't view Google Maps due to permission Denied or Unavailable
+          </GeneralEmptyMessage>
+        )}
         <MainButton
           style={ContactUsStyles.goToStoreBtn}
           onPress={goToStoreByGoogleMaps}
