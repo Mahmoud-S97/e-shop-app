@@ -5,3 +5,7 @@ export const LOCAL_IMAGES = {
     EMPTY_FAV_PRODUCT: require('../../assets/icons/empty_fav_product.webp'),
     FEEDBACK_BG: require('../../assets/images/feedback_bg.png')
 }
+
+export const FAKE_IMAGES = {
+    DEFAULT_IMAGE: 'https://fastly.picsum.photos/id/60/1920/1200.jpg?hmac=fAMNjl4E_sG_WNUjdU39Kald5QAHQMh-_-TsIbbeDNI'
+}

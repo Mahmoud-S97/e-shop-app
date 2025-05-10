@@ -4,7 +4,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import {COLORS} from '../../constants/styles/Styles';
 
 const MenuIcon = props => {
-  const {name, size, color, style} = props;
+  const {name, size, color, style, customMenuBoxText} = props;
 
   return (
     <View style={[styles.customMenuBox, {...style}]}>
@@ -13,7 +13,7 @@ const MenuIcon = props => {
         size={size ? size : 30}
         color={color ? color : COLORS.PRIMARY}
       />
-      <Text style={styles.customMenuBoxText}>MENU</Text>
+      <Text style={[styles.customMenuBoxText, { ...customMenuBoxText }]}>MENU</Text>
     </View>
   );
 };
