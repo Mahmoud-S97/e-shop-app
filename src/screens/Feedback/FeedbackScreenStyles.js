@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 import {COLORS} from '../../constants/styles/Styles';
 import {getScreenWidth} from '../../utils';
 
-const FeedbackStyles = StyleSheet.create({
+const FeedbackScreenStyles = StyleSheet.create({
   feedbackBG: {
     width: '100%',
     height: 180,
@@ -72,4 +72,4 @@ const FeedbackStyles = StyleSheet.create({
   }
 });
 
-export default FeedbackStyles;
+export default FeedbackScreenStyles;

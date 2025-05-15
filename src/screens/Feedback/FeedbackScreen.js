@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, memo} from 'react';
 import {View, Text, ImageBackground, ScrollView} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Carousel from 'react-native-reanimated-carousel';
-import FeedbackStyles from './FeedbackStyles';
+import FeedbackScreenStyles from './FeedbackScreenStyles';
 import {COLORS, GENERAL_STYLES} from '../../constants/styles/Styles';
 import {LOCAL_IMAGES} from '../../constants/images/LocalImages';
 import {getScreenWidth} from '../../utils';
@@ -16,7 +16,7 @@ import MenuIcon from '../../components/Globals/MenuIcon';
 import FastImage from 'react-native-fast-image';
 import Spinner from '../../components/Globals/Spinner';
 
-const Feedback = ({navigation}) => {
+const FeedbackScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const {reviewersQuotes} = useSelector(state => state.userSlice);
 
@@ -26,10 +26,10 @@ const Feedback = ({navigation}) => {
 
   const RenderCarouselItem = useCallback(({item}) => {
     return (
-      <View style={FeedbackStyles.carouselItemBox}>
-        <View style={FeedbackStyles.reviewerImgBox}>
+      <View style={FeedbackScreenStyles.carouselItemBox}>
+        <View style={FeedbackScreenStyles.reviewerImgBox}>
           <FastImage
-            style={FeedbackStyles.reviewerImg}
+            style={FeedbackScreenStyles.reviewerImg}
             source={{
               uri: item.image,
               priority: FastImage.priority.high,
@@ -44,11 +44,11 @@ const Feedback = ({navigation}) => {
           starSize={35}
           style={{marginVertical: 10}}
         />
-        <Text style={FeedbackStyles.reviewerText} numberOfLines={8}>
+        <Text style={FeedbackScreenStyles.reviewerText} numberOfLines={8}>
           {item.quote}
         </Text>
         <Text
-          style={FeedbackStyles.reviewerName}
+          style={FeedbackScreenStyles.reviewerName}
           numberOfLines={1}>{`~ ${item.author}`}</Text>
       </View>
     )
@@ -75,12 +75,12 @@ const Feedback = ({navigation}) => {
       />
       <View style={GENERAL_STYLES.container}>
         <ImageBackground
-          style={FeedbackStyles.feedbackBG}
+          style={FeedbackScreenStyles.feedbackBG}
           source={LOCAL_IMAGES.FEEDBACK_BG}>
           <FontAwesome name="star" size={50} color={COLORS.WHITE} />
-          <Text style={FeedbackStyles.feedbackText}>Feedback Form</Text>
+          <Text style={FeedbackScreenStyles.feedbackText}>Feedback Form</Text>
         </ImageBackground>
-        <View style={FeedbackStyles.carouselBox}>
+        <View style={FeedbackScreenStyles.carouselBox}>
           {reviewersQuotes.length > 0 ? (
             <Carousel
               data={reviewersQuotes}
@@ -96,14 +96,14 @@ const Feedback = ({navigation}) => {
             />
           ) : <Spinner />}
         </View>
-        <View style={FeedbackStyles.footerBtnsBox}>
+        <View style={FeedbackScreenStyles.footerBtnsBox}>
           <MainButton
-            style={FeedbackStyles.shoppingBtn}
+            style={FeedbackScreenStyles.shoppingBtn}
             onPress={() => navigation.navigate(SCREENS.HOME)}>
             Shopping
           </MainButton>
           <MainButton
-            style={FeedbackStyles.contactBtn}
+            style={FeedbackScreenStyles.contactBtn}
             onPress={() => navigation.navigate(SCREENS.CONTACT_US)}>
             Contact Us
           </MainButton>
@@ -113,4 +113,4 @@ const Feedback = ({navigation}) => {
   );
 };
 
-export default Feedback;
+export default FeedbackScreen;

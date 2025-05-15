@@ -17,7 +17,7 @@ import {
   RESULTS
 } from 'react-native-permissions';
 import {useFocusEffect} from '@react-navigation/native';
-import ContactUsStyles from './ContactUsStyles';
+import ContactUsScreenStyles from './ContactUsScreenStyles';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import Geolocation from 'react-native-geolocation-service';
 import MapViewDirections from 'react-native-maps-directions';
@@ -34,7 +34,7 @@ import MenuIcon from '../../components/Globals/MenuIcon';
 import constants, {SOCIAL_MEDIA_LINKS} from '../../constants';
 import GeneralEmptyMessage from '../../components/Globals/GeneralEmptyMessage';
 
-const ContactUs = ({navigation}) => {
+const ContactUsScreen = ({navigation}) => {
   const [myOriginCoords, setMyOriginCoords] = useState(null);
   const [grantedLocation, setGrantedLocation] = useState(false);
   const [isMapsLoading, setIsMapsLoading] = useState(true);
@@ -228,7 +228,7 @@ const ContactUs = ({navigation}) => {
         />
         {grantedLocation ? (
           <MapView
-            style={ContactUsStyles.mapView}
+            style={ContactUsScreenStyles.mapView}
             provider={PROVIDER_GOOGLE}
             initialRegion={{
               latitude: destinationCoords?.latitude,
@@ -263,15 +263,15 @@ const ContactUs = ({navigation}) => {
           </GeneralEmptyMessage>
         )}
         <MainButton
-          style={ContactUsStyles.goToStoreBtn}
+          style={ContactUsScreenStyles.goToStoreBtn}
           onPress={goToStoreByGoogleMaps}
           icon={<FontAwesome name="car" size={20} color={COLORS.WHITE} />}>
           Drive To The Store
         </MainButton>
-        <View style={ContactUsStyles.socialMediaBox}>
+        <View style={ContactUsScreenStyles.socialMediaBox}>
           <TouchableOpacity
             activeOpacity={0.7}
-            style={ContactUsStyles.socialMediaBtn}
+            style={ContactUsScreenStyles.socialMediaBtn}
             onPress={() => socialMediaClickHandler(constants.FACEBOOK)}>
             <MaterialCommunityIcons
               name="facebook"
@@ -281,13 +281,13 @@ const ContactUs = ({navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={0.7}
-            style={ContactUsStyles.socialMediaBtn}
+            style={ContactUsScreenStyles.socialMediaBtn}
             onPress={() => socialMediaClickHandler(constants.INSTAGRAM)}>
             <FontAwesome name="instagram" size={30} color={COLORS.WHITE} />
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={0.7}
-            style={ContactUsStyles.socialMediaBtn}
+            style={ContactUsScreenStyles.socialMediaBtn}
             onPress={() => socialMediaClickHandler(constants.LINKEDIN)}>
             <Entypo
               name="linkedin-with-circle"
@@ -301,4 +301,4 @@ const ContactUs = ({navigation}) => {
   );
 };
 
-export default ContactUs;
+export default ContactUsScreen;

@@ -1,11 +1,11 @@
 import LoginScreen from '../screens/Auth/Login/LoginScreen';
 import SignUpScreen from '../screens/Auth/SignUp/SignUpScreen';
 import CartScreen from '../screens/Cart/CartScreen';
-import ContactUs from '../screens/ContactUs/ContactUs';
-import Feedback from '../screens/Feedback/Feedback';
+import ContactUsScreen from '../screens/ContactUs/ContactUsScreen';
+import FeedbackScreen from '../screens/Feedback/FeedbackScreen';
 import HomeScreen from '../screens/Home/HomeScreen';
 import ProductViewScreen from '../screens/ProductView/ProductViewScreen';
-import UserProfile from '../screens/UserProfile/UserProfile';
+import UserProfileScreen from '../screens/UserProfile/UserProfileScreen';
 
 const AuthScreensList = [
   {
@@ -56,7 +56,7 @@ const HomeScreensList = [
 const GeneralScreensList = [
   {
     name: 'UserProfile',
-    component: UserProfile,
+    component: UserProfileScreen,
     screenOptions: {
       headerShown: false,
       title: 'User Profile'
@@ -64,7 +64,7 @@ const GeneralScreensList = [
   },
   {
     name: 'Feedback',
-    component: Feedback,
+    component: FeedbackScreen,
     screenOptions: {
       headerShown: false,
       title: 'Feedback'
@@ -72,7 +72,7 @@ const GeneralScreensList = [
   },
   {
     name: 'ContactUs',
-    component: ContactUs,
+    component: ContactUsScreen,
     screenOptions: {
       headerShown: false,
       title: 'Contact Us'

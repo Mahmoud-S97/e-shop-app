@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {COLORS} from '../../constants/styles/Styles';
 
-const UserProfileStyles = StyleSheet.create({
+const UserProfileScreenStyles = StyleSheet.create({
   editBtnBox: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -84,4 +84,4 @@ const UserProfileStyles = StyleSheet.create({
   }
 });
 
-export default UserProfileStyles;
+export default UserProfileScreenStyles;

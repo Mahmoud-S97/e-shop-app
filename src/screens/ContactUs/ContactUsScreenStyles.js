@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 import {getScreenHeight, getScreenWidth} from '../../utils';
 import {COLORS} from '../../constants/styles/Styles';
 
-const ContactUsStyles = StyleSheet.create({
+const ContactUsScreenStyles = StyleSheet.create({
   mapView: {
     width: getScreenWidth(),
     height: getScreenHeight() - 400,
@@ -32,4 +32,4 @@ const ContactUsStyles = StyleSheet.create({
   }
 });
 
-export default ContactUsStyles;
+export default ContactUsScreenStyles;
