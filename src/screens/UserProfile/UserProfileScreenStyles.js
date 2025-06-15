@@ -45,13 +45,14 @@ const UserProfileScreenStyles = StyleSheet.create({
     end: -5,
     zIndex: 9999,
     borderRadius: 22.5,
-    backgroundColor: 'rgba(0,0,0,0.5)'
+    backgroundColor: COLORS.OVERLAY
   },
   profileHolderName: {
     fontSize: 20,
     fontWeight: 'bold',
     letterSpacing: 0.5,
-    color: COLORS.WHITE
+    color: COLORS.WHITE,
+    textAlign: 'center'
   },
   innerInfo: {
     flex: 1,
@@ -61,7 +62,7 @@ const UserProfileScreenStyles = StyleSheet.create({
   fieldTitle: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: COLORS.DARK_GRAY,
+    color: COLORS.GRAY,
     marginBottom: 5
   },
   infoField: {
@@ -76,11 +77,39 @@ const UserProfileScreenStyles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 15
   },
-  infoFieldText: {
+  fieldIcon: {
+    fontSize: 23,
+    color: COLORS.GRAY
+  },
+  fieldTextInput: {
     fontSize: 16,
     fontWeight: '500',
-    color: COLORS.DARK_GRAY,
-    marginStart: 12
+    color: COLORS.GRAY,
+    marginStart: 12,
+    padding: 0,
+    width: '90%',
+    height: '100%',
+    textAlign: 'left'
+  },
+  footerBtnsBox: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 40
+  },
+  applyBtn: {
+    width: '48%',
+    backgroundColor: COLORS.BLUE
+  },
+  cancelBtn: {
+    width: '48%',
+    backgroundColor: 'transparent',
+    borderWidth: 1.2,
+    borderColor: COLORS.RED
+  },
+  cancelBtnText: {
+    color: COLORS.RED
   }
 });
 
