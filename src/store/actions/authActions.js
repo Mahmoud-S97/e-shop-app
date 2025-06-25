@@ -1,0 +1,1 @@
+export {loginOrSignUpHandler} from '../../api/Auth';

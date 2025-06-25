@@ -10,7 +10,7 @@ import {StarRatingDisplay} from 'react-native-star-rating-widget';
 import MainButton from '../../components/Globals/MainButton';
 import SCREENS from '../../constants/screens';
 import {useDispatch, useSelector} from 'react-redux';
-import {fetchReviewersQuotes} from '../../api/General';
+import {fetchReviewersQuotes} from '../../api/User';
 import MainHeader from '../../components/Header/MainHeader';
 import MenuIcon from '../../components/Globals/MenuIcon';
 import FastImage from 'react-native-fast-image';
@@ -18,7 +18,7 @@ import Spinner from '../../components/Globals/Spinner';
 
 const FeedbackScreen = ({navigation}) => {
   const dispatch = useDispatch();
-  const {reviewersQuotes} = useSelector(state => state.userSlice);
+  const {reviewersQuotes} = useSelector(state => state.clientsSlice);
 
   useEffect(() => {
     dispatch(fetchReviewersQuotes());
@@ -51,7 +51,7 @@ const FeedbackScreen = ({navigation}) => {
           style={FeedbackScreenStyles.reviewerName}
           numberOfLines={1}>{`~ ${item.author}`}</Text>
       </View>
-    )
+    );
   }, []);
 
   const MemoizedCarouselItem = memo(RenderCarouselItem);
@@ -85,7 +85,7 @@ const FeedbackScreen = ({navigation}) => {
             <Carousel
               data={reviewersQuotes}
               loop
-              mode='parallax'
+              mode="parallax"
               windowSize={3}
               width={getScreenWidth() - 48}
               height={450}
@@ -94,7 +94,9 @@ const FeedbackScreen = ({navigation}) => {
               scrollAnimationDuration={1000}
               renderItem={({item}) => <MemoizedCarouselItem item={item} />}
             />
-          ) : <Spinner />}
+          ) : (
+            <Spinner />
+          )}
         </View>
         <View style={FeedbackScreenStyles.footerBtnsBox}>
           <MainButton

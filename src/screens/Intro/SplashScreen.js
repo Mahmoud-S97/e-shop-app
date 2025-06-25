@@ -1,13 +1,15 @@
 import React from 'react';
 import {View} from 'react-native';
-import {getDataFromAsyncStorage} from '../../utils';
-import constants from '../../constants';
+import {getAccessToken} from '../../utils';
 import SCREENS from '../../constants/screens';
+import { useSelector } from 'react-redux';
 
 const SplashScreen = async ({navigation}) => {
-  const isAuth = await getDataFromAsyncStorage(constants.IS_LOGGED_IN);
-  console.log('Is Logged In ? :: ', isAuth);
-  if (isAuth) {
+  const { isLoggedIn } = useSelector(state => state.authSlice);
+  const isAuth = await getAccessToken();
+  console.log('Is Logged In ? :: ', isLoggedIn);
+  console.log('Is Authenticated ? :: ', isAuth);
+  if (isAuth || isLoggedIn) { // Will be (isAuth && isLoggedIn) later on...
     navigation.replace(SCREENS.ROOT);
   } else {
     navigation.replace(SCREENS.AUTH);

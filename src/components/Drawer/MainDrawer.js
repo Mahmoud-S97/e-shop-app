@@ -8,9 +8,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Octicons from 'react-native-vector-icons/Octicons';
 import SCREENS from '../../constants/screens';
 import {COLORS} from '../../constants/styles/Styles';
-import {removeDataFromAsyncStorage} from '../../utils';
-import { CommonActions } from '@react-navigation/native';
-import constants from '../../constants';
+import {userLogout} from '../../utils';
 import MainButton from '../Globals/MainButton';
 
 const MainDrawer = props => {
@@ -18,6 +16,8 @@ const MainDrawer = props => {
   const {navigation} = props;
   const {routeNames, index} = props.state;
   const focused = routeNames[index];
+
+  const logout = userLogout();
 
   const drawerItemsList = [
     {
@@ -75,14 +75,7 @@ const MainDrawer = props => {
   ];
 
   const logoutHandler = async () => {
-    await removeDataFromAsyncStorage(constants.IS_LOGGED_IN);
-    navigation.dispatch(
-      CommonActions.reset({
-        index: 0,
-        routes: [{ name: SCREENS.AUTH }]
-      })
-    )
-    return;
+    logout();
   };
 
   return (

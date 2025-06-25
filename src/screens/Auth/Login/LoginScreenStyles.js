@@ -29,6 +29,7 @@ const LoginScreenStyles = StyleSheet.create({
     padding: 8,
     borderWidth: 1.5,
     borderColor: COLORS.GRAY,
+    borderRadius: 7,
     marginVertical: 10,
     color: COLORS.PRIMARY,
     fontWeight: '500',
@@ -36,14 +37,14 @@ const LoginScreenStyles = StyleSheet.create({
   },
   loginBtn: {
     width: '100%',
-    height: 50,
+    height: 55,
     backgroundColor: COLORS.PRIMARY,
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 10
   },
   loginBtnText: {
-    fontSize: 15,
+    fontSize: 17,
     fontWeight: '500',
     color: COLORS.WHITE
   }

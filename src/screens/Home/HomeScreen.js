@@ -18,7 +18,7 @@ import ProductItem from '../../components/Products/ProductItem';
 import MainButton from '../../components/Globals/MainButton';
 import {useDispatch, useSelector} from 'react-redux';
 import SCREENS from '../../constants/screens';
-import {fetchProducts} from '../../api/General';
+import { fetchProducts } from '../../api/Products';
 import SearchProductsModal from '../../components/Home/SearchProductsModal';
 import GeneralEmptyMessage from '../../components/Globals/GeneralEmptyMessage';
 import Spinner from '../../components/Globals/Spinner';

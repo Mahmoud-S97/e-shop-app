@@ -6,7 +6,7 @@ import {useSelector} from 'react-redux';
 
 const App = () => {
   const {isLoadingProducts} = useSelector(state => state.productsSlice);
-  const {isQuotesLoading} = useSelector(state => state.userSlice);
+  const {isQuotesLoading} = useSelector(state => state.clientsSlice);
 
   useEffect(() => {
     SplashScreen.hide();
