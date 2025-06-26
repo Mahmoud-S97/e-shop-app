@@ -2,14 +2,18 @@ import {StyleSheet} from 'react-native';
 import {COLORS} from '../../../constants/styles/Styles';
 
 const LoginScreenStyles = StyleSheet.create({
-  screen: {
-    flex: 1,
+  logoImgBox: {
+    width: 200,
+    height: 200,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: COLORS.WHITE
+    alignSelf: 'center',
+    marginTop: 70
   },
-  container: {
-    width: '90%'
+  logoImg: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain'
   },
   mainTitleBox: {
     flexDirection: 'row',
@@ -23,17 +27,31 @@ const LoginScreenStyles = StyleSheet.create({
     color: COLORS.PRIMARY,
     marginStart: 10
   },
-  inputStyles: {
+  inputField: {
+    flexDirection: 'row',
+    alignItems: 'center',
     width: '100%',
     height: 50,
-    padding: 8,
     borderWidth: 1.5,
-    borderColor: COLORS.GRAY,
+    borderColor: COLORS.DARK_GRAY,
     borderRadius: 7,
-    marginVertical: 10,
+    marginVertical: 10
+  },
+  inputStyles: {
+    width: '100%',
+    height: '100%',
+    padding: 8,
     color: COLORS.PRIMARY,
     fontWeight: '500',
-    fontSize: 16
+    fontSize: 17
+  },
+  showHidePassBtn: {
+    width: 30,
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    end: 10
   },
   loginBtn: {
     width: '100%',
@@ -41,7 +59,8 @@ const LoginScreenStyles = StyleSheet.create({
     backgroundColor: COLORS.PRIMARY,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10
+    marginTop: 10,
+    marginBottom: 50
   },
   loginBtnText: {
     fontSize: 17,
