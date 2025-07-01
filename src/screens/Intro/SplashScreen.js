@@ -9,7 +9,7 @@ const SplashScreen = async ({navigation}) => {
   const isAuth = await getAccessToken();
   console.log('Is Logged In ? :: ', isLoggedIn);
   console.log('Is Authenticated ? :: ', isAuth);
-  if (isAuth || isLoggedIn) { // Will be (isAuth && isLoggedIn) later on...
+  if (isAuth && isLoggedIn) {
     navigation.replace(SCREENS.ROOT);
   } else {
     navigation.replace(SCREENS.AUTH);
