@@ -243,6 +243,8 @@ const HomeScreen = props => {
           )
         }
         initialNumToRender={productsSkipped}
+        removeClippedSubviews={true}
+        windowSize={5}
       />
       <SearchProductsModal
         visible={searchModalVisible}
