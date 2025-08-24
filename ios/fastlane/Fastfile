@@ -25,6 +25,6 @@ platform :ios do
     sh "npx react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ./build/main.jsbundle"
 
     # Optional: build IPA locally (no upload)
-    # sh "xcodebuild -workspace ios/YourApp.xcworkspace -scheme YourApp -configuration Release -archivePath ./build/YourApp.xcarchive archive"
+    # sh "xcodebuild -workspace ios/myRNApp.xcworkspace -scheme myRNApp -configuration Release -archivePath ./build/myRNApp.xcarchive archive"
   end
 end
