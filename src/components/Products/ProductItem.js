@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, memo} from 'react';
 import {View, Text, TouchableOpacity, Image, TextInput} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
@@ -12,7 +12,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {decrementCart, incrementCart} from '../../store/reducers/cartSlice';
 import {switchItemAsFavorite} from '../../store/reducers/productsSlice';
 
-const ProductItem = props => {
+const ProductItem = memo(props => {
   const navigation = useNavigation();
 
   const dispatch = useDispatch();
@@ -194,6 +194,6 @@ const ProductItem = props => {
       </View>
     </TouchableOpacity>
   );
-};
+});
 
 export default ProductItem;

@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React from 'react';
 import {View, Text, ScrollView} from 'react-native';
 import {COLORS, GENERAL_STYLES} from '../../constants/styles/Styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -32,8 +32,6 @@ const ProductViewScreen = props => {
   );
 
   console.log('Product-Item: ', productItem);
-
-  const MemoizedProductComponent = memo(ProductItem);
 
   const gotToCartHandler = () => {
     navigation.navigate(SCREENS.CART);
@@ -92,7 +90,7 @@ const ProductViewScreen = props => {
           }}
         />
         <View style={GENERAL_STYLES.container}>
-          <MemoizedProductComponent
+          <ProductItem
             activeOpacity={1}
             item={productItem}
             alreadyInProductViewScreen={true}

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback, memo, useMemo} from 'react';
+import React, {useState, useEffect, useCallback, useMemo} from 'react';
 import {
   View,
   Text,
@@ -78,8 +78,6 @@ const HomeScreen = props => {
     },
     [viewType, setViewType]
   );
-
-  const MemoizedProductComponent = memo(RenderProductItem);
 
   const cartButtonHandler = () => {
     navigation.navigate(SCREENS.CART);
@@ -233,9 +231,7 @@ const HomeScreen = props => {
         onEndReached={loadMoreProducts}
         onEndReachedThreshold={0.5}
         ListHeaderComponent={RenderFlatListHeader}
-        renderItem={({item, index}) => (
-          <MemoizedProductComponent item={item} index={index} />
-        )}
+        renderItem={RenderProductItem}
         ListFooterComponent={RenderFlatListFooter}
         ListEmptyComponent={() =>
           (!isFetchingMoreProducts && !isLoadingProducts) && (

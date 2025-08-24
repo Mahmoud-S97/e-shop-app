@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, memo} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {View, Text, ImageBackground, ScrollView} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Carousel from 'react-native-reanimated-carousel';
@@ -54,8 +54,6 @@ const FeedbackScreen = ({navigation}) => {
     );
   }, []);
 
-  const MemoizedCarouselItem = memo(RenderCarouselItem);
-
   return (
     <ScrollView
       style={GENERAL_STYLES.scrollingView}
@@ -92,7 +90,7 @@ const FeedbackScreen = ({navigation}) => {
               autoPlay={true}
               autoPlayInterval={3000}
               scrollAnimationDuration={1000}
-              renderItem={({item}) => <MemoizedCarouselItem item={item} />}
+              renderItem={RenderCarouselItem}
             />
           ) : (
             <Spinner />

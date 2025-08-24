@@ -1,4 +1,4 @@
-import React, {memo, useCallback, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {
   View,
   Text,
@@ -53,8 +53,6 @@ const CartScreen = props => {
     [navigation, tabType, setTabType]
   );
 
-  const MemoizedProductComponent = memo(RenderProductItem);
-
   const RenderEmptyMessage = () => {
     return (
       <GeneralEmptyMessage
@@ -82,7 +80,7 @@ const CartScreen = props => {
     }
 
     return cartProducts?.map((item, index) => (
-      <MemoizedProductComponent
+      <RenderProductItem
         key={index.toString() || item.id.toString()}
         item={item}
         index={index}
@@ -96,7 +94,7 @@ const CartScreen = props => {
     }
 
     return favProducts?.map((item, index) => (
-      <MemoizedProductComponent
+      <RenderProductItem
         key={index.toString() || item.id.toString()}
         item={item}
         index={index}
