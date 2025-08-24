@@ -1,0 +1,42 @@
+name: React Native CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  react-native-ci:
+    if: contains(github.event.head_commit.message, '[ci]') # only run on [ci] commits
+    runs-on: macos-latest
+
+    strategy:
+      matrix:
+        platform: [ios, android]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Fastlane
+        run: brew install fastlane
+
+      - name: Run Fastlane lane
+        run: |
+          if [ "${{ matrix.platform }}" == "ios" ]; then
+            cd ios
+            fastlane ci
+            cd ..
+          else
+            cd android
+            fastlane ci
+            cd ..
+          fi
