@@ -40,3 +40,13 @@ jobs:
             fastlane ci
             cd ..
           fi
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.platform }}-artifacts
+          path: |
+            ios/build/main.jsbundle
+            android/build/index.android.bundle
+            android/app/build/outputs/apk/release/*.apk
+            # ios: optionally include IPA if built
+            # ios/build/*.xcarchive
