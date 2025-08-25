@@ -21,6 +21,9 @@ platform :android do
     # Run unit tests
     gradle(task: "test")
 
+    # Ensure build folder exists
+    sh "mkdir -p ./build"
+
     # Bundle React Native JS
     sh "npx react-native bundle --entry-file index.js --platform android --dev false --bundle-output ./build/index.android.bundle"
 

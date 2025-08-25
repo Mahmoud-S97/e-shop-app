@@ -21,6 +21,9 @@ platform :ios do
     # Run JS tests
     sh "npm test"
 
+    # Ensure build folder exists
+    sh "mkdir -p ./build"
+
     # Bundle React Native JS
     sh "npx react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ./build/main.jsbundle"
 
