@@ -59,6 +59,7 @@ jobs:
         with:
           ruby-version: 3.4.0
           bundler-cache: true
+          bundler: latest
 
       - name: Install Fastlane
         run: brew install fastlane
