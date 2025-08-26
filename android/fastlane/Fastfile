@@ -28,6 +28,6 @@ platform :android do
     sh "npx react-native bundle --entry-file index.js --platform android --dev false --bundle-output ./build/index.android.bundle"
 
     # Build APK locally (no upload)
-    gradle(task: "clean assembleRelease")
+    gradle(task: "clean assembleDebug")
   end
 end
