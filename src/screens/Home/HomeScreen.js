@@ -42,7 +42,7 @@ const HomeScreen = props => {
     isLoadingProducts,
     isFetchingMoreProducts
   } = useSelector(state => state.productsSlice);
-  const cartTotalPrice = useSelector(state => state.cartSlice.totalPrice);
+  const {totalPrice: cartTotalPrice, cartItems} = useSelector(state => state.cartSlice);
   const [viewType, setViewType] = useState(constants.LIST);
   const [searchModalVisible, setSearchModalVisible] = useState(false);
   const [search, setSearch] = useState('');
@@ -249,7 +249,7 @@ const HomeScreen = props => {
         onRequestClose={() => setSearchModalVisible(false)}
         setSearchState={setSearch}
       />
-      {cartTotalPrice > 0 && (
+      {cartTotalPrice > 0 && cartItems.length > 0 && (
         <MainButton
           style={HomeScreenStyles.orderingBtn}
           onPress={() => navigation.navigate(SCREENS.CART)}>

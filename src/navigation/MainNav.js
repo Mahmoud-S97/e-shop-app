@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -76,15 +76,17 @@ const Root = () => {
 const MainStack = createNativeStackNavigator();
 const MainNav = () => {
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <NavigationContainer ref={navigationRef}>
+    <SafeAreaProvider>
+      <SafeAreaView style={{flex: 1}} edges={['top', 'bottom']}>
+        <NavigationContainer ref={navigationRef}>
         <MainStack.Navigator screenOptions={{headerShown: false}}>
           <MainStack.Screen name="Splash" component={SplashScreen} />
           <MainStack.Screen name="Auth" component={AuthScreens} />
           <MainStack.Screen name="Root" component={Root} />
         </MainStack.Navigator>
       </NavigationContainer>
-    </SafeAreaView>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 };
 
