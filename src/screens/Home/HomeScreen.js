@@ -99,7 +99,7 @@ const HomeScreen = props => {
   );
 
   // FlatList Data with Conditionally Filtration
-  const filteredProducts = useMemo(() => {
+  const renderedProducts = useMemo(() => {
     if (!search.trim()) return [...products];
 
     let filteredProducts = [...products];
@@ -222,7 +222,7 @@ const HomeScreen = props => {
   return (
     <View style={GENERAL_STYLES.screen}>
       <FlatList
-        data={filteredProducts}
+        data={renderedProducts}
         keyExtractor={(item, index) => item.id.toString() || index.toString()}
         key={numColumns}
         numColumns={numColumns}
