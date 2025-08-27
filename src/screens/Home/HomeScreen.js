@@ -100,14 +100,12 @@ const HomeScreen = props => {
 
   // FlatList Data with Conditionally Filtration
   const renderedProducts = useMemo(() => {
-    if (!search.trim()) return [...products];
+    const searchTerm = search.trim().toLowerCase();
+    if (!searchTerm) return products;
 
-    let filteredProducts = [...products];
-    filteredProducts = filteredProducts.filter(product =>
-      product.title.toLowerCase().includes(search.toLowerCase())
+    return products.filter(product =>
+      product.title.toLowerCase().includes(searchTerm)
     );
-    console.log('Fetched-filteredProducts: ', filteredProducts);
-    return filteredProducts;
   }, [search, products]);
 
   // FlatList-Screen Header

@@ -20,8 +20,6 @@ const ProductViewScreen = props => {
     }
   } = props;
 
-  console.log('ProductID:::: ', productId);
-
   const dispatch = useDispatch();
   const productsCart = useSelector(state => state.cartSlice.cartItems);
   const productItem = useSelector(state =>
@@ -31,7 +29,6 @@ const ProductViewScreen = props => {
     state.productsSlice.favProducts.some(ele => ele.id === productId)
   );
 
-  console.log('Product-Item: ', productItem);
 
   const gotToCartHandler = () => {
     navigation.navigate(SCREENS.CART);
