@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   View,
   Text,
@@ -7,24 +7,24 @@ import {
   TouchableWithoutFeedback,
   Image
 } from 'react-native';
-import {COLORS, GENERAL_STYLES} from '../../constants/styles/Styles';
+import { COLORS, GENERAL_STYLES } from '../../constants/styles/Styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MainHeader from '../../components/Header/MainHeader';
-import CartScreenStyles, {productItemCustomStyles} from './CartScreenStyles';
+import CartScreenStyles, { productItemCustomStyles } from './CartScreenStyles';
 import constants from '../../constants';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CartItem from '../../components/Cart/CartItem';
-import {setRemovedItemID} from '../../store/reducers/cartSlice';
-import {setRemovedFavItemID} from '../../store/reducers/productsSlice';
+import { setRemovedItemID } from '../../store/reducers/cartSlice';
+import { setRemovedFavItemID } from '../../store/reducers/productsSlice';
 import GeneralEmptyMessage from '../../components/Globals/GeneralEmptyMessage';
 import MainButton from '../../components/Globals/MainButton';
-import {LOCAL_IMAGES} from '../../constants/images/LocalImages';
+import { LOCAL_IMAGES } from '../../constants/images/LocalImages';
 import GoBackIcon from '../../components/Globals/GoBackIcon';
 
 const CartScreen = props => {
-  const {navigation} = props;
+  const { navigation } = props;
   const dispatch = useDispatch();
-  const cartProducts = useSelector(state => state.cartSlice.cartItems);
+  const { cartItems: cartProducts, totalPrice: cartTotalPrice } = useSelector(state => state.cartSlice);
   const favProducts = useSelector(state => state.productsSlice.favProducts);
 
   const [tabType, setTabType] = useState(constants.ORDER_SUMMARY);
@@ -39,7 +39,7 @@ const CartScreen = props => {
   }, [dispatch]);
 
   const RenderProductItem = useCallback(
-    ({item, index}) => {
+    ({ item, index }) => {
       return (
         <CartItem
           key={index.toString() || item.id.toString()}
@@ -142,17 +142,17 @@ const CartScreen = props => {
   }, [favProducts, cartProducts, tabType, setTabType]);
 
   return (
-    <ScrollView
-      contentContainerStyle={GENERAL_STYLES.scrollingView}
-      showsVerticalScrollIndicator={false}>
-      <TouchableWithoutFeedback onPress={removeCartItemConfirmationHandler}>
-        <View style={GENERAL_STYLES.screen}>
+    <TouchableWithoutFeedback onPress={removeCartItemConfirmationHandler} accessible={false}>
+      <View style={GENERAL_STYLES.screen}>
+        <ScrollView
+          contentContainerStyle={[GENERAL_STYLES.scrollingView, { paddingBottom: 80 }]}
+          showsVerticalScrollIndicator={false}>
           <MainHeader
-            style={{height: 80}}
+            style={{ height: 80 }}
             headerLeft={{
               headerLeftBtn1_content: <GoBackIcon />,
-              headerLeftBoxStyles: {width: '12.5%'},
-              headerLeftAction1Styles: {backgroundColor: 'transparent'},
+              headerLeftBoxStyles: { width: '12.5%' },
+              headerLeftAction1Styles: { backgroundColor: 'transparent' },
               action1: goBack
             }}
             headerTitle={`Cart (${cartProducts.length})`}
@@ -164,7 +164,7 @@ const CartScreen = props => {
                   color={COLORS.PRIMARY}
                 />
               ),
-              action2: () => {}
+              action2: () => { }
             }}
           />
           <View style={GENERAL_STYLES.container}>
@@ -175,7 +175,7 @@ const CartScreen = props => {
                   style={[
                     CartScreenStyles.cartTopTabButton,
                     tabType === constants.ORDER_SUMMARY &&
-                      CartScreenStyles.cartTopTabButton_Active
+                    CartScreenStyles.cartTopTabButton_Active
                   ]}
                   onPress={() => setTabType(constants.ORDER_SUMMARY)}>
                   <Text style={CartScreenStyles.cartTopTabButtonText}>
@@ -187,7 +187,7 @@ const CartScreen = props => {
                   style={[
                     CartScreenStyles.cartTopTabButton,
                     tabType === constants.FAVORITE &&
-                      CartScreenStyles.cartTopTabButton_Active
+                    CartScreenStyles.cartTopTabButton_Active
                   ]}
                   onPress={() => setTabType(constants.FAVORITE)}>
                   <Text style={CartScreenStyles.cartTopTabButtonText}>
@@ -198,9 +198,17 @@ const CartScreen = props => {
             ) : null}
             <RenderCartItems />
           </View>
-        </View>
-      </TouchableWithoutFeedback>
-    </ScrollView>
+        </ScrollView>
+        {cartTotalPrice > 0 && cartProducts.length > 0 && (
+          <MainButton
+            style={CartScreenStyles.checkoutBtn}
+            onPress={() => { }}>
+            Checkout
+          </MainButton>
+        )}
+      </View>
+    </TouchableWithoutFeedback>
+
   );
 };
 

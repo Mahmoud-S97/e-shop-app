@@ -1,5 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {COLORS} from '../../constants/styles/Styles';
+import { getScreenWidth } from '../../utils';
 
 const CartScreenStyles = StyleSheet.create({
   cartTopTab: {
@@ -53,6 +54,13 @@ const CartScreenStyles = StyleSheet.create({
   startShoppingBtnText: {
     fontSize: 17,
     letterSpacing: 0.9
+  },
+  checkoutBtn: {
+    width: getScreenWidth() - 30,
+    alignSelf: 'center',
+    position: 'absolute',
+    bottom: 10,
+    zIndex: 9999
   }
 });
 
