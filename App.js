@@ -3,6 +3,8 @@ import MainNav from './src/navigation/MainNav';
 import SplashScreen from 'react-native-splash-screen';
 import MainLoading from './src/components/Globals/MainLoading';
 import {useSelector} from 'react-redux';
+import { StripeProvider } from '@stripe/stripe-react-native';
+import Config from 'react-native-config';
 
 const App = () => {
   const {isLoadingProducts} = useSelector(state => state.productsSlice);
@@ -13,10 +15,10 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <StripeProvider publishableKey={Config.STRIPE_PUBLISHABLE_KEY}>
       <MainNav />
       {(isLoadingProducts || isQuotesLoading) && <MainLoading />}
-    </>
+    </StripeProvider>
   );
 };
 

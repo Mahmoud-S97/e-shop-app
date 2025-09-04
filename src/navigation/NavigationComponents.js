@@ -6,6 +6,7 @@ import FeedbackScreen from '../screens/Feedback/FeedbackScreen';
 import HomeScreen from '../screens/Home/HomeScreen';
 import ProductViewScreen from '../screens/ProductView/ProductViewScreen';
 import UserProfileScreen from '../screens/UserProfile/UserProfileScreen';
+import CheckoutScreen from '../screens/Checkout/CheckoutScreen';
 
 const AuthScreensList = [
   {
@@ -49,6 +50,14 @@ const HomeScreensList = [
     screenOptions: {
       headerShown: false,
       title: 'Cart'
+    }
+  },
+  {
+    name: 'Checkout',
+    component: CheckoutScreen,
+    screenOptions: {
+      headerShown: false,
+      title: 'Checkout'
     }
   }
 ];

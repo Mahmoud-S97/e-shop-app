@@ -202,7 +202,7 @@ const CartScreen = props => {
         {cartTotalPrice > 0 && cartProducts.length > 0 && (
           <MainButton
             style={CartScreenStyles.checkoutBtn}
-            onPress={() => { }}>
+            onPress={() => navigation.navigate('Checkout')}>
             Checkout
           </MainButton>
         )}
