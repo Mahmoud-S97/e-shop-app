@@ -144,10 +144,7 @@ const CartScreen = props => {
   return (
     <TouchableWithoutFeedback onPress={removeCartItemConfirmationHandler} accessible={false}>
       <View style={GENERAL_STYLES.screen}>
-        <ScrollView
-          contentContainerStyle={[GENERAL_STYLES.scrollingView, { paddingBottom: 80 }]}
-          showsVerticalScrollIndicator={false}>
-          <MainHeader
+        <MainHeader
             style={{ height: 80 }}
             headerLeft={{
               headerLeftBtn1_content: <GoBackIcon />,
@@ -167,6 +164,9 @@ const CartScreen = props => {
               action2: () => { }
             }}
           />
+        <ScrollView
+          contentContainerStyle={[GENERAL_STYLES.scrollingView, { paddingBottom: 80 }]}
+          showsVerticalScrollIndicator={false}>
           <View style={GENERAL_STYLES.container}>
             {favProducts.length || cartProducts.length ? (
               <View style={CartScreenStyles.cartTopTab}>
@@ -202,8 +202,8 @@ const CartScreen = props => {
         {cartTotalPrice > 0 && cartProducts.length > 0 && (
           <MainButton
             style={CartScreenStyles.checkoutBtn}
-            onPress={() => navigation.navigate('Checkout')}>
-            Checkout
+            onPress={() => navigation.navigate('OrderDetails')}>
+            Checkout Order
           </MainButton>
         )}
       </View>
