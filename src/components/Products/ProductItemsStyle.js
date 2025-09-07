@@ -98,7 +98,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     color: COLORS.PRIMARY,
     fontSize: 16,
-    fontWeight: '500'
+    fontWeight: '500',
+    padding: 5
   },
   addToFavBtn: {
     width: 30,

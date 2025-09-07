@@ -147,6 +147,7 @@ const ProductItem = memo(props => {
                   value={productQTY.toString()}
                   onChangeText={() => {}}
                   editable={false}
+                  numberOfLines={2}
                 />
                 <TouchableOpacity
                   activeOpacity={0.7}

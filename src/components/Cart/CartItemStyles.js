@@ -39,7 +39,8 @@ const CartItemStyles = StyleSheet.create({
   },
   productTitle: {
     fontSize: 16,
-    color: COLORS.PRIMARY
+    color: COLORS.PRIMARY,
+    marginTop: 4
   },
   productPrice: {
     fontSize: 18,
@@ -95,7 +96,8 @@ const CartItemStyles = StyleSheet.create({
     alignItems: 'center',
     color: COLORS.PRIMARY,
     fontSize: 16,
-    fontWeight: '500'
+    fontWeight: '500',
+    padding: 5
   },
   addToFavBtn: {
     width: 30,

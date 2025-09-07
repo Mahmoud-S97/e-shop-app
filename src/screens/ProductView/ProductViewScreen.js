@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, Alert} from 'react-native';
 import {COLORS, GENERAL_STYLES} from '../../constants/styles/Styles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
@@ -25,10 +25,18 @@ const ProductViewScreen = props => {
   const productItem = useSelector(state =>
     state.productsSlice.products.find(ele => ele.id === productId)
   );
+
+
+  if(!productItem) {
+    Alert.alert('Cannot preview product', 'Something went wrong, please check your network and try again.', [{
+      onPress: () => navigation.goBack()
+    }]);
+    return;
+  }
+
   const isFav = useSelector(state =>
     state.productsSlice.favProducts.some(ele => ele.id === productId)
   );
-
 
   const gotToCartHandler = () => {
     navigation.navigate(SCREENS.CART);
@@ -55,7 +63,7 @@ const ProductViewScreen = props => {
             headerLeftAction1Styles: {backgroundColor: 'transparent'},
             action1: goBack
           }}
-          headerTitle={productItem.title}
+          headerTitle={productItem?.title}
           headerRight={{
             headerRightBtn1_content: (
               <FontAwesome
@@ -108,7 +116,7 @@ const ProductViewScreen = props => {
             Product Description
           </Text>
           <Text style={ProductViewStyles.descriptionText}>
-            {productItem.description}
+            {productItem?.description}
           </Text>
         </View>
       </View>
