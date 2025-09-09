@@ -115,11 +115,6 @@ const HomeScreen = props => {
         <ImageBackground
           source={image}
           style={HomeScreenStyles.imageBackground}>
-          <HomeHeader
-            headerLeftHomeBtn={headerHomeMenuBtn}
-            headerRightAction1={cartButtonHandler}
-            headerRightAction2={userLoginHandler}
-          />
           <Text style={HomeScreenStyles.imgBgTitle}>
             Electronics Shopping App
           </Text>
@@ -219,6 +214,11 @@ const HomeScreen = props => {
 
   return (
     <View style={GENERAL_STYLES.screen}>
+      <HomeHeader
+        headerLeftHomeBtn={headerHomeMenuBtn}
+        headerRightAction1={cartButtonHandler}
+        headerRightAction2={userLoginHandler}
+      />
       <FlatList
         data={renderedProducts}
         keyExtractor={(item, index) => item.id.toString() || index.toString()}

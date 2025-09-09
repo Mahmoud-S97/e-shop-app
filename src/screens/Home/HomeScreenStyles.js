@@ -5,14 +5,15 @@ import {getScreenWidth} from '../../utils';
 const HomeScreenStyles = StyleSheet.create({
   imageBackground: {
     width: '100%',
-    height: 400
+    height: 300
   },
   imgBgTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     position: 'absolute',
     bottom: 35,
-    alignSelf: 'center'
+    alignSelf: 'center',
+    color: COLORS.WHITE
   },
   customContainer: {
     marginTop: -15,

@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useCallback, useRef, useState} from 'react';
 import {
   View,
   Text,
@@ -47,21 +47,19 @@ const UserProfileScreen = ({navigation}) => {
     // API Amendments will be handled soon...!
   };
 
-  const editUserProfileHandler = (index, updatedField) => {
-    const updatedRow = (userData[index] = updatedField);
+  const editUserProfileHandler = useCallback((index, updatedField) => {
 
-    setUserData({...userData, updatedRow});
+    userData[index] = updatedField;
+
+    setUserData({...userData});
 
     console.log('Updated-User-Profile::: ', userData);
-  };
+  }, [userData, setUserData]);
 
   return (
     <KeyboardAvoidingView
       style={{flex: 1}}
       behavior={Platform.OS == 'android' ? 'height' : 'padding'}>
-      <ScrollView
-        style={GENERAL_STYLES.scrollingView}
-        showsVerticalScrollIndicator={false}>
         <View style={GENERAL_STYLES.screen}>
           <MainHeader
             style={{backgroundColor: COLORS.BLUE}}
@@ -95,6 +93,9 @@ const UserProfileScreen = ({navigation}) => {
             headerTitle="My Profile"
             headerTitleStyles={{color: COLORS.WHITE, marginHorizontal: 0}}
           />
+          <ScrollView
+        style={[GENERAL_STYLES.scrollingView, {backgroundColor: COLORS.BLUE}]}
+        showsVerticalScrollIndicator={false}>
           <View style={UserProfileScreenStyles.profileInfoCard}>
             <View style={UserProfileScreenStyles.profileImageBox}>
               <MainFastImage
@@ -284,8 +285,8 @@ const UserProfileScreen = ({navigation}) => {
               </View>
             )}
           </View>
+          </ScrollView>
         </View>
-      </ScrollView>
     </KeyboardAvoidingView>
   );
 };
