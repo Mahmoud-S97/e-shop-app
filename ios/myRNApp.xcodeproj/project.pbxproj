@@ -11,11 +11,11 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		6F1E405064BF3B19093D849D /* libPods-myRNApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F944DB4FFA9DF059C28E5469 /* libPods-myRNApp.a */; };
+		4780322910EAD14FE0ECD056 /* libPods-myRNApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4588952683ACD61238F5BBA9 /* libPods-myRNApp.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		F542DAB22F950F4A5DECBA81 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = CBBFB089EFA427D7724022DE /* PrivacyInfo.xcprivacy */; };
-		F636A74ACC9A9E1A68A5BB6C /* libPods-myRNApp-myRNAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5C7CB2390F51103BCAF28F /* libPods-myRNApp-myRNAppTests.a */; };
+		952650D575BE235DB2E584BA /* libPods-myRNApp-myRNAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 996D98DF8A7E3D9F93BEEB10 /* libPods-myRNApp-myRNAppTests.a */; };
 		DF304241C5974A82B6E97EE8 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DD8FFE5A17014EBABB640F85 /* Config.xcconfig */; };
+		F542DAB22F950F4A5DECBA81 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = CBBFB089EFA427D7724022DE /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +39,8 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = myRNApp/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = myRNApp/main.m; sourceTree = "<group>"; };
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = myRNApp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		1E5C7CB2390F51103BCAF28F /* libPods-myRNApp-myRNAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myRNApp-myRNAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4BB8D455CAAF7C16F821C335 /* Pods-myRNApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myRNApp.release.xcconfig"; path = "Target Support Files/Pods-myRNApp/Pods-myRNApp.release.xcconfig"; sourceTree = "<group>"; };
+		1EEB211FDA179B446FEE3061 /* Pods-myRNApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myRNApp.debug.xcconfig"; path = "Target Support Files/Pods-myRNApp/Pods-myRNApp.debug.xcconfig"; sourceTree = "<group>"; };
+		4588952683ACD61238F5BBA9 /* libPods-myRNApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myRNApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C37B6242E591FF3001CF2C5 /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AntDesign.ttf; sourceTree = "<group>"; };
 		7C37B6252E591FF3001CF2C5 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
 		7C37B6262E591FF3001CF2C5 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
@@ -61,13 +61,13 @@
 		7C37B6352E591FF3001CF2C5 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		7C37B6362E591FF3001CF2C5 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = myRNApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		A2D47AE6975202A4104D0483 /* Pods-myRNApp-myRNAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myRNApp-myRNAppTests.debug.xcconfig"; path = "Target Support Files/Pods-myRNApp-myRNAppTests/Pods-myRNApp-myRNAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		996D98DF8A7E3D9F93BEEB10 /* libPods-myRNApp-myRNAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myRNApp-myRNAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B968B668F573F28829703CAA /* Pods-myRNApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myRNApp.release.xcconfig"; path = "Target Support Files/Pods-myRNApp/Pods-myRNApp.release.xcconfig"; sourceTree = "<group>"; };
+		C2747B337563CAD1D3CE1C5A /* Pods-myRNApp-myRNAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myRNApp-myRNAppTests.debug.xcconfig"; path = "Target Support Files/Pods-myRNApp-myRNAppTests/Pods-myRNApp-myRNAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CBBFB089EFA427D7724022DE /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = myRNApp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		EB928FDFE4811FE039FA2086 /* Pods-myRNApp-myRNAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myRNApp-myRNAppTests.release.xcconfig"; path = "Target Support Files/Pods-myRNApp-myRNAppTests/Pods-myRNApp-myRNAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		DD8FFE5A17014EBABB640F85 /* Config.xcconfig */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F944DB4FFA9DF059C28E5469 /* libPods-myRNApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myRNApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FC576656A72C06F7D88417DF /* Pods-myRNApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myRNApp.debug.xcconfig"; path = "Target Support Files/Pods-myRNApp/Pods-myRNApp.debug.xcconfig"; sourceTree = "<group>"; };
-		DD8FFE5A17014EBABB640F85 /* Config.xcconfig */ = {isa = PBXFileReference; name = "Config.xcconfig"; path = "Config.xcconfig"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = text.xcconfig; explicitFileType = undefined; includeInIndex = 0; };
+		F71A2CFC181EB10DA0CB5E64 /* Pods-myRNApp-myRNAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myRNApp-myRNAppTests.release.xcconfig"; path = "Target Support Files/Pods-myRNApp-myRNAppTests/Pods-myRNApp-myRNAppTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F636A74ACC9A9E1A68A5BB6C /* libPods-myRNApp-myRNAppTests.a in Frameworks */,
+				952650D575BE235DB2E584BA /* libPods-myRNApp-myRNAppTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F1E405064BF3B19093D849D /* libPods-myRNApp.a in Frameworks */,
+				4780322910EAD14FE0ECD056 /* libPods-myRNApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,8 +126,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				F944DB4FFA9DF059C28E5469 /* libPods-myRNApp.a */,
-				1E5C7CB2390F51103BCAF28F /* libPods-myRNApp-myRNAppTests.a */,
+				4588952683ACD61238F5BBA9 /* libPods-myRNApp.a */,
+				996D98DF8A7E3D9F93BEEB10 /* libPods-myRNApp-myRNAppTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -194,10 +194,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				FC576656A72C06F7D88417DF /* Pods-myRNApp.debug.xcconfig */,
-				4BB8D455CAAF7C16F821C335 /* Pods-myRNApp.release.xcconfig */,
-				A2D47AE6975202A4104D0483 /* Pods-myRNApp-myRNAppTests.debug.xcconfig */,
-				EB928FDFE4811FE039FA2086 /* Pods-myRNApp-myRNAppTests.release.xcconfig */,
+				1EEB211FDA179B446FEE3061 /* Pods-myRNApp.debug.xcconfig */,
+				B968B668F573F28829703CAA /* Pods-myRNApp.release.xcconfig */,
+				C2747B337563CAD1D3CE1C5A /* Pods-myRNApp-myRNAppTests.debug.xcconfig */,
+				F71A2CFC181EB10DA0CB5E64 /* Pods-myRNApp-myRNAppTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -209,12 +209,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "myRNAppTests" */;
 			buildPhases = (
-				411C8697F7300588700FE979 /* [CP] Check Pods Manifest.lock */,
+				6CE0D228612A60DEC557DDB4 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				F4E549592D0A4CA9B6C1BB0B /* [CP] Embed Pods Frameworks */,
-				396EFA2E50E5B4BCB0A34CC4 /* [CP] Copy Pods Resources */,
+				DFF5FE57693D98A96C2DC209 /* [CP] Embed Pods Frameworks */,
+				35DCBCD3124D38D1F13ADD55 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -230,13 +230,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "myRNApp" */;
 			buildPhases = (
-				C33772AF6BB7778BA05279D3 /* [CP] Check Pods Manifest.lock */,
+				5BE58CE7E908FE0C3FE478A2 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				85FFEA91042E749C666E62E9 /* [CP] Embed Pods Frameworks */,
-				16CC6E1ACE66FAFF99BED51B /* [CP] Copy Pods Resources */,
+				8064AB256C190A261FC9FC14 /* [CP] Embed Pods Frameworks */,
+				75BF9E9752A93B29BF288B12 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -321,24 +321,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		16CC6E1ACE66FAFF99BED51B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myRNApp/Pods-myRNApp-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myRNApp/Pods-myRNApp-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myRNApp/Pods-myRNApp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		396EFA2E50E5B4BCB0A34CC4 /* [CP] Copy Pods Resources */ = {
+		35DCBCD3124D38D1F13ADD55 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -355,46 +338,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myRNApp-myRNAppTests/Pods-myRNApp-myRNAppTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		411C8697F7300588700FE979 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-myRNApp-myRNAppTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		85FFEA91042E749C666E62E9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myRNApp/Pods-myRNApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myRNApp/Pods-myRNApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myRNApp/Pods-myRNApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C33772AF6BB7778BA05279D3 /* [CP] Check Pods Manifest.lock */ = {
+		5BE58CE7E908FE0C3FE478A2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -416,7 +360,63 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F4E549592D0A4CA9B6C1BB0B /* [CP] Embed Pods Frameworks */ = {
+		6CE0D228612A60DEC557DDB4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-myRNApp-myRNAppTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		75BF9E9752A93B29BF288B12 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myRNApp/Pods-myRNApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myRNApp/Pods-myRNApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myRNApp/Pods-myRNApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8064AB256C190A261FC9FC14 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myRNApp/Pods-myRNApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-myRNApp/Pods-myRNApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myRNApp/Pods-myRNApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DFF5FE57693D98A96C2DC209 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -466,7 +466,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A2D47AE6975202A4104D0483 /* Pods-myRNApp-myRNAppTests.debug.xcconfig */;
+			baseConfigurationReference = C2747B337563CAD1D3CE1C5A /* Pods-myRNApp-myRNAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -493,7 +493,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EB928FDFE4811FE039FA2086 /* Pods-myRNApp-myRNAppTests.release.xcconfig */;
+			baseConfigurationReference = F71A2CFC181EB10DA0CB5E64 /* Pods-myRNApp-myRNAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -517,11 +517,12 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FC576656A72C06F7D88417DF /* Pods-myRNApp.debug.xcconfig */;
+			baseConfigurationReference = 1EEB211FDA179B446FEE3061 /* Pods-myRNApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4JQKZZ33AM;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = myRNApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -534,7 +535,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.smartshop.myeshop;
 				PRODUCT_NAME = myRNApp;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -544,11 +545,12 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4BB8D455CAAF7C16F821C335 /* Pods-myRNApp.release.xcconfig */;
+			baseConfigurationReference = B968B668F573F28829703CAA /* Pods-myRNApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4JQKZZ33AM;
 				INFOPLIST_FILE = myRNApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -560,7 +562,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.smartshop.myeshop;
 				PRODUCT_NAME = myRNApp;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -569,6 +571,7 @@
 		};
 		83CBBA201A601CBA00E9B192 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DD8FFE5A17014EBABB640F85 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CC = "";
@@ -649,10 +652,10 @@
 				USE_HERMES = true;
 			};
 			name = Debug;
-			baseConfigurationReference = DD8FFE5A17014EBABB640F85 /* Config.xcconfig */;
 		};
 		83CBBA211A601CBA00E9B192 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DD8FFE5A17014EBABB640F85 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CC = "";
@@ -726,7 +729,6 @@
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
-			baseConfigurationReference = DD8FFE5A17014EBABB640F85 /* Config.xcconfig */;
 		};
 /* End XCBuildConfiguration section */
 

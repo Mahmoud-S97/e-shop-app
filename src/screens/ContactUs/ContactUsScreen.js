@@ -23,7 +23,7 @@ import Geolocation from 'react-native-geolocation-service';
 import MapViewDirections from 'react-native-maps-directions';
 import {COLORS, GENERAL_STYLES} from '../../constants/styles/Styles';
 import Spinner from '../../components/Globals/Spinner';
-import {GOOGLE_MAPS_API_KEY} from '@env';
+import {GOOGLE_MAPS_DIRECTIONS_KEY} from '@env';
 import {LOCAL_IMAGES} from '../../constants/images/LocalImages';
 import MainButton from '../../components/Globals/MainButton';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -114,8 +114,8 @@ const ContactUsScreen = ({navigation}) => {
       position => {
         console.log('position: ', position);
         setMyOriginCoords({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude
+          latitude: position.coords.latitude | 0,
+          longitude: position.coords.longitude | 0
         });
         setIsMapsLoading(false);
       },
@@ -142,7 +142,7 @@ const ContactUsScreen = ({navigation}) => {
   };
 
   const goToStoreByGoogleMaps = () => {
-    const url = `https://www.google.com/maps/dir/?api=1&destination=${destinationCoords.latitude},${destinationCoords.longitude}&travelmode=driving`;
+    const url = `https://www.google.com/maps/dir/?api=1&destination=${destinationCoords.latitude},${destinationCoords.longitude}&travelmode=driving&key=${GOOGLE_MAPS_DIRECTIONS_KEY}`;
 
     Linking.canOpenURL(url)
       .then(supported => {
@@ -250,11 +250,12 @@ const ContactUsScreen = ({navigation}) => {
             <MapViewDirections
               origin={myOriginCoords}
               destination={destinationCoords}
-              latitudeDelta={0.01}
-              longitudeDelta={0.01}
-              apikey={GOOGLE_MAPS_API_KEY}
+              latitudeDelta={0.09}
+              longitudeDelta={0.09}
+              apikey={GOOGLE_MAPS_DIRECTIONS_KEY}
               strokeWidth={5}
               strokeColor={COLORS.PRIMARY}
+              mode='DRIVING'
             />
           </MapView>
         ) : (
