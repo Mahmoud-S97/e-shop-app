@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* myRNAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* myRNAppTests.m */; };
+		00E356F31AD99517003FC87E /* goldenStoreAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* goldenStoreAppTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		4780322910EAD14FE0ECD056 /* libPods-myRNApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4588952683ACD61238F5BBA9 /* libPods-myRNApp.a */; };
+		4780322910EAD14FE0ECD056 /* libPods-goldenStoreApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4588952683ACD61238F5BBA9 /* libPods-goldenStoreApp.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		952650D575BE235DB2E584BA /* libPods-myRNApp-myRNAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 996D98DF8A7E3D9F93BEEB10 /* libPods-myRNApp-myRNAppTests.a */; };
+		952650D575BE235DB2E584BA /* libPods-goldenStoreApp-goldenStoreAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 996D98DF8A7E3D9F93BEEB10 /* libPods-goldenStoreApp-goldenStoreAppTests.a */; };
 		DF304241C5974A82B6E97EE8 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = DD8FFE5A17014EBABB640F85 /* Config.xcconfig */; };
 		F542DAB22F950F4A5DECBA81 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = CBBFB089EFA427D7724022DE /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
@@ -24,23 +24,23 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = myRNApp;
+			remoteInfo = goldenStoreApp;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* myRNAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = myRNAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* goldenStoreAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = goldenStoreAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* myRNAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = myRNAppTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* myRNApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myRNApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = myRNApp/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = myRNApp/AppDelegate.mm; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = myRNApp/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = myRNApp/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = myRNApp/main.m; sourceTree = "<group>"; };
-		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = myRNApp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		1EEB211FDA179B446FEE3061 /* Pods-myRNApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myRNApp.debug.xcconfig"; path = "Target Support Files/Pods-myRNApp/Pods-myRNApp.debug.xcconfig"; sourceTree = "<group>"; };
-		4588952683ACD61238F5BBA9 /* libPods-myRNApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myRNApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356F21AD99517003FC87E /* goldenStoreAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = goldenStoreAppTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* goldenStoreApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = goldenStoreApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = goldenStoreApp/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = goldenStoreApp/AppDelegate.mm; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = goldenStoreApp/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = goldenStoreApp/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = goldenStoreApp/main.m; sourceTree = "<group>"; };
+		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = goldenStoreApp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		1EEB211FDA179B446FEE3061 /* Pods-goldenStoreApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goldenStoreApp.debug.xcconfig"; path = "Target Support Files/Pods-goldenStoreApp/Pods-goldenStoreApp.debug.xcconfig"; sourceTree = "<group>"; };
+		4588952683ACD61238F5BBA9 /* libPods-goldenStoreApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-goldenStoreApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C37B6242E591FF3001CF2C5 /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AntDesign.ttf; sourceTree = "<group>"; };
 		7C37B6252E591FF3001CF2C5 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
 		7C37B6262E591FF3001CF2C5 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
@@ -60,14 +60,14 @@
 		7C37B6342E591FF3001CF2C5 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		7C37B6352E591FF3001CF2C5 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		7C37B6362E591FF3001CF2C5 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = myRNApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		996D98DF8A7E3D9F93BEEB10 /* libPods-myRNApp-myRNAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-myRNApp-myRNAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B968B668F573F28829703CAA /* Pods-myRNApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myRNApp.release.xcconfig"; path = "Target Support Files/Pods-myRNApp/Pods-myRNApp.release.xcconfig"; sourceTree = "<group>"; };
-		C2747B337563CAD1D3CE1C5A /* Pods-myRNApp-myRNAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myRNApp-myRNAppTests.debug.xcconfig"; path = "Target Support Files/Pods-myRNApp-myRNAppTests/Pods-myRNApp-myRNAppTests.debug.xcconfig"; sourceTree = "<group>"; };
-		CBBFB089EFA427D7724022DE /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = myRNApp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = goldenStoreApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		996D98DF8A7E3D9F93BEEB10 /* libPods-goldenStoreApp-goldenStoreAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-goldenStoreApp-goldenStoreAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B968B668F573F28829703CAA /* Pods-goldenStoreApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goldenStoreApp.release.xcconfig"; path = "Target Support Files/Pods-goldenStoreApp/Pods-goldenStoreApp.release.xcconfig"; sourceTree = "<group>"; };
+		C2747B337563CAD1D3CE1C5A /* Pods-goldenStoreApp-goldenStoreAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goldenStoreApp-goldenStoreAppTests.debug.xcconfig"; path = "Target Support Files/Pods-goldenStoreApp-goldenStoreAppTests/Pods-goldenStoreApp-goldenStoreAppTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CBBFB089EFA427D7724022DE /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = goldenStoreApp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		DD8FFE5A17014EBABB640F85 /* Config.xcconfig */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F71A2CFC181EB10DA0CB5E64 /* Pods-myRNApp-myRNAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myRNApp-myRNAppTests.release.xcconfig"; path = "Target Support Files/Pods-myRNApp-myRNAppTests/Pods-myRNApp-myRNAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		F71A2CFC181EB10DA0CB5E64 /* Pods-goldenStoreApp-goldenStoreAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goldenStoreApp-goldenStoreAppTests.release.xcconfig"; path = "Target Support Files/Pods-goldenStoreApp-goldenStoreAppTests/Pods-goldenStoreApp-goldenStoreAppTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				952650D575BE235DB2E584BA /* libPods-myRNApp-myRNAppTests.a in Frameworks */,
+				952650D575BE235DB2E584BA /* libPods-goldenStoreApp-goldenStoreAppTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,20 +83,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4780322910EAD14FE0ECD056 /* libPods-myRNApp.a in Frameworks */,
+				4780322910EAD14FE0ECD056 /* libPods-goldenStoreApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* myRNAppTests */ = {
+		00E356EF1AD99517003FC87E /* goldenStoreAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* myRNAppTests.m */,
+				00E356F21AD99517003FC87E /* goldenStoreAppTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = myRNAppTests;
+			path = goldenStoreAppTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -107,7 +107,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* myRNApp */ = {
+		13B07FAE1A68108700A75B9A /* goldenStoreApp */ = {
 			isa = PBXGroup;
 			children = (
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -119,15 +119,15 @@
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
 				CBBFB089EFA427D7724022DE /* PrivacyInfo.xcprivacy */,
 			);
-			name = myRNApp;
+			name = goldenStoreApp;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				4588952683ACD61238F5BBA9 /* libPods-myRNApp.a */,
-				996D98DF8A7E3D9F93BEEB10 /* libPods-myRNApp-myRNAppTests.a */,
+				4588952683ACD61238F5BBA9 /* libPods-goldenStoreApp.a */,
+				996D98DF8A7E3D9F93BEEB10 /* libPods-goldenStoreApp-goldenStoreAppTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -170,9 +170,9 @@
 			children = (
 				DD8FFE5A17014EBABB640F85 /* Config.xcconfig */,
 				7C37B6372E591FF3001CF2C5 /* Fonts */,
-				13B07FAE1A68108700A75B9A /* myRNApp */,
+				13B07FAE1A68108700A75B9A /* goldenStoreApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* myRNAppTests */,
+				00E356EF1AD99517003FC87E /* goldenStoreAppTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
@@ -185,8 +185,8 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* myRNApp.app */,
-				00E356EE1AD99517003FC87E /* myRNAppTests.xctest */,
+				13B07F961A680F5B00A75B9A /* goldenStoreApp.app */,
+				00E356EE1AD99517003FC87E /* goldenStoreAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -194,10 +194,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1EEB211FDA179B446FEE3061 /* Pods-myRNApp.debug.xcconfig */,
-				B968B668F573F28829703CAA /* Pods-myRNApp.release.xcconfig */,
-				C2747B337563CAD1D3CE1C5A /* Pods-myRNApp-myRNAppTests.debug.xcconfig */,
-				F71A2CFC181EB10DA0CB5E64 /* Pods-myRNApp-myRNAppTests.release.xcconfig */,
+				1EEB211FDA179B446FEE3061 /* Pods-goldenStoreApp.debug.xcconfig */,
+				B968B668F573F28829703CAA /* Pods-goldenStoreApp.release.xcconfig */,
+				C2747B337563CAD1D3CE1C5A /* Pods-goldenStoreApp-goldenStoreAppTests.debug.xcconfig */,
+				F71A2CFC181EB10DA0CB5E64 /* Pods-goldenStoreApp-goldenStoreAppTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -205,9 +205,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* myRNAppTests */ = {
+		00E356ED1AD99517003FC87E /* goldenStoreAppTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "myRNAppTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "goldenStoreAppTests" */;
 			buildPhases = (
 				6CE0D228612A60DEC557DDB4 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -221,14 +221,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = myRNAppTests;
-			productName = myRNAppTests;
-			productReference = 00E356EE1AD99517003FC87E /* myRNAppTests.xctest */;
+			name = goldenStoreAppTests;
+			productName = goldenStoreAppTests;
+			productReference = 00E356EE1AD99517003FC87E /* goldenStoreAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* myRNApp */ = {
+		13B07F861A680F5B00A75B9A /* goldenStoreApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "myRNApp" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "goldenStoreApp" */;
 			buildPhases = (
 				5BE58CE7E908FE0C3FE478A2 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
@@ -242,9 +242,9 @@
 			);
 			dependencies = (
 			);
-			name = myRNApp;
-			productName = myRNApp;
-			productReference = 13B07F961A680F5B00A75B9A /* myRNApp.app */;
+			name = goldenStoreApp;
+			productName = goldenStoreApp;
+			productReference = 13B07F961A680F5B00A75B9A /* goldenStoreApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -264,7 +264,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "myRNApp" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "goldenStoreApp" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -277,8 +277,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* myRNApp */,
-				00E356ED1AD99517003FC87E /* myRNAppTests */,
+				13B07F861A680F5B00A75B9A /* goldenStoreApp */,
+				00E356ED1AD99517003FC87E /* goldenStoreAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -327,15 +327,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myRNApp-myRNAppTests/Pods-myRNApp-myRNAppTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-goldenStoreApp-goldenStoreAppTests/Pods-goldenStoreApp-goldenStoreAppTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myRNApp-myRNAppTests/Pods-myRNApp-myRNAppTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-goldenStoreApp-goldenStoreAppTests/Pods-goldenStoreApp-goldenStoreAppTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myRNApp-myRNAppTests/Pods-myRNApp-myRNAppTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-goldenStoreApp-goldenStoreAppTests/Pods-goldenStoreApp-goldenStoreAppTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5BE58CE7E908FE0C3FE478A2 /* [CP] Check Pods Manifest.lock */ = {
@@ -353,7 +353,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-myRNApp-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-goldenStoreApp-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -375,7 +375,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-myRNApp-myRNAppTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-goldenStoreApp-goldenStoreAppTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -388,15 +388,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myRNApp/Pods-myRNApp-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-goldenStoreApp/Pods-goldenStoreApp-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myRNApp/Pods-myRNApp-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-goldenStoreApp/Pods-goldenStoreApp-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myRNApp/Pods-myRNApp-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-goldenStoreApp/Pods-goldenStoreApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8064AB256C190A261FC9FC14 /* [CP] Embed Pods Frameworks */ = {
@@ -405,15 +405,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myRNApp/Pods-myRNApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-goldenStoreApp/Pods-goldenStoreApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myRNApp/Pods-myRNApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-goldenStoreApp/Pods-goldenStoreApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myRNApp/Pods-myRNApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-goldenStoreApp/Pods-goldenStoreApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DFF5FE57693D98A96C2DC209 /* [CP] Embed Pods Frameworks */ = {
@@ -422,15 +422,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myRNApp-myRNAppTests/Pods-myRNApp-myRNAppTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-goldenStoreApp-goldenStoreAppTests/Pods-goldenStoreApp-goldenStoreAppTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-myRNApp-myRNAppTests/Pods-myRNApp-myRNAppTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-goldenStoreApp-goldenStoreAppTests/Pods-goldenStoreApp-goldenStoreAppTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-myRNApp-myRNAppTests/Pods-myRNApp-myRNAppTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-goldenStoreApp-goldenStoreAppTests/Pods-goldenStoreApp-goldenStoreAppTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -440,7 +440,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* myRNAppTests.m in Sources */,
+				00E356F31AD99517003FC87E /* goldenStoreAppTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,7 +458,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* myRNApp */;
+			target = 13B07F861A680F5B00A75B9A /* goldenStoreApp */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -466,14 +466,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C2747B337563CAD1D3CE1C5A /* Pods-myRNApp-myRNAppTests.debug.xcconfig */;
+			baseConfigurationReference = C2747B337563CAD1D3CE1C5A /* Pods-goldenStoreApp-goldenStoreAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = myRNAppTests/Info.plist;
+				INFOPLIST_FILE = goldenStoreAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -487,17 +487,17 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/myRNApp.app/myRNApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/goldenStoreApp.app/goldenStoreApp";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F71A2CFC181EB10DA0CB5E64 /* Pods-myRNApp-myRNAppTests.release.xcconfig */;
+			baseConfigurationReference = F71A2CFC181EB10DA0CB5E64 /* Pods-goldenStoreApp-goldenStoreAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = myRNAppTests/Info.plist;
+				INFOPLIST_FILE = goldenStoreAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -511,20 +511,22 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/myRNApp.app/myRNApp";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/goldenStoreApp.app/goldenStoreApp";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1EEB211FDA179B446FEE3061 /* Pods-myRNApp.debug.xcconfig */;
+			baseConfigurationReference = 1EEB211FDA179B446FEE3061 /* Pods-goldenStoreApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4JQKZZ33AM;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = myRNApp/Info.plist;
+				INFOPLIST_FILE = goldenStoreApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Golden Store";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -535,8 +537,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.smartshop.myeshop;
-				PRODUCT_NAME = myRNApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.goldenstore.eshop;
+				PRODUCT_NAME = goldenStoreApp;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -545,13 +547,15 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B968B668F573F28829703CAA /* Pods-myRNApp.release.xcconfig */;
+			baseConfigurationReference = B968B668F573F28829703CAA /* Pods-goldenStoreApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4JQKZZ33AM;
-				INFOPLIST_FILE = myRNApp/Info.plist;
+				INFOPLIST_FILE = goldenStoreApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Golden Store";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.shopping";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -562,8 +566,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.smartshop.myeshop;
-				PRODUCT_NAME = myRNApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.goldenstore.eshop;
+				PRODUCT_NAME = goldenStoreApp;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -733,7 +737,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "myRNAppTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "goldenStoreAppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -742,7 +746,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "myRNApp" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "goldenStoreApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -751,7 +755,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "myRNApp" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "goldenStoreApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

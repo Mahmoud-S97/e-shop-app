@@ -11,7 +11,7 @@
 
   [GMSServices provideAPIKey:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"GOOGLE_MAPS_API_KEY"]];
   
-  self.moduleName = @"myRNApp";
+  self.moduleName = @"goldenStoreApp";
   // You can add your custom initial props in the dictionary below.
   // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};

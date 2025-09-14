@@ -1,4 +1,4 @@
-package com.myrnapp
+package com.goldenstore.eshop
 
 import android.app.Application
 import com.facebook.react.PackageList

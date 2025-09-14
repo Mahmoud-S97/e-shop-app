@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface myRNAppTests : XCTestCase
+@interface goldenStoreAppTests : XCTestCase
 
 @end
 
-@implementation myRNAppTests
+@implementation goldenStoreAppTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL (^)(UIView *view))test
 {
