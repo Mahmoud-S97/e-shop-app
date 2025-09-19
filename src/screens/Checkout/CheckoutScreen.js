@@ -1,43 +1,35 @@
-import React, { useState } from 'react';
-import { View } from 'react-native';
-import CheckoutScreenStyles from './CheckoutScreenStyles';
-import { useStripe, CardForm } from '@stripe/stripe-react-native';
+import React from 'react';
+import { View, ScrollView, Text, Image, TouchableOpacity } from 'react-native';
 import { COLORS, GENERAL_STYLES } from '../../constants/styles/Styles';
-import { ScrollView } from 'react-native-gesture-handler';
-import MainButton from '../../components/Globals/MainButton';
+import MainHeader from '../../components/Header/MainHeader';
 import GoBackIcon from '../../components/Globals/GoBackIcon';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import MainHeader from '../../components/Header/MainHeader';
+import MainButton from '../../components/Globals/MainButton';
+import { useSelector } from 'react-redux';
+import CheckoutScreenStyles from './CheckoutScreenStyles';
+import SCREENS from '../../constants/screens';
+
+const RenderOrderedProductDetails = (product, index) => {
+        return (
+            <View key={index} style={CheckoutScreenStyles.orderDetailsCard}>
+                <View style={CheckoutScreenStyles.productImgLayout}>
+                    <View style={CheckoutScreenStyles.productImgBox}>
+                        <Image style={CheckoutScreenStyles.productImg} source={{ uri: product.image }} />
+                    </View>
+                </View>
+                <View style={CheckoutScreenStyles.productTitleAndQtyBox}>
+                    <Text numberOfLines={3} style={CheckoutScreenStyles.productTitleAndQtyText}>{`${product.title}  x ${product.qty}`}</Text>
+                </View>
+                <Text numberOfLines={3} style={CheckoutScreenStyles.productPriceText}>${(product.price * product.qty).toFixed(2)}</Text>
+            </View>
+        )
+    }
 
 const CheckoutScreen = ({ navigation }) => {
 
-    const { createPaymentMethod } = useStripe();
+    const { totalPrice: cartTotalPrice, cartItems: cartProducts } = useSelector(state => state.cartSlice);
 
-    const [cardDetails, setCardDetails] = useState(null);
-
-    const handlePayment = async () => {
-        if (!cardDetails?.complete) {
-            alert('Please enter complete card details');
-            return;
-        }
-        const { paymentMethod, error } = createPaymentMethod({
-            type: 'Card',
-            card: cardDetails
-        });
-
-        if (error) {
-            console.log('Payment-Error: ', error);
-            alert(error.message);
-        } else {
-            // Handle Payment!
-            console.log('Payment method created:', paymentMethod);
-            alert('Payment method created successfully!');
-        }
-    }
-
-    const goBack = () => {
-        navigation.goBack();
-    }
+    const goBack = () => navigation.goBack();
 
     return (
         <View style={GENERAL_STYLES.screen}>
@@ -49,7 +41,7 @@ const CheckoutScreen = ({ navigation }) => {
                     headerLeftAction1Styles: { backgroundColor: 'transparent' },
                     action1: goBack
                 }}
-                headerTitle={'Checkout'}
+                headerTitle='Checkout'
                 headerRight={{
                     headerRightBtn2_content: (
                         <FontAwesome
@@ -62,22 +54,52 @@ const CheckoutScreen = ({ navigation }) => {
                 }}
             />
             <ScrollView style={GENERAL_STYLES.scrollingView}>
-                <View style={GENERAL_STYLES.container}>
-                    <View style={CheckoutScreenStyles.CardFormContainerStyles}>
-                        <CardForm
-                            style={CheckoutScreenStyles.CardFormStyles}
-                            onFormComplete={(form) => {
-                                setCardDetails(form);
-                                console.log('Form completed:', form);
-                            }}
-                            cardStyle={CheckoutScreenStyles.checkoutCardStyles}
-                        />
+                <View style={[GENERAL_STYLES.container, { paddingTop: 30, paddingBottom: 110 }]}>
+                    <View style={CheckoutScreenStyles.inner}>
+                        <View style={CheckoutScreenStyles.orderSummaryBox}>
+                            <Text style={CheckoutScreenStyles.orderSummaryTitle}>Shipping Address:</Text>
+                            <TouchableOpacity activeOpacity={0.7} onPress={() => { }}>
+                                <Text style={CheckoutScreenStyles.editAddress}>Edit</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={CheckoutScreenStyles.userInfo}>
+                            <View style={CheckoutScreenStyles.userNameBox}>
+                                <FontAwesome name='user' color={COLORS.BLACK} size={20} />
+                                <Text style={CheckoutScreenStyles.userName}>Mahmoud Saleh</Text>
+                            </View>
+                            <Text style={CheckoutScreenStyles.userAddressText}>Dublin 7, Ireland. 2A7 Benburb St.</Text>
+                        </View>
+                        <View style={CheckoutScreenStyles.orderSummaryBox}>
+                            <Text style={CheckoutScreenStyles.orderSummaryTitle}>Order Summary:</Text>
+                            <Text style={CheckoutScreenStyles.itemsCount}>({cartProducts.length.toString()} Items)</Text>
+                        </View>
+                        {cartProducts.length > 0 && (
+                            cartProducts.map(RenderOrderedProductDetails)
+                        )}
+                        <View style={CheckoutScreenStyles.orderPriceSummaryBox}>
+                            <View style={CheckoutScreenStyles.shippingBox}>
+                                <Text style={CheckoutScreenStyles.shippingTitle}>Shipping:</Text>
+                                <Text style={CheckoutScreenStyles.shippingPrice}>${(cartTotalPrice - cartTotalPrice).toFixed(2)}</Text>
+                            </View>
+                            <View style={CheckoutScreenStyles.shippingBox}>
+                                <Text style={CheckoutScreenStyles.shippingTitle}>Subtotal:</Text>
+                                <Text style={CheckoutScreenStyles.shippingPrice}>${cartTotalPrice.toFixed(2)}</Text>
+                            </View>
+                        </View>
                     </View>
-                    <MainButton onPress={handlePayment}>
-                        Pay
-                    </MainButton>
+                    <View style={CheckoutScreenStyles.totalPriceBox}>
+                        <Text style={CheckoutScreenStyles.totalPriceTitle}>Total:</Text>
+                        <Text style={CheckoutScreenStyles.totalPrice}>{cartTotalPrice.toFixed(2)}</Text>
+                    </View>
                 </View>
             </ScrollView>
+            {cartTotalPrice > 0 && cartProducts.length > 0 && (
+                <MainButton
+                    style={CheckoutScreenStyles.checkoutBtn}
+                    onPress={() => navigation.navigate(SCREENS.PAYMENT)}>
+                    Proceed to Payment
+                </MainButton>
+            )}
         </View>
     )
 }

@@ -6,8 +6,8 @@ import FeedbackScreen from '../screens/Feedback/FeedbackScreen';
 import HomeScreen from '../screens/Home/HomeScreen';
 import ProductViewScreen from '../screens/ProductView/ProductViewScreen';
 import UserProfileScreen from '../screens/UserProfile/UserProfileScreen';
-import OrderDetailsScreen from '../screens/OrderDetails/OrderDetailsScreen';
 import CheckoutScreen from '../screens/Checkout/CheckoutScreen';
+import PaymentScreen from '../screens/Payment/PaymentScreen';
 
 const AuthScreensList = [
   {
@@ -54,19 +54,19 @@ const HomeScreensList = [
     }
   },
   {
-    name: 'OrderDetails',
-    component: OrderDetailsScreen,
+    name: 'Checkout',
+    component: CheckoutScreen,
     screenOptions: {
       headerShown: false,
       title: 'Order Details'
     }
   },
   {
-    name: 'Checkout',
-    component: CheckoutScreen,
+    name: 'Payment',
+    component: PaymentScreen,
     screenOptions: {
       headerShown: false,
-      title: 'Checkout',
+      title: 'Payment',
       headerShown: false,
       presentation: 'modal',
       animation: 'slide_from_bottom'

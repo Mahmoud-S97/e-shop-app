@@ -20,6 +20,7 @@ import GeneralEmptyMessage from '../../components/Globals/GeneralEmptyMessage';
 import MainButton from '../../components/Globals/MainButton';
 import { LOCAL_IMAGES } from '../../constants/images/LocalImages';
 import GoBackIcon from '../../components/Globals/GoBackIcon';
+import SCREENS from '../../constants/screens';
 
 const CartScreen = props => {
   const { navigation } = props;
@@ -202,7 +203,7 @@ const CartScreen = props => {
         {cartTotalPrice > 0 && cartProducts.length > 0 && (
           <MainButton
             style={CartScreenStyles.checkoutBtn}
-            onPress={() => navigation.navigate('OrderDetails')}>
+            onPress={() => navigation.navigate(SCREENS.CHECKOUT)}>
             Checkout Order
           </MainButton>
         )}

@@ -9,7 +9,9 @@ const SCREENS = {
     FEEDBACK: 'Feedback',
     CONTACT_US: 'ContactUs',
     PRODUCT_VIEW: 'ProductView',
-    CART: 'Cart'
+    CART: 'Cart',
+    CHECKOUT: 'Checkout',
+    PAYMENT: 'Payment'
 };
 
 export default SCREENS;
