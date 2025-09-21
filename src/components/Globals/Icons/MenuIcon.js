@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
-import {COLORS} from '../../constants/styles/Styles';
+import {COLORS} from '../../../constants/styles/Styles';
 
 const MenuIcon = props => {
   const {name, size, color, style, customMenuBoxText} = props;

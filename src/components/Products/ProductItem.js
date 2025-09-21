@@ -6,7 +6,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {COLORS} from '../../constants/styles/Styles';
 import constants from '../../constants';
 import * as ProductStyles from './ProductItemsStyle';
-import MainButton from '../Globals/MainButton';
+import MainButton from '../Globals/Buttons/MainButton';
 import SCREENS from '../../constants/screens';
 import {useDispatch, useSelector} from 'react-redux';
 import {decrementCart, incrementCart} from '../../store/reducers/cartSlice';

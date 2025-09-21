@@ -15,13 +15,13 @@ import {COLORS, GENERAL_STYLES} from '../../constants/styles/Styles';
 import HomeHeader from '../../components/Header/Home/HomeHeader';
 import constants from '../../constants';
 import ProductItem from '../../components/Products/ProductItem';
-import MainButton from '../../components/Globals/MainButton';
+import MainButton from '../../components/Globals/Buttons/MainButton';
 import {useDispatch, useSelector} from 'react-redux';
 import SCREENS from '../../constants/screens';
 import { fetchProducts } from '../../api/Products';
 import SearchProductsModal from '../../components/Home/SearchProductsModal';
-import GeneralEmptyMessage from '../../components/Globals/GeneralEmptyMessage';
-import Spinner from '../../components/Globals/Spinner';
+import GeneralEmptyMessage from '../../components/Globals/TextMessages/GeneralEmptyMessage';
+import Spinner from '../../components/Globals/Spinners/Spinner';
 import {
   setProductsSkipped,
   setHasMoreData

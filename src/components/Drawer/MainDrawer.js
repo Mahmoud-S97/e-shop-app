@@ -9,7 +9,7 @@ import Octicons from 'react-native-vector-icons/Octicons';
 import SCREENS from '../../constants/screens';
 import {COLORS} from '../../constants/styles/Styles';
 import {userLogout} from '../../utils';
-import MainButton from '../Globals/MainButton';
+import MainButton from '../Globals/Buttons/MainButton';
 
 const MainDrawer = props => {
   console.log('Drawer Props: ', props);

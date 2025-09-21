@@ -11,12 +11,12 @@ import {
 import UserProfileScreenStyles from './UserProfileScreenStyles';
 import {COLORS, GENERAL_STYLES} from '../../constants/styles/Styles';
 import MainHeader from '../../components/Header/MainHeader';
-import MenuIcon from '../../components/Globals/MenuIcon';
-import MainFastImage from '../../components/Globals/MainFastImage';
+import MenuIcon from '../../components/Globals/Icons/MenuIcon';
+import MainFastImage from '../../components/Globals/imgs/MainFastImage';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import MainButton from '../../components/Globals/MainButton';
+import MainButton from '../../components/Globals/Buttons/MainButton';
 
 const UserProfileScreen = ({navigation}) => {
   const [isEditProfile, setIsEditProfile] = useState(false);

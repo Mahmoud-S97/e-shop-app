@@ -1,7 +1,7 @@
 import React from 'react';
 import {ActivityIndicator, View, StyleSheet} from 'react-native';
-import constants from '../../constants';
-import {COLORS} from '../../constants/styles/Styles';
+import constants from '../../../constants';
+import {COLORS} from '../../../constants/styles/Styles';
 
 const Spinner = props => {
   return (

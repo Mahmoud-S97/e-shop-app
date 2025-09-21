@@ -14,7 +14,7 @@ import {
 import LoginScreenStyles from './LoginScreenStyles';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import SCREENS from '../../../constants/screens';
-import MainButton from '../../../components/Globals/MainButton';
+import MainButton from '../../../components/Globals/Buttons/MainButton';
 import {COLORS, GENERAL_STYLES} from '../../../constants/styles/Styles';
 import {useDispatch, useSelector} from 'react-redux';
 import {loginOrSignUpHandler} from '../../../api/Auth';

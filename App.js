@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import MainNav from './src/navigation/MainNav';
 import SplashScreen from 'react-native-splash-screen';
-import MainLoading from './src/components/Globals/MainLoading';
+import MainLoading from './src/components/Globals/Spinners/MainLoading';
 import {useSelector} from 'react-redux';
 import { StripeProvider } from '@stripe/stripe-react-native';
 import Config from 'react-native-config';

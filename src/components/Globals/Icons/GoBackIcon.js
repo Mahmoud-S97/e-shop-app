@@ -1,7 +1,7 @@
 import React from 'react';
 import {I18nManager} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {COLORS} from '../../constants/styles/Styles';
+import {COLORS} from '../../../constants/styles/Styles';
 
 const GoBackIcon = props => {
   const {color, name, size, style} = props;

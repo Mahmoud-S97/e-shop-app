@@ -16,10 +16,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import CartItem from '../../components/Cart/CartItem';
 import { setRemovedItemID } from '../../store/reducers/cartSlice';
 import { setRemovedFavItemID } from '../../store/reducers/productsSlice';
-import GeneralEmptyMessage from '../../components/Globals/GeneralEmptyMessage';
-import MainButton from '../../components/Globals/MainButton';
+import GeneralEmptyMessage from '../../components/Globals/TextMessages/GeneralEmptyMessage';
+import MainButton from '../../components/Globals/Buttons/MainButton';
 import { LOCAL_IMAGES } from '../../constants/images/LocalImages';
-import GoBackIcon from '../../components/Globals/GoBackIcon';
+import GoBackIcon from '../../components/Globals/Icons/GoBackIcon';
 import SCREENS from '../../constants/screens';
 
 const CartScreen = props => {

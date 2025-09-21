@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import FastImage from 'react-native-fast-image';
-import {FAKE_IMAGES} from '../../constants/images/LocalImages';
+import {FAKE_IMAGES} from '../../../constants/images/LocalImages';
 
 const MainFastImage = props => {
   return (

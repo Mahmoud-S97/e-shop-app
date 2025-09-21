@@ -10,7 +10,7 @@ import ProductItem from '../../components/Products/ProductItem';
 import { useDispatch, useSelector } from 'react-redux';
 import SCREENS from '../../constants/screens';
 import { switchItemAsFavorite } from '../../store/reducers/productsSlice';
-import GoBackIcon from '../../components/Globals/GoBackIcon';
+import GoBackIcon from '../../components/Globals/Icons/GoBackIcon';
 
 const ProductViewScreen = props => {
   const {

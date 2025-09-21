@@ -7,14 +7,14 @@ import { COLORS, GENERAL_STYLES } from '../../constants/styles/Styles';
 import { LOCAL_IMAGES } from '../../constants/images/LocalImages';
 import { getScreenWidth } from '../../utils';
 import { StarRatingDisplay } from 'react-native-star-rating-widget';
-import MainButton from '../../components/Globals/MainButton';
+import MainButton from '../../components/Globals/Buttons/MainButton';
 import SCREENS from '../../constants/screens';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchReviewersQuotes } from '../../api/User';
 import MainHeader from '../../components/Header/MainHeader';
-import MenuIcon from '../../components/Globals/MenuIcon';
-import FastImage from 'react-native-fast-image';
-import Spinner from '../../components/Globals/Spinner';
+import MenuIcon from '../../components/Globals/Icons/MenuIcon';
+import Spinner from '../../components/Globals/Spinners/Spinner';
+import MainFastImage from '../../components/Globals/imgs/MainFastImage';
 
 const FeedbackScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -28,14 +28,9 @@ const FeedbackScreen = ({ navigation }) => {
     return (
       <View style={FeedbackScreenStyles.carouselItemBox}>
         <View style={FeedbackScreenStyles.reviewerImgBox}>
-          <FastImage
+          <MainFastImage
             style={FeedbackScreenStyles.reviewerImg}
-            source={{
-              uri: item.image,
-              priority: FastImage.priority.high,
-              cache: FastImage.cacheControl.immutable
-            }}
-            resizeMode={FastImage.resizeMode.cover}
+            imageSource={item.image}
           />
         </View>
         <StarRatingDisplay

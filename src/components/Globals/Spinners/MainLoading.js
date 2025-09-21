@@ -1,8 +1,8 @@
 import React from 'react';
 import {ActivityIndicator, View, Text, StyleSheet} from 'react-native';
-import constants from '../../constants';
-import {COLORS} from '../../constants/styles/Styles';
-import { getScreenHeight, getScreenWidth } from '../../utils';
+import constants from '../../../constants';
+import {COLORS} from '../../../constants/styles/Styles';
+import { getScreenHeight, getScreenWidth } from '../../../utils';
 
 const MainLoading = props => {
 

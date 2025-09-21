@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, StyleSheet, ActivityIndicator} from 'react-native';
 import Ripple from 'react-native-material-ripple';
-import {COLORS} from '../../constants/styles/Styles';
+import {COLORS} from '../../../constants/styles/Styles';
 
 const MainButton = props => {
   const {children} = props;

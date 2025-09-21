@@ -7,7 +7,7 @@ import {COLORS} from '../../constants/styles/Styles';
 import CartItemStyles, {
   favAndremoveCartItemBtnConfirmation
 } from './CartItemStyles';
-import MainButton from '../Globals/MainButton';
+import MainButton from '../Globals/Buttons/MainButton';
 import SCREENS from '../../constants/screens';
 import {useDispatch, useSelector} from 'react-redux';
 import {

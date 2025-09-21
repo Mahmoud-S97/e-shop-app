@@ -22,17 +22,17 @@ import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import Geolocation from 'react-native-geolocation-service';
 import MapViewDirections from 'react-native-maps-directions';
 import {COLORS, GENERAL_STYLES} from '../../constants/styles/Styles';
-import Spinner from '../../components/Globals/Spinner';
+import Spinner from '../../components/Globals/Spinners/Spinner';
 import {GOOGLE_MAPS_DIRECTIONS_KEY} from '@env';
 import {LOCAL_IMAGES} from '../../constants/images/LocalImages';
-import MainButton from '../../components/Globals/MainButton';
+import MainButton from '../../components/Globals/Buttons/MainButton';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MainHeader from '../../components/Header/MainHeader';
-import MenuIcon from '../../components/Globals/MenuIcon';
+import MenuIcon from '../../components/Globals/Icons/MenuIcon';
 import constants, {SOCIAL_MEDIA_LINKS} from '../../constants';
-import GeneralEmptyMessage from '../../components/Globals/GeneralEmptyMessage';
+import GeneralEmptyMessage from '../../components/Globals/TextMessages/GeneralEmptyMessage';
 
 const ContactUsScreen = ({navigation}) => {
   const [myOriginCoords, setMyOriginCoords] = useState(null);

@@ -4,8 +4,8 @@ import PaymentScreenStyles from './PaymentScreenStyles';
 import { useStripe, CardForm } from '@stripe/stripe-react-native';
 import { COLORS, GENERAL_STYLES } from '../../constants/styles/Styles';
 import { ScrollView } from 'react-native-gesture-handler';
-import MainButton from '../../components/Globals/MainButton';
-import GoBackIcon from '../../components/Globals/GoBackIcon';
+import MainButton from '../../components/Globals/Buttons/MainButton';
+import GoBackIcon from '../../components/Globals/Icons/GoBackIcon';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MainHeader from '../../components/Header/MainHeader';
 

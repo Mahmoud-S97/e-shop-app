@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
-import {COLORS, GENERAL_STYLES} from '../../constants/styles/Styles';
+import {COLORS, GENERAL_STYLES} from '../../../constants/styles/Styles';
 
 const GeneralEmptyMessage = props => {
   const {children, style, messageTextStyles, icon, button} = props;

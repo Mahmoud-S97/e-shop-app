@@ -13,8 +13,8 @@ import { useSafeAreaInsets, SafeAreaProvider, SafeAreaView } from 'react-native-
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import SearchProductsModalStyles from './SearchProducts.ModalStyles';
 import { COLORS, GENERAL_STYLES } from '../../constants/styles/Styles';
-import MainButton from '../Globals/MainButton';
-import GoBackIcon from '../Globals/GoBackIcon';
+import MainButton from '../Globals/Buttons/MainButton';
+import GoBackIcon from '../Globals/Icons/GoBackIcon';
 
 const SearchProductsModal = props => {
 

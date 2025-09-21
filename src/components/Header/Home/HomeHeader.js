@@ -6,7 +6,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import MainHeader from '../MainHeader';
 import {COLORS} from '../../../constants/styles/Styles';
 import { useSelector } from 'react-redux';
-import MenuIcon from '../../Globals/MenuIcon';
+import MenuIcon from '../../Globals/Icons/MenuIcon';
 
 const HomeHeader = props => {
 
