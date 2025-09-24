@@ -1,6 +1,22 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {GET_QUOTES} from '../ApiEndPoints';
+import {GET_QUOTES, GET_USER_DATA} from '../ApiEndPoints';
 import {ACTION_KEYS} from '../actionKeys';
+
+export const fetchUserData = createAsyncThunk(
+  ACTION_KEYS.FETCH_USER_DATA,
+  async (parameters, {rejectWithValue}) => {
+    console.log('Mahmoud:: ', parameters);
+    const { currentUserId } = parameters;
+    try {
+      const response = await fetch(`${GET_USER_DATA}/${currentUserId}`);
+      const userData = await response.json();
+      console.log('User-Profile:: ', userData);
+      return userData;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+)
 
 // Fetch Reviewers' Quotes
 export const fetchReviewersQuotes = createAsyncThunk(

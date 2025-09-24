@@ -60,7 +60,7 @@ const UserProfileScreenStyles = StyleSheet.create({
     marginBottom: 30
   },
   fieldTitle: {
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: 'bold',
     color: COLORS.GRAY,
     marginBottom: 5

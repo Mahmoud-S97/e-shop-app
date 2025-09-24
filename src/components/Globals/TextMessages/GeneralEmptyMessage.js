@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   emptyMessageText: {
-    fontSize: 20,
+    width: '100%',
+    fontSize: 22,
     fontStyle: 'italic',
     fontWeight: 'bold',
     textAlign: 'center',

@@ -14,6 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import productsReducer from './reducers/productsSlice';
 import cartReducer from './reducers/cartSlice';
 import authReducer from './reducers/authSlice';
+import userReducer from './reducers/userSlice';
 import clientsReducer from './reducers/clientsSlice';
 
 const persistConfig = {
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   productsSlice: productsReducer,
   cartSlice: cartReducer,
   authSlice: authReducer,
+  userSlice: userReducer,
   clientsSlice: clientsReducer
 });
 
