@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets, SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import SearchProductsModalStyles from './SearchProducts.ModalStyles';
+import SearchProductsModalStyles from './SearchProductsModalStyles';
 import { COLORS, GENERAL_STYLES } from '../../constants/styles/Styles';
 import MainButton from '../Globals/Buttons/MainButton';
 import GoBackIcon from '../Globals/Icons/GoBackIcon';

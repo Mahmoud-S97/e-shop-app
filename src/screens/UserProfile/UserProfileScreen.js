@@ -23,6 +23,7 @@ import MainLoading from '../../components/Globals/Spinners/MainLoading';
 import GeneralEmptyMessage from '../../components/Globals/TextMessages/GeneralEmptyMessage';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import { formatDate } from '../../utils';
+import MainModal from '../../components/Globals/Modal/MainModal';
 
 const UserProfileScreen = ({ navigation }) => {
 
@@ -196,41 +197,41 @@ const UserProfileScreen = ({ navigation }) => {
       behavior={Platform.OS == 'android' ? 'height' : 'padding'}>
       <View style={GENERAL_STYLES.screen}>
         <MainHeader
-            style={{ backgroundColor: COLORS.WHITE }}
-            headerLeft={{
-              headerLeftBtn1_content: (
-                <MenuIcon
-                  color={COLORS.PRIMARY}
-                  customMenuBoxText={{ color: COLORS.PRIMARY }}
-                />
-              ),
-              headerLeftAction1Styles: {
-                width: 95,
-                borderRadius: 25
-              },
-              action1: () => navigation.openDrawer()
-            }}
-            headerRight={{
-              headerRightBtn2_content: userData.id ? (
-                <View style={UserProfileScreenStyles.editBtnBox}>
-                  <FontAwesome name="edit" color={isEditProfile ? COLORS.WHITE : COLORS.PRIMARY} size={25} />
-                  <Text style={[UserProfileScreenStyles.editBtnText, isEditProfile && { color: COLORS.WHITE }]}>Edit</Text>
-                </View>
-              ) : null,
-              headerRightAction2Styles: {
-                width: 95,
-                borderRadius: 25,
-                backgroundColor: isEditProfile ? COLORS.RED : COLORS.LIGHT_GRAY
-              },
-              action2: onEditHandler
-            }}
-            headerTitle="My Profile"
-            headerTitleStyles={{ color: COLORS.PRIMARY, marginHorizontal: 0 }}
-          />
+          style={{ backgroundColor: COLORS.WHITE }}
+          headerLeft={{
+            headerLeftBtn1_content: (
+              <MenuIcon
+                color={COLORS.PRIMARY}
+                customMenuBoxText={{ color: COLORS.PRIMARY }}
+              />
+            ),
+            headerLeftAction1Styles: {
+              width: 95,
+              borderRadius: 25
+            },
+            action1: () => navigation.openDrawer()
+          }}
+          headerRight={{
+            headerRightBtn2_content: userData.id ? (
+              <View style={UserProfileScreenStyles.editBtnBox}>
+                <FontAwesome name="edit" color={isEditProfile ? COLORS.WHITE : COLORS.PRIMARY} size={25} />
+                <Text style={[UserProfileScreenStyles.editBtnText, isEditProfile && { color: COLORS.WHITE }]}>Edit</Text>
+              </View>
+            ) : null,
+            headerRightAction2Styles: {
+              width: 95,
+              borderRadius: 25,
+              backgroundColor: isEditProfile ? COLORS.RED : COLORS.LIGHT_GRAY
+            },
+            action2: onEditHandler
+          }}
+          headerTitle="My Profile"
+          headerTitleStyles={{ color: COLORS.PRIMARY, marginHorizontal: 0 }}
+        />
         <ScrollView
           style={GENERAL_STYLES.scrollingView}
           showsVerticalScrollIndicator={false}>
-          
+
           {!isUserDataLoading && userData.id ? (
             <>
               <View style={UserProfileScreenStyles.profileInfoCard}>
@@ -414,46 +415,38 @@ const UserProfileScreen = ({ navigation }) => {
                   </TouchableOpacity>
                   {formErrors.birthDate ? <Text style={UserProfileScreenStyles.errorText}>{formErrors.birthDate}</Text> : null}
                   {Platform.OS == 'ios' ?
-                    (
-                      <>
-                        {showDatePicker && (
-                          <View style={UserProfileScreenStyles.datePickerIOSModal}>
-                            <Modal
-                              transparent={true}
-                              visible={showDatePicker}
-                              animationType='slide'
-                            >
-                              <View style={UserProfileScreenStyles.modalContainer}>
-                                <View style={UserProfileScreenStyles.modalContent}>
-                                  <RNDateTimePicker
-                                    mode='date'
-                                    display='spinner'
-                                    onChange={onChangeDate}
-                                    value={new Date(userData?.birthDate) ?? new Date()}
-                                    maximumDate={new Date()}
-                                    minimumDate={new Date(1950, 0, 1)}
-                                    themeVariant='light'
-                                  />
-                                  <View style={UserProfileScreenStyles.modalFooter}>
-                                    <MainButton
-                                      style={UserProfileScreenStyles.cancelBtn}
-                                      btnTextStyles={UserProfileScreenStyles.cancelBtnText}
-                                      onPress={() => setShowDatePicker(false)}>
-                                      Cancel
-                                    </MainButton>
-                                    <MainButton
-                                      style={UserProfileScreenStyles.applyBtn}
-                                      onPress={confirmIOSDate}>
-                                      Done
-                                    </MainButton>
-                                  </View>
-                                </View>
-                              </View>
-                            </Modal>
-                          </View>
-                        )}
-                      </>
-                    ) :
+                    (<MainModal
+                      style={{ modalContainer: UserProfileScreenStyles.modalContainer }}
+                      transparent={true}
+                      visible={showDatePicker}
+                      animationType='slide'
+                      onRequestClose={() => setShowDatePicker(false)}
+                    >
+                      <View style={UserProfileScreenStyles.modalContent}>
+                        <RNDateTimePicker
+                          mode='date'
+                          display='spinner'
+                          onChange={onChangeDate}
+                          value={new Date(userData?.birthDate) ?? new Date()}
+                          maximumDate={new Date()}
+                          minimumDate={new Date(1950, 0, 1)}
+                          themeVariant='light'
+                        />
+                        <View style={UserProfileScreenStyles.modalFooter}>
+                          <MainButton
+                            style={UserProfileScreenStyles.cancelBtn}
+                            btnTextStyles={UserProfileScreenStyles.cancelBtnText}
+                            onPress={() => setShowDatePicker(false)}>
+                            Cancel
+                          </MainButton>
+                          <MainButton
+                            style={UserProfileScreenStyles.applyBtn}
+                            onPress={confirmIOSDate}>
+                            Done
+                          </MainButton>
+                        </View>
+                      </View>
+                    </MainModal>) :
                     (
                       <>
                         {showDatePicker && (
@@ -588,7 +581,7 @@ const UserProfileScreen = ({ navigation }) => {
                           isEditProfile && { color: COLORS.DARK_GRAY }
                         ]}
                         numberOfLines={1}>
-                        State/County
+                        State/ County
                       </Text>
                       <View style={[UserProfileScreenStyles.infoField, formErrors.state && { borderColor: COLORS.RED, marginBottom: 5 }]}>
                         <TextInput
