@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useNavigation, CommonActions } from "@react-navigation/native";
 import { setUserLogout } from "../store/reducers/authSlice";
 import SCREENS from "../constants/screens";
+import dayjs from "dayjs";
 
 export const getScreenWidth = () => {
     return Dimensions.get('screen').width;
@@ -76,4 +77,8 @@ export const userLogout = () => {
               })
             )
     }
+}
+
+export const formatDate = (selectedDate) => {
+    return dayjs(selectedDate).format('YYYY-M-DD');
 }

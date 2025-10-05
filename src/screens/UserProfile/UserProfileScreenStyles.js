@@ -1,5 +1,5 @@
-import {StyleSheet} from 'react-native';
-import {COLORS} from '../../constants/styles/Styles';
+import { StyleSheet } from 'react-native';
+import { COLORS } from '../../constants/styles/Styles';
 
 const UserProfileScreenStyles = StyleSheet.create({
   editBtnBox: {
@@ -11,17 +11,14 @@ const UserProfileScreenStyles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '600',
     marginHorizontal: 5,
-    color: COLORS.WHITE
+    color: COLORS.PRIMARY
   },
   profileInfoCard: {
     width: '100%',
-    height: 240,
+    height: 300,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: COLORS.BLUE,
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
-    marginBottom: 20
+    backgroundColor: COLORS.PRIMARY
   },
   profileImageBox: {
     width: 120,
@@ -53,6 +50,12 @@ const UserProfileScreenStyles = StyleSheet.create({
     letterSpacing: 0.5,
     color: COLORS.WHITE,
     textAlign: 'center'
+  },
+  customContainer: {
+    marginTop: -15,
+    paddingHorizontal: 15,
+    borderTopRightRadius: 15,
+    borderTopLeftRadius: 15,
   },
   innerInfo: {
     flex: 1,
@@ -92,24 +95,57 @@ const UserProfileScreenStyles = StyleSheet.create({
     textAlign: 'left'
   },
   footerBtnsBox: {
-    width: '100%',
+    position: 'absolute',
+    bottom: 10,
+    width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 40
+    alignSelf: 'center',
+    zIndex: 99999
   },
   applyBtn: {
     width: '48%',
-    backgroundColor: COLORS.BLUE
+    backgroundColor: COLORS.PRIMARY
   },
   cancelBtn: {
     width: '48%',
-    backgroundColor: 'transparent',
+    backgroundColor: COLORS.WHITE,
     borderWidth: 1.2,
     borderColor: COLORS.RED
   },
   cancelBtnText: {
     color: COLORS.RED
+  },
+  errorText: {
+    fontSize: 15,
+    color: COLORS.RED,
+    marginBottom: 15
+  },
+  datePickerIOSModal: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    backgroundColor: COLORS.OVERLAY,
+    paddingBottom: 10
+  },
+  modalContent: {
+    margin: 20,
+    padding: 10,
+    backgroundColor: COLORS.WHITE,
+    borderRadius: 20
+  },
+  modalFooter: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    marginVertical: 15
   }
 });
 

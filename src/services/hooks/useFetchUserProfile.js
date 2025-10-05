@@ -12,6 +12,7 @@ export const useFetchUserProfile = (currentUser) => {
         firstName: '',
         lastName: '',
         fullName: '',
+        image: '',
         email: '',
         birthDate: '',
         gender: '',
@@ -34,5 +35,11 @@ export const useFetchUserProfile = (currentUser) => {
         }
     }, [userData.id, dispatch]);
 
-    return { userForm, setUserForm, isUserDataLoading, errors };
+    const closeUpdatingDataHandler = () => {
+        if(userData.id) {
+            setUserForm(currentUser(userData));
+        }
+    }
+
+    return { userForm, setUserForm, closeUpdatingDataHandler, isUserDataLoading, errors };
 }
