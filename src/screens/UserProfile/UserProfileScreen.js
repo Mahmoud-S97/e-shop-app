@@ -186,10 +186,6 @@ const UserProfileScreen = ({ navigation }) => {
     toggleDatePicker();
   }
 
-  if (isUserDataLoading) {
-    return <MainLoading />
-  }
-
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -650,6 +646,7 @@ const UserProfileScreen = ({ navigation }) => {
             </MainButton>
           </View>
         )}
+        {isUserDataLoading && <MainLoading />}
       </View>
     </KeyboardAvoidingView>
   );

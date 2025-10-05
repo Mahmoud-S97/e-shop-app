@@ -15,10 +15,11 @@ import MainHeader from '../../components/Header/MainHeader';
 import MenuIcon from '../../components/Globals/Icons/MenuIcon';
 import Spinner from '../../components/Globals/Spinners/Spinner';
 import MainFastImage from '../../components/Globals/imgs/MainFastImage';
+import MainLoading from '../../components/Globals/Spinners/MainLoading';
 
 const FeedbackScreen = ({ navigation }) => {
   const dispatch = useDispatch();
-  const { reviewersQuotes } = useSelector(state => state.clientsSlice);
+  const { reviewersQuotes, isQuotesLoading } = useSelector(state => state.clientsSlice);
 
   useEffect(() => {
     dispatch(fetchReviewersQuotes());
@@ -106,6 +107,7 @@ const FeedbackScreen = ({ navigation }) => {
           </View>
         </View>
       </ScrollView>
+      {isQuotesLoading && <MainLoading />}
     </View>
   );
 };

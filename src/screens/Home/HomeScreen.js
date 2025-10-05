@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback, useMemo} from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import {
   View,
   Text,
@@ -11,12 +11,12 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import HomeScreenStyles from './HomeScreenStyles';
-import {COLORS, GENERAL_STYLES} from '../../constants/styles/Styles';
+import { COLORS, GENERAL_STYLES } from '../../constants/styles/Styles';
 import HomeHeader from '../../components/Header/Home/HomeHeader';
 import constants from '../../constants';
 import ProductItem from '../../components/Products/ProductItem';
 import MainButton from '../../components/Globals/Buttons/MainButton';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SCREENS from '../../constants/screens';
 import { fetchProducts } from '../../api/Products';
 import SearchProductsModal from '../../components/Home/SearchProductsModal';
@@ -26,11 +26,12 @@ import {
   setProductsSkipped,
   setHasMoreData
 } from '../../store/reducers/productsSlice';
+import MainLoading from '../../components/Globals/Spinners/MainLoading';
 
-const image = {uri: 'https://legacy.reactjs.org/logo-og.png'};
+const image = { uri: 'https://legacy.reactjs.org/logo-og.png' };
 
 const HomeScreen = props => {
-  const {navigation} = props;
+  const { navigation } = props;
 
   const dispatch = useDispatch();
   const {
@@ -42,7 +43,7 @@ const HomeScreen = props => {
     isLoadingProducts,
     isFetchingMoreProducts
   } = useSelector(state => state.productsSlice);
-  const {totalPrice: cartTotalPrice, cartItems} = useSelector(state => state.cartSlice);
+  const { totalPrice: cartTotalPrice, cartItems } = useSelector(state => state.cartSlice);
   const [viewType, setViewType] = useState(constants.LIST);
   const [searchModalVisible, setSearchModalVisible] = useState(false);
   const [search, setSearch] = useState('');
@@ -54,7 +55,7 @@ const HomeScreen = props => {
 
   useEffect(() => {
     if (products.length === 0) {
-      dispatch(fetchProducts({productsLimit, productsSkipped}));
+      dispatch(fetchProducts({ productsLimit, productsSkipped }));
       dispatch(setProductsSkipped(10));
     }
   }, [navigation, dispatch]);
@@ -63,7 +64,7 @@ const HomeScreen = props => {
     if (isFetchingMoreProducts || !hasMoreData || search.trim()) return;
 
     if (products.length < totalAvailableProducts) {
-      dispatch(fetchProducts({productsLimit, productsSkipped}));
+      dispatch(fetchProducts({ productsLimit, productsSkipped }));
       dispatch(setProductsSkipped(10));
     } else {
       dispatch(setHasMoreData(false));
@@ -71,7 +72,7 @@ const HomeScreen = props => {
   };
 
   const RenderProductItem = useCallback(
-    ({item, index}) => {
+    ({ item, index }) => {
       return (
         <ProductItem key={index} item={item} productsViewType={viewType} />
       );
@@ -128,9 +129,8 @@ const HomeScreen = props => {
               style={HomeScreenStyles.searchBox}
               onPress={() => setSearchModalVisible(true)}>
               <FontAwesome name="search" size={20} color={COLORS.PRIMARY} />
-              <Text style={HomeScreenStyles.searchTextStyles}>{`${
-                search.trim() ? search : 'Search Products...'
-              }`}</Text>
+              <Text style={HomeScreenStyles.searchTextStyles}>{`${search.trim() ? search : 'Search Products...'
+                }`}</Text>
             </TouchableOpacity>
             <View style={HomeScreenStyles.viewTypesBox}>
               <TouchableOpacity
@@ -141,8 +141,8 @@ const HomeScreen = props => {
                   name="menu"
                   size={30}
                   style={[
-                    {color: COLORS.SECONDARY},
-                    viewType === constants.LIST && {color: COLORS.PRIMARY}
+                    { color: COLORS.SECONDARY },
+                    viewType === constants.LIST && { color: COLORS.PRIMARY }
                   ]}
                 />
               </TouchableOpacity>
@@ -154,8 +154,8 @@ const HomeScreen = props => {
                   name="grid"
                   size={30}
                   style={[
-                    {color: COLORS.SECONDARY},
-                    viewType === constants.GRID && {color: COLORS.PRIMARY}
+                    { color: COLORS.SECONDARY },
+                    viewType === constants.GRID && { color: COLORS.PRIMARY }
                   ]}
                 />
               </TouchableOpacity>
@@ -166,8 +166,8 @@ const HomeScreen = props => {
                   name="square"
                   size={22}
                   style={[
-                    {color: COLORS.SECONDARY},
-                    viewType === constants.SINGLE && {color: COLORS.PRIMARY}
+                    { color: COLORS.SECONDARY },
+                    viewType === constants.SINGLE && { color: COLORS.PRIMARY }
                   ]}
                 />
               </TouchableOpacity>
@@ -184,7 +184,7 @@ const HomeScreen = props => {
       <View
         style={[
           GENERAL_STYLES.container,
-          cartTotalPrice > 0 && {paddingBottom: 80}
+          cartTotalPrice > 0 && { paddingBottom: 80 }
         ]}>
         {isFetchingMoreProducts && hasMoreData && <Spinner />}
         {!hasMoreData && (
@@ -254,6 +254,7 @@ const HomeScreen = props => {
           {`Order Now $${cartTotalPrice.toFixed(2)}`}
         </MainButton>
       )}
+      {isLoadingProducts && <MainLoading />}
     </View>
   );
 };
