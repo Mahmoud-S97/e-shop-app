@@ -6,8 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   KeyboardAvoidingView,
-  Platform,
-  Modal
+  Platform
 } from 'react-native';
 import UserProfileScreenStyles from './UserProfileScreenStyles';
 import { COLORS, GENERAL_STYLES } from '../../constants/styles/Styles';

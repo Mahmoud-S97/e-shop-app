@@ -5,7 +5,6 @@ import {ACTION_KEYS} from '../actionKeys';
 export const fetchUserData = createAsyncThunk(
   ACTION_KEYS.FETCH_USER_DATA,
   async (parameters, {rejectWithValue}) => {
-    console.log('Mahmoud:: ', parameters);
     const { currentUserId } = parameters;
     try {
       const response = await fetch(`${GET_USER_DATA}/${currentUserId}`);

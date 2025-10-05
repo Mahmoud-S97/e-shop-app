@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
-  KeyboardAvoidingView,
   Platform,
   Keyboard,
   TouchableWithoutFeedback,
@@ -54,7 +53,7 @@ const MainModal = props => {
       </SafeAreaView>
     </SafeAreaProvider>
   ) : null
-};
+}; 
 
 const styles = StyleSheet.create({
   screen: {
