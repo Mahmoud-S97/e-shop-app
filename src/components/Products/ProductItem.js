@@ -1,5 +1,5 @@
 import React, {useCallback, memo} from 'react';
-import {View, Text, TouchableOpacity, Image, TextInput} from 'react-native';
+import {View, Text, TouchableOpacity, TextInput} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -11,6 +11,7 @@ import SCREENS from '../../constants/screens';
 import {useDispatch, useSelector} from 'react-redux';
 import {decrementCart, incrementCart} from '../../store/reducers/cartSlice';
 import {switchItemAsFavorite} from '../../store/reducers/productsSlice';
+import MainFastImage from '../Globals/imgs/MainFastImage';
 
 const ProductItem = memo(props => {
   const navigation = useNavigation();
@@ -74,10 +75,11 @@ const ProductItem = memo(props => {
             customStyles.productImageBox,
             {...props?.style?.productImageBox}
           ]}>
-          <Image
-            source={{uri: thumbnail}}
-            style={[customStyles.productImage, {...props?.style?.productImage}]}
-          />
+          <MainFastImage
+          imageSource={thumbnail}
+          style={[customStyles.productImage, {...props?.style?.productImage}]}
+          resizeMode='contain'
+        />
         </View>
         <View
           style={[

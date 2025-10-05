@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react';
-import {View, Text, TouchableOpacity, Image, TextInput} from 'react-native';
+import {View, Text, TouchableOpacity, TextInput} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -21,6 +21,7 @@ import {
   removeItemFromFavorites,
   setRemovedFavItemID
 } from '../../store/reducers/productsSlice';
+import MainFastImage from '../Globals/imgs/MainFastImage';
 
 const CartItem = props => {
   const navigation = useNavigation();
@@ -160,9 +161,10 @@ const CartItem = props => {
           CartItemStyles.productImageBox,
           {...props?.style?.productImageBox}
         ]}>
-        <Image
-          source={{uri: image || thumbnail}}
+        <MainFastImage
+          imageSource={image || thumbnail}
           style={[CartItemStyles.productImage, {...props?.style?.productImage}]}
+          resizeMode='contain'
         />
       </View>
       <View

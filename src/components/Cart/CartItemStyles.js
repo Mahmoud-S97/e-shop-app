@@ -1,6 +1,5 @@
 import {StyleSheet} from 'react-native';
 import {COLORS} from '../../constants/styles/Styles';
-import {getScreenWidth} from '../../utils';
 
 const CartItemStyles = StyleSheet.create({
   productCard: {
@@ -23,8 +22,7 @@ const CartItemStyles = StyleSheet.create({
   },
   productImage: {
     width: '100%',
-    height: '100%',
-    resizeMode: 'contain'
+    height: '100%'
   },
   productInnerContainer: {
     flexDirection: 'row',
