@@ -226,407 +226,408 @@ const UserProfileScreen = ({ navigation }) => {
           style={GENERAL_STYLES.scrollingView}
           showsVerticalScrollIndicator={false}>
 
-          {!isUserDataLoading && userData.id ? (
-            <>
-              <View style={UserProfileScreenStyles.profileInfoCard}>
-                <View style={UserProfileScreenStyles.profileImageBox}>
-                  <MainFastImage
-                    style={UserProfileScreenStyles.profileImageStyles}
-                    imageSource={userData.image}
-                    resizeMode="contain"
-                  />
-                  {isEditProfile && (
-                    <TouchableOpacity
-                      activeOpacity={0.8}
-                      style={UserProfileScreenStyles.editProfileImgBtn}>
-                      <MaterialCommunityIcons
-                        name="image-edit"
-                        size={30}
-                        color={COLORS.WHITE}
-                      />
-                    </TouchableOpacity>
-                  )}
+          {
+            errors ? (
+              <GeneralEmptyMessage style={{ marginTop: 200 }}>
+                {errors ?? 'Cannot fetch user profile, please try again later.'}
+              </GeneralEmptyMessage>
+            ) : userData.id ? (
+              <>
+                <View style={UserProfileScreenStyles.profileInfoCard}>
+                  <View style={UserProfileScreenStyles.profileImageBox}>
+                    <MainFastImage
+                      style={UserProfileScreenStyles.profileImageStyles}
+                      imageSource={userData.image}
+                      resizeMode="contain"
+                    />
+                    {isEditProfile && (
+                      <TouchableOpacity
+                        activeOpacity={0.8}
+                        style={UserProfileScreenStyles.editProfileImgBtn}>
+                        <MaterialCommunityIcons
+                          name="image-edit"
+                          size={30}
+                          color={COLORS.WHITE}
+                        />
+                      </TouchableOpacity>
+                    )}
+                  </View>
+                  <Text
+                    style={UserProfileScreenStyles.profileHolderName}
+                    numberOfLines={2}>
+                    {userData.fullName}
+                  </Text>
                 </View>
-                <Text
-                  style={UserProfileScreenStyles.profileHolderName}
-                  numberOfLines={2}>
-                  {userData.fullName}
-                </Text>
-              </View>
-              <View style={[GENERAL_STYLES.container, UserProfileScreenStyles.customContainer, isEditProfile && { paddingBottom: 70 }]}>
-                <View style={UserProfileScreenStyles.innerInfo}>
-                  {isEditProfile && (
-                    <>
-                      <Text
-                        style={[
-                          UserProfileScreenStyles.fieldTitle,
-                          isEditProfile && { color: COLORS.DARK_GRAY }
-                        ]}
-                        numberOfLines={1}>
-                        First Name
-                      </Text>
-                      <View style={[UserProfileScreenStyles.infoField, formErrors.firstName && { borderColor: COLORS.RED, marginBottom: 5 }]}>
-                        <FontAwesome
-                          name="user-o"
-                          style={[
-                            UserProfileScreenStyles.fieldIcon,
-                            isEditProfile && { color: COLORS.DARK_GRAY }
-                          ]}
-                        />
-                        <TextInput
-                          ref={inputRef}
-                          style={[
-                            UserProfileScreenStyles.fieldTextInput,
-                            isEditProfile && { color: COLORS.DARK_GRAY }
-                          ]}
-                          editable={isEditProfile}
-                          value={userData.firstName}
-                          maxLength={25}
-                          onChangeText={value =>
-                            updateFieldHandler('firstName', value)
-                          }
-                          selectTextOnFocus={isEditProfile}
-                          onBlur={() => callValidatorOnBlur('firstName', userData.firstName)}
-                        />
-                      </View>
-                      {formErrors.firstName ? <Text style={UserProfileScreenStyles.errorText}>{formErrors.firstName}</Text> : null}
-                      <Text
-                        style={[
-                          UserProfileScreenStyles.fieldTitle,
-                          isEditProfile && { color: COLORS.DARK_GRAY }
-                        ]}
-                        numberOfLines={1}>
-                        Last Name
-                      </Text>
-                      <View style={[UserProfileScreenStyles.infoField, formErrors.lastName && { borderColor: COLORS.RED, marginBottom: 5 }]}>
-                        <FontAwesome
-                          name="user-o"
-                          style={[
-                            UserProfileScreenStyles.fieldIcon,
-                            isEditProfile && { color: COLORS.DARK_GRAY }
-                          ]}
-                        />
-                        <TextInput
-                          style={[
-                            UserProfileScreenStyles.fieldTextInput,
-                            isEditProfile && { color: COLORS.DARK_GRAY }
-                          ]}
-                          editable={isEditProfile}
-                          value={userData.lastName}
-                          maxLength={25}
-                          onChangeText={value =>
-                            updateFieldHandler('lastName', value)
-                          }
-                          selectTextOnFocus={isEditProfile}
-                          onBlur={() => callValidatorOnBlur('lastName', userData.lastName)}
-                        />
-                      </View>
-                      {formErrors.lastName ? <Text style={UserProfileScreenStyles.errorText}>{formErrors.lastName}</Text> : null}
-                    </>
-                  )}
-                  {!isEditProfile && (
-                    <>
-                      <Text
-                        style={[
-                          UserProfileScreenStyles.fieldTitle,
-                          isEditProfile && { color: COLORS.DARK_GRAY }
-                        ]}
-                        numberOfLines={1}>
-                        Full Name
-                      </Text>
-                      <View style={UserProfileScreenStyles.infoField}>
-                        <FontAwesome
-                          name="user-o"
-                          style={[
-                            UserProfileScreenStyles.fieldIcon,
-                            isEditProfile && { color: COLORS.DARK_GRAY }
-                          ]}
-                        />
+                <View style={[GENERAL_STYLES.container, UserProfileScreenStyles.customContainer, isEditProfile && { paddingBottom: 70 }]}>
+                  <View style={UserProfileScreenStyles.innerInfo}>
+                    {isEditProfile && (
+                      <>
                         <Text
                           style={[
-                            UserProfileScreenStyles.fieldTextInput,
-                            { height: 'auto' },
+                            UserProfileScreenStyles.fieldTitle,
                             isEditProfile && { color: COLORS.DARK_GRAY }
                           ]}
-                          numberOfLines={2}
-                        >{userData.fullName}</Text>
-                      </View>
-                    </>
-                  )}
-                  <Text
-                    style={[
-                      UserProfileScreenStyles.fieldTitle,
-                      isEditProfile && { color: COLORS.DARK_GRAY }
-                    ]}
-                    numberOfLines={1}>
-                    Email
-                  </Text>
-                  <View style={[UserProfileScreenStyles.infoField, formErrors.email && { borderColor: COLORS.RED, marginBottom: 5 }]}>
-                    <FontAwesome
-                      name="envelope-o"
-                      style={[
-                        UserProfileScreenStyles.fieldIcon,
-                        isEditProfile && { color: COLORS.DARK_GRAY }
-                      ]}
-                    />
-                    <TextInput
-                      style={[
-                        UserProfileScreenStyles.fieldTextInput,
-                        isEditProfile && { color: COLORS.DARK_GRAY }
-                      ]}
-                      editable={isEditProfile}
-                      value={userData.email}
-                      maxLength={55}
-                      onChangeText={value => updateFieldHandler('email', value)}
-                      onBlur={() => callValidatorOnBlur('email', userData.email)}
-                    />
-                  </View>
-                  {formErrors.email ? <Text style={UserProfileScreenStyles.errorText}>{formErrors.email}</Text> : null}
-                  <Text
-                    style={[
-                      UserProfileScreenStyles.fieldTitle,
-                      isEditProfile && { color: COLORS.DARK_GRAY }
-                    ]}
-                    numberOfLines={1}>
-                    Birthdate
-                  </Text>
-                  <TouchableOpacity activeOpacity={0.7} disabled={!isEditProfile} style={[UserProfileScreenStyles.infoField, formErrors.birthDate && { borderColor: COLORS.RED, marginBottom: 5 }]} onPress={toggleDatePicker}>
-                    <FontAwesome
-                      name="calendar-o"
-                      style={[
-                        UserProfileScreenStyles.fieldIcon,
-                        isEditProfile && { color: COLORS.DARK_GRAY }
-                      ]}
-                    />
+                          numberOfLines={1}>
+                          First Name
+                        </Text>
+                        <View style={[UserProfileScreenStyles.infoField, formErrors.firstName && { borderColor: COLORS.RED, marginBottom: 5 }]}>
+                          <FontAwesome
+                            name="user-o"
+                            style={[
+                              UserProfileScreenStyles.fieldIcon,
+                              isEditProfile && { color: COLORS.DARK_GRAY }
+                            ]}
+                          />
+                          <TextInput
+                            ref={inputRef}
+                            style={[
+                              UserProfileScreenStyles.fieldTextInput,
+                              isEditProfile && { color: COLORS.DARK_GRAY }
+                            ]}
+                            editable={isEditProfile}
+                            value={userData.firstName}
+                            maxLength={25}
+                            onChangeText={value =>
+                              updateFieldHandler('firstName', value)
+                            }
+                            selectTextOnFocus={isEditProfile}
+                            onBlur={() => callValidatorOnBlur('firstName', userData.firstName)}
+                          />
+                        </View>
+                        {formErrors.firstName ? <Text style={UserProfileScreenStyles.errorText}>{formErrors.firstName}</Text> : null}
+                        <Text
+                          style={[
+                            UserProfileScreenStyles.fieldTitle,
+                            isEditProfile && { color: COLORS.DARK_GRAY }
+                          ]}
+                          numberOfLines={1}>
+                          Last Name
+                        </Text>
+                        <View style={[UserProfileScreenStyles.infoField, formErrors.lastName && { borderColor: COLORS.RED, marginBottom: 5 }]}>
+                          <FontAwesome
+                            name="user-o"
+                            style={[
+                              UserProfileScreenStyles.fieldIcon,
+                              isEditProfile && { color: COLORS.DARK_GRAY }
+                            ]}
+                          />
+                          <TextInput
+                            style={[
+                              UserProfileScreenStyles.fieldTextInput,
+                              isEditProfile && { color: COLORS.DARK_GRAY }
+                            ]}
+                            editable={isEditProfile}
+                            value={userData.lastName}
+                            maxLength={25}
+                            onChangeText={value =>
+                              updateFieldHandler('lastName', value)
+                            }
+                            selectTextOnFocus={isEditProfile}
+                            onBlur={() => callValidatorOnBlur('lastName', userData.lastName)}
+                          />
+                        </View>
+                        {formErrors.lastName ? <Text style={UserProfileScreenStyles.errorText}>{formErrors.lastName}</Text> : null}
+                      </>
+                    )}
+                    {!isEditProfile && (
+                      <>
+                        <Text
+                          style={[
+                            UserProfileScreenStyles.fieldTitle,
+                            isEditProfile && { color: COLORS.DARK_GRAY }
+                          ]}
+                          numberOfLines={1}>
+                          Full Name
+                        </Text>
+                        <View style={UserProfileScreenStyles.infoField}>
+                          <FontAwesome
+                            name="user-o"
+                            style={[
+                              UserProfileScreenStyles.fieldIcon,
+                              isEditProfile && { color: COLORS.DARK_GRAY }
+                            ]}
+                          />
+                          <Text
+                            style={[
+                              UserProfileScreenStyles.fieldTextInput,
+                              { height: 'auto' },
+                              isEditProfile && { color: COLORS.DARK_GRAY }
+                            ]}
+                            numberOfLines={2}
+                          >{userData.fullName}</Text>
+                        </View>
+                      </>
+                    )}
                     <Text
                       style={[
-                        UserProfileScreenStyles.fieldTextInput,
-                        { height: 'auto' },
+                        UserProfileScreenStyles.fieldTitle,
                         isEditProfile && { color: COLORS.DARK_GRAY }
                       ]}
-                      numberOfLines={2}
-                    >{userData?.birthDate}</Text>
-                  </TouchableOpacity>
-                  {formErrors.birthDate ? <Text style={UserProfileScreenStyles.errorText}>{formErrors.birthDate}</Text> : null}
-                  {Platform.OS == 'ios' ?
-                    (<MainModal
-                      style={{ modalContainer: UserProfileScreenStyles.modalContainer }}
-                      transparent={true}
-                      visible={showDatePicker}
-                      animationType='slide'
-                      onRequestClose={() => setShowDatePicker(false)}
-                    >
-                      <View style={UserProfileScreenStyles.modalContent}>
-                        <RNDateTimePicker
-                          mode='date'
-                          display='spinner'
-                          onChange={onChangeDate}
-                          value={new Date(userData?.birthDate) ?? new Date()}
-                          maximumDate={new Date()}
-                          minimumDate={new Date(1950, 0, 1)}
-                          themeVariant='light'
-                        />
-                        <View style={UserProfileScreenStyles.modalFooter}>
-                          <MainButton
-                            style={UserProfileScreenStyles.cancelBtn}
-                            btnTextStyles={UserProfileScreenStyles.cancelBtnText}
-                            onPress={() => setShowDatePicker(false)}>
-                            Cancel
-                          </MainButton>
-                          <MainButton
-                            style={UserProfileScreenStyles.applyBtn}
-                            onPress={confirmIOSDate}>
-                            Done
-                          </MainButton>
-                        </View>
-                      </View>
-                    </MainModal>) :
-                    (
-                      <>
-                        {showDatePicker && (
+                      numberOfLines={1}>
+                      Email
+                    </Text>
+                    <View style={[UserProfileScreenStyles.infoField, formErrors.email && { borderColor: COLORS.RED, marginBottom: 5 }]}>
+                      <FontAwesome
+                        name="envelope-o"
+                        style={[
+                          UserProfileScreenStyles.fieldIcon,
+                          isEditProfile && { color: COLORS.DARK_GRAY }
+                        ]}
+                      />
+                      <TextInput
+                        style={[
+                          UserProfileScreenStyles.fieldTextInput,
+                          isEditProfile && { color: COLORS.DARK_GRAY }
+                        ]}
+                        editable={isEditProfile}
+                        value={userData.email}
+                        maxLength={55}
+                        onChangeText={value => updateFieldHandler('email', value)}
+                        onBlur={() => callValidatorOnBlur('email', userData.email)}
+                      />
+                    </View>
+                    {formErrors.email ? <Text style={UserProfileScreenStyles.errorText}>{formErrors.email}</Text> : null}
+                    <Text
+                      style={[
+                        UserProfileScreenStyles.fieldTitle,
+                        isEditProfile && { color: COLORS.DARK_GRAY }
+                      ]}
+                      numberOfLines={1}>
+                      Birthdate
+                    </Text>
+                    <TouchableOpacity activeOpacity={0.7} disabled={!isEditProfile} style={[UserProfileScreenStyles.infoField, formErrors.birthDate && { borderColor: COLORS.RED, marginBottom: 5 }]} onPress={toggleDatePicker}>
+                      <FontAwesome
+                        name="calendar-o"
+                        style={[
+                          UserProfileScreenStyles.fieldIcon,
+                          isEditProfile && { color: COLORS.DARK_GRAY }
+                        ]}
+                      />
+                      <Text
+                        style={[
+                          UserProfileScreenStyles.fieldTextInput,
+                          { height: 'auto' },
+                          isEditProfile && { color: COLORS.DARK_GRAY }
+                        ]}
+                        numberOfLines={2}
+                      >{userData?.birthDate}</Text>
+                    </TouchableOpacity>
+                    {formErrors.birthDate ? <Text style={UserProfileScreenStyles.errorText}>{formErrors.birthDate}</Text> : null}
+                    {Platform.OS == 'ios' ?
+                      (<MainModal
+                        style={{ modalContainer: UserProfileScreenStyles.modalContainer }}
+                        transparent={true}
+                        visible={showDatePicker}
+                        animationType='slide'
+                        onRequestClose={() => setShowDatePicker(false)}
+                      >
+                        <View style={UserProfileScreenStyles.modalContent}>
                           <RNDateTimePicker
                             mode='date'
                             display='spinner'
                             onChange={onChangeDate}
-                            value={new Date(userData.birthDate) ?? new Date()}
+                            value={new Date(userData?.birthDate) ?? new Date()}
                             maximumDate={new Date()}
                             minimumDate={new Date(1950, 0, 1)}
                             themeVariant='light'
                           />
-                        )}
+                          <View style={UserProfileScreenStyles.modalFooter}>
+                            <MainButton
+                              style={UserProfileScreenStyles.cancelBtn}
+                              btnTextStyles={UserProfileScreenStyles.cancelBtnText}
+                              onPress={() => setShowDatePicker(false)}>
+                              Cancel
+                            </MainButton>
+                            <MainButton
+                              style={UserProfileScreenStyles.applyBtn}
+                              onPress={confirmIOSDate}>
+                              Done
+                            </MainButton>
+                          </View>
+                        </View>
+                      </MainModal>) :
+                      (
+                        <>
+                          {showDatePicker && (
+                            <RNDateTimePicker
+                              mode='date'
+                              display='spinner'
+                              onChange={onChangeDate}
+                              value={new Date(userData.birthDate) ?? new Date()}
+                              maximumDate={new Date()}
+                              minimumDate={new Date(1950, 0, 1)}
+                              themeVariant='light'
+                            />
+                          )}
+                        </>
+                      )
+                    }
+                    <Text
+                      style={[
+                        UserProfileScreenStyles.fieldTitle,
+                        isEditProfile && { color: COLORS.DARK_GRAY }
+                      ]}
+                      numberOfLines={1}>
+                      Gender
+                    </Text>
+                    <View style={[UserProfileScreenStyles.infoField, formErrors.gender && { borderColor: COLORS.RED, marginBottom: 5 }]}>
+                      <FontAwesome
+                        name="intersex"
+                        style={[
+                          UserProfileScreenStyles.fieldIcon,
+                          isEditProfile && { color: COLORS.DARK_GRAY }
+                        ]}
+                      />
+                      <TextInput
+                        style={[
+                          UserProfileScreenStyles.fieldTextInput,
+                          isEditProfile && { color: COLORS.DARK_GRAY }
+                        ]}
+                        editable={isEditProfile}
+                        value={userData.gender}
+                        maxLength={6}
+                        onChangeText={value =>
+                          updateFieldHandler('gender', value)
+                        }
+                        onBlur={() => callValidatorOnBlur('gender', userData.gender)}
+                      />
+                    </View>
+                    {formErrors.gender ? <Text style={UserProfileScreenStyles.errorText}>{formErrors.gender}</Text> : null}
+                    <Text
+                      style={[
+                        UserProfileScreenStyles.fieldTitle,
+                        isEditProfile && { color: COLORS.DARK_GRAY }
+                      ]}
+                      numberOfLines={1}>
+                      Address
+                    </Text>
+                    <View style={[UserProfileScreenStyles.infoField, formErrors.address && { borderColor: COLORS.RED, marginBottom: 5 }]}>
+                      <SimpleLineIcons
+                        name="location-pin"
+                        style={[
+                          UserProfileScreenStyles.fieldIcon,
+                          isEditProfile && { color: COLORS.DARK_GRAY }
+                        ]}
+                      />
+                      <TextInput
+                        style={[
+                          UserProfileScreenStyles.fieldTextInput,
+                          isEditProfile && { color: COLORS.DARK_GRAY }
+                        ]}
+                        editable={isEditProfile}
+                        value={userData.address}
+                        maxLength={55}
+                        onChangeText={value =>
+                          updateFieldHandler('address', value)
+                        }
+                        onBlur={() => callValidatorOnBlur('address', userData.address)}
+                      />
+                    </View>
+                    {formErrors.address ? <Text style={UserProfileScreenStyles.errorText}>{formErrors.address}</Text> : null}
+                    {isEditProfile && (
+                      <>
+                        <Text
+                          style={[
+                            UserProfileScreenStyles.fieldTitle,
+                            isEditProfile && { color: COLORS.DARK_GRAY }
+                          ]}
+                          numberOfLines={1}>
+                          City
+                        </Text>
+                        <View style={[UserProfileScreenStyles.infoField, formErrors.city && { borderColor: COLORS.RED, marginBottom: 5 }]}>
+                          <TextInput
+                            style={[
+                              UserProfileScreenStyles.fieldTextInput,
+                              isEditProfile && { color: COLORS.DARK_GRAY }
+                            ]}
+                            editable={isEditProfile}
+                            value={userData.city}
+                            maxLength={55}
+                            onChangeText={value =>
+                              updateFieldHandler('city', value)
+                            }
+                            onBlur={() => callValidatorOnBlur('city', userData.city)}
+                          />
+                        </View>
+                        {formErrors.city ? <Text style={UserProfileScreenStyles.errorText}>{formErrors.city}</Text> : null}
+                        <Text
+                          style={[
+                            UserProfileScreenStyles.fieldTitle,
+                            isEditProfile && { color: COLORS.DARK_GRAY }
+                          ]}
+                          numberOfLines={1}>
+                          Country
+                        </Text>
+                        <View style={[UserProfileScreenStyles.infoField, formErrors.country && { borderColor: COLORS.RED, marginBottom: 5 }]}>
+                          <TextInput
+                            style={[
+                              UserProfileScreenStyles.fieldTextInput,
+                              isEditProfile && { color: COLORS.DARK_GRAY }
+                            ]}
+                            editable={isEditProfile}
+                            value={userData.country}
+                            maxLength={55}
+                            onChangeText={value =>
+                              updateFieldHandler('country', value)
+                            }
+                            onBlur={() => callValidatorOnBlur('country', userData.country)}
+                          />
+                        </View>
+                        {formErrors.country ? <Text style={UserProfileScreenStyles.errorText}>{formErrors.country}</Text> : null}
+                        <Text
+                          style={[
+                            UserProfileScreenStyles.fieldTitle,
+                            isEditProfile && { color: COLORS.DARK_GRAY }
+                          ]}
+                          numberOfLines={1}>
+                          State/ County
+                        </Text>
+                        <View style={[UserProfileScreenStyles.infoField, formErrors.state && { borderColor: COLORS.RED, marginBottom: 5 }]}>
+                          <TextInput
+                            style={[
+                              UserProfileScreenStyles.fieldTextInput,
+                              isEditProfile && { color: COLORS.DARK_GRAY }
+                            ]}
+                            editable={isEditProfile}
+                            value={userData.state}
+                            maxLength={55}
+                            onChangeText={value =>
+                              updateFieldHandler('state', value)
+                            }
+                            onBlur={() => callValidatorOnBlur('state', userData.state)}
+                          />
+                        </View>
+                        {formErrors.state ? <Text style={UserProfileScreenStyles.errorText}>{formErrors.state}</Text> : null}
+                        <Text
+                          style={[
+                            UserProfileScreenStyles.fieldTitle,
+                            isEditProfile && { color: COLORS.DARK_GRAY }
+                          ]}
+                          numberOfLines={1}>
+                          Postal Code
+                        </Text>
+                        <View style={[UserProfileScreenStyles.infoField, formErrors.postalCode && { borderColor: COLORS.RED, marginBottom: 5 }]}>
+                          <TextInput
+                            style={[
+                              UserProfileScreenStyles.fieldTextInput,
+                              isEditProfile && { color: COLORS.DARK_GRAY }
+                            ]}
+                            editable={isEditProfile}
+                            value={userData.postalCode}
+                            maxLength={55}
+                            onChangeText={value =>
+                              updateFieldHandler('postalCode', value)
+                            }
+                            onBlur={() => callValidatorOnBlur('postalCode', userData.postalCode)}
+                          />
+                        </View>
+                        {formErrors.postalCode ? <Text style={UserProfileScreenStyles.errorText}>{formErrors.postalCode}</Text> : null}
                       </>
-                    )
-                  }
-                  <Text
-                    style={[
-                      UserProfileScreenStyles.fieldTitle,
-                      isEditProfile && { color: COLORS.DARK_GRAY }
-                    ]}
-                    numberOfLines={1}>
-                    Gender
-                  </Text>
-                  <View style={[UserProfileScreenStyles.infoField, formErrors.gender && { borderColor: COLORS.RED, marginBottom: 5 }]}>
-                    <FontAwesome
-                      name="intersex"
-                      style={[
-                        UserProfileScreenStyles.fieldIcon,
-                        isEditProfile && { color: COLORS.DARK_GRAY }
-                      ]}
-                    />
-                    <TextInput
-                      style={[
-                        UserProfileScreenStyles.fieldTextInput,
-                        isEditProfile && { color: COLORS.DARK_GRAY }
-                      ]}
-                      editable={isEditProfile}
-                      value={userData.gender}
-                      maxLength={6}
-                      onChangeText={value =>
-                        updateFieldHandler('gender', value)
-                      }
-                      onBlur={() => callValidatorOnBlur('gender', userData.gender)}
-                    />
+                    )}
                   </View>
-                  {formErrors.gender ? <Text style={UserProfileScreenStyles.errorText}>{formErrors.gender}</Text> : null}
-                  <Text
-                    style={[
-                      UserProfileScreenStyles.fieldTitle,
-                      isEditProfile && { color: COLORS.DARK_GRAY }
-                    ]}
-                    numberOfLines={1}>
-                    Address
-                  </Text>
-                  <View style={[UserProfileScreenStyles.infoField, formErrors.address && { borderColor: COLORS.RED, marginBottom: 5 }]}>
-                    <SimpleLineIcons
-                      name="location-pin"
-                      style={[
-                        UserProfileScreenStyles.fieldIcon,
-                        isEditProfile && { color: COLORS.DARK_GRAY }
-                      ]}
-                    />
-                    <TextInput
-                      style={[
-                        UserProfileScreenStyles.fieldTextInput,
-                        isEditProfile && { color: COLORS.DARK_GRAY }
-                      ]}
-                      editable={isEditProfile}
-                      value={userData.address}
-                      maxLength={55}
-                      onChangeText={value =>
-                        updateFieldHandler('address', value)
-                      }
-                      onBlur={() => callValidatorOnBlur('address', userData.address)}
-                    />
-                  </View>
-                  {formErrors.address ? <Text style={UserProfileScreenStyles.errorText}>{formErrors.address}</Text> : null}
-                  {isEditProfile && (
-                    <>
-                      <Text
-                        style={[
-                          UserProfileScreenStyles.fieldTitle,
-                          isEditProfile && { color: COLORS.DARK_GRAY }
-                        ]}
-                        numberOfLines={1}>
-                        City
-                      </Text>
-                      <View style={[UserProfileScreenStyles.infoField, formErrors.city && { borderColor: COLORS.RED, marginBottom: 5 }]}>
-                        <TextInput
-                          style={[
-                            UserProfileScreenStyles.fieldTextInput,
-                            isEditProfile && { color: COLORS.DARK_GRAY }
-                          ]}
-                          editable={isEditProfile}
-                          value={userData.city}
-                          maxLength={55}
-                          onChangeText={value =>
-                            updateFieldHandler('city', value)
-                          }
-                          onBlur={() => callValidatorOnBlur('city', userData.city)}
-                        />
-                      </View>
-                      {formErrors.city ? <Text style={UserProfileScreenStyles.errorText}>{formErrors.city}</Text> : null}
-                      <Text
-                        style={[
-                          UserProfileScreenStyles.fieldTitle,
-                          isEditProfile && { color: COLORS.DARK_GRAY }
-                        ]}
-                        numberOfLines={1}>
-                        Country
-                      </Text>
-                      <View style={[UserProfileScreenStyles.infoField, formErrors.country && { borderColor: COLORS.RED, marginBottom: 5 }]}>
-                        <TextInput
-                          style={[
-                            UserProfileScreenStyles.fieldTextInput,
-                            isEditProfile && { color: COLORS.DARK_GRAY }
-                          ]}
-                          editable={isEditProfile}
-                          value={userData.country}
-                          maxLength={55}
-                          onChangeText={value =>
-                            updateFieldHandler('country', value)
-                          }
-                          onBlur={() => callValidatorOnBlur('country', userData.country)}
-                        />
-                      </View>
-                      {formErrors.country ? <Text style={UserProfileScreenStyles.errorText}>{formErrors.country}</Text> : null}
-                      <Text
-                        style={[
-                          UserProfileScreenStyles.fieldTitle,
-                          isEditProfile && { color: COLORS.DARK_GRAY }
-                        ]}
-                        numberOfLines={1}>
-                        State/ County
-                      </Text>
-                      <View style={[UserProfileScreenStyles.infoField, formErrors.state && { borderColor: COLORS.RED, marginBottom: 5 }]}>
-                        <TextInput
-                          style={[
-                            UserProfileScreenStyles.fieldTextInput,
-                            isEditProfile && { color: COLORS.DARK_GRAY }
-                          ]}
-                          editable={isEditProfile}
-                          value={userData.state}
-                          maxLength={55}
-                          onChangeText={value =>
-                            updateFieldHandler('state', value)
-                          }
-                          onBlur={() => callValidatorOnBlur('state', userData.state)}
-                        />
-                      </View>
-                      {formErrors.state ? <Text style={UserProfileScreenStyles.errorText}>{formErrors.state}</Text> : null}
-                      <Text
-                        style={[
-                          UserProfileScreenStyles.fieldTitle,
-                          isEditProfile && { color: COLORS.DARK_GRAY }
-                        ]}
-                        numberOfLines={1}>
-                        Postal Code
-                      </Text>
-                      <View style={[UserProfileScreenStyles.infoField, formErrors.postalCode && { borderColor: COLORS.RED, marginBottom: 5 }]}>
-                        <TextInput
-                          style={[
-                            UserProfileScreenStyles.fieldTextInput,
-                            isEditProfile && { color: COLORS.DARK_GRAY }
-                          ]}
-                          editable={isEditProfile}
-                          value={userData.postalCode}
-                          maxLength={55}
-                          onChangeText={value =>
-                            updateFieldHandler('postalCode', value)
-                          }
-                          onBlur={() => callValidatorOnBlur('postalCode', userData.postalCode)}
-                        />
-                      </View>
-                      {formErrors.postalCode ? <Text style={UserProfileScreenStyles.errorText}>{formErrors.postalCode}</Text> : null}
-                    </>
-                  )}
                 </View>
-              </View>
-            </>
-          ) : (
-            <GeneralEmptyMessage style={{ marginTop: 200 }}>
-              <Text >{errors || 'Cannot fetch user profile, please try again later.'}</Text>
-            </GeneralEmptyMessage>
-          )}
+              </>
+            ) : null}
         </ScrollView>
 
         {!isUserDataLoading && !errors && isEditProfile && (
