@@ -18,7 +18,6 @@ import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MainButton from '../../components/Globals/Buttons/MainButton';
 import { useFetchUserProfile } from '../../services/hooks/useFetchUserProfile';
-import MainLoading from '../../components/Globals/Spinners/MainLoading';
 import GeneralEmptyMessage from '../../components/Globals/TextMessages/GeneralEmptyMessage';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import { formatDate } from '../../utils';
@@ -646,7 +645,6 @@ const UserProfileScreen = ({ navigation }) => {
             </MainButton>
           </View>
         )}
-        {isUserDataLoading && <MainLoading />}
       </View>
     </KeyboardAvoidingView>
   );

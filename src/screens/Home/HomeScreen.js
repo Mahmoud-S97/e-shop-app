@@ -26,7 +26,6 @@ import {
   setProductsSkipped,
   setHasMoreData
 } from '../../store/reducers/productsSlice';
-import MainLoading from '../../components/Globals/Spinners/MainLoading';
 
 const image = { uri: 'https://legacy.reactjs.org/logo-og.png' };
 
@@ -254,7 +253,6 @@ const HomeScreen = props => {
           {`Order Now $${cartTotalPrice.toFixed(2)}`}
         </MainButton>
       )}
-      {isLoadingProducts && <MainLoading />}
     </View>
   );
 };

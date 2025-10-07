@@ -23,13 +23,9 @@ const MainLoading = props => {
 
 const styles = StyleSheet.create({
   screen: {
+    ...StyleSheet.absoluteFillObject,
     width: getScreenWidth(),
     height: getScreenHeight(),
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    right: 0,
-    bottom: 0,
     zIndex: 999999,
     elevation: 999999,
     justifyContent: 'center',
