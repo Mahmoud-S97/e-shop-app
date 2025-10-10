@@ -22,6 +22,7 @@ import GeneralEmptyMessage from '../../components/Globals/TextMessages/GeneralEm
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import { formatDate } from '../../utils';
 import MainModal from '../../components/Globals/Modal/MainModal';
+import { Dropdown } from 'react-native-element-dropdown';
 
 const UserProfileScreen = ({ navigation }) => {
 
@@ -47,6 +48,16 @@ const UserProfileScreen = ({ navigation }) => {
   const [isEditProfile, setIsEditProfile] = useState(false);
   const [selectedBirthDate, setSelectedBirthDate] = useState('');
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const GenderType = [
+    {
+      label: 'Female',
+      value: 1
+    },
+    {
+      label: 'Male',
+      value: 2
+    }
+  ]
 
   const inputRef = useRef(null);
 
@@ -184,6 +195,7 @@ const UserProfileScreen = ({ navigation }) => {
     }
     toggleDatePicker();
   }
+
 
   return (
     <KeyboardAvoidingView
@@ -470,28 +482,38 @@ const UserProfileScreen = ({ navigation }) => {
                       numberOfLines={1}>
                       Gender
                     </Text>
-                    <View style={[UserProfileScreenStyles.infoField, formErrors.gender && { borderColor: COLORS.RED, marginBottom: 5 }]}>
-                      <FontAwesome
-                        name="intersex"
-                        style={[
-                          UserProfileScreenStyles.fieldIcon,
-                          isEditProfile && { color: COLORS.DARK_GRAY }
-                        ]}
-                      />
-                      <TextInput
-                        style={[
-                          UserProfileScreenStyles.fieldTextInput,
-                          isEditProfile && { color: COLORS.DARK_GRAY }
-                        ]}
-                        editable={isEditProfile}
-                        value={userData.gender}
-                        maxLength={6}
-                        onChangeText={value =>
-                          updateFieldHandler('gender', value)
-                        }
-                        onBlur={() => callValidatorOnBlur('gender', userData.gender)}
-                      />
-                    </View>
+                    <Dropdown
+                      data={GenderType}
+                      disable={!isEditProfile}
+                      style={[UserProfileScreenStyles.infoField]}
+                      selectedTextStyle={[
+                        UserProfileScreenStyles.fieldTextInput,
+                        isEditProfile && { color: COLORS.DARK_GRAY }
+                      ]}
+                      containerStyle={{ backgroundColor: COLORS.WHITE, borderRadius: 10 }}
+                      itemTextStyle={{ color: COLORS.BLACK, fontWeight: '600' }}
+                      placeholder={userData?.gender}
+                      placeholderStyle={[
+                        UserProfileScreenStyles.fieldTextInput,
+                        isEditProfile && { color: COLORS.DARK_GRAY }
+                      ]}
+                      value={userData?.gender}
+                      onChange={item => {
+                        const selectedGender = item.value == 1 ? 'female' : 'male';
+                        updateFieldHandler('gender', selectedGender);
+                      }}
+                      labelField="label"
+                      valueField="value"
+                      renderLeftIcon={() => (
+                        <SimpleLineIcons
+                          name={userData?.gender == 'female' ? 'user-female' : 'user'}
+                          style={[
+                            UserProfileScreenStyles.fieldIcon,
+                            isEditProfile && { color: COLORS.DARK_GRAY }
+                          ]}
+                        />
+                      )}
+                    />
                     {formErrors.gender ? <Text style={UserProfileScreenStyles.errorText}>{formErrors.gender}</Text> : null}
                     <Text
                       style={[

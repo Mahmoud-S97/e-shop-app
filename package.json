@@ -5,6 +5,9 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "install-ios-pods": "cd ios && pod install && cd ..",
+    "update-ios-pods": "cd ios && pod install --repo-update && cd ..",
+    "clean-android-gradlew": "cd android && ./gradlew clean && cd ..",
     "lint": "eslint .",
     "start": "react-native start --reset-cache --experimental-debugger",
     "test": "jest --testPathIgnorePatterns=e2e"
@@ -23,6 +26,7 @@
     "react-native": "0.74.3",
     "react-native-config": "^1.5.5",
     "react-native-eject": "^0.2.0",
+    "react-native-element-dropdown": "^2.12.4",
     "react-native-fast-image": "^8.6.3",
     "react-native-geolocation-service": "^5.3.1",
     "react-native-gesture-handler": "^2.18.1",
