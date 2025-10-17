@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserData } from '../../api/User';
 
@@ -7,6 +7,7 @@ export const useFetchUserProfile = (currentUser) => {
     const dispatch = useDispatch();
     const { id: currentUserId } = useSelector(state => state.authSlice.authData);
     const { userData, isUserDataLoading, errors } = useSelector(state => state.userSlice);
+    const [formParams, setFormParams] = useState({});
     const [userForm, setUserForm] = useState({
         id: '',
         firstName: '',
@@ -30,16 +31,25 @@ export const useFetchUserProfile = (currentUser) => {
     }, [currentUserId, dispatch]);
 
     useEffect(() => {
-        if(userData.id) {
+        if (userData.id) {
             setUserForm(currentUser(userData))
         }
     }, [userData.id, dispatch]);
 
+    const setUpdatedUserParams = useCallback((field, value) => {
+        const timer = setTimeout(() => {
+            setFormParams(prevParams => ({ ...prevParams, [field]: value }));
+        }, 300);
+
+        return () => clearTimeout(timer);
+    }, [userForm]);
+
     const closeUpdatingDataHandler = () => {
-        if(userData.id) {
+        if (userData.id) {
             setUserForm(currentUser(userData));
+            setFormParams({});
         }
     }
 
-    return { userForm, setUserForm, closeUpdatingDataHandler, isUserDataLoading, errors };
+    return { userForm, setUserForm, setUpdatedUserParams, formParams, closeUpdatingDataHandler, isUserDataLoading, errors };
 }

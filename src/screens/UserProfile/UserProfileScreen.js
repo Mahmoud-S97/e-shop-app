@@ -23,16 +23,19 @@ import RNDateTimePicker from '@react-native-community/datetimepicker';
 import { formatDate } from '../../utils';
 import MainModal from '../../components/Globals/Modal/MainModal';
 import { Dropdown } from 'react-native-element-dropdown';
+import ImageCropPicker from 'react-native-image-crop-picker';
+import { useCameraAndLibraryAccessPermission } from '../../services/hooks/useCameraAndLibraryAccessPermission';
 
 const UserProfileScreen = ({ navigation }) => {
 
-  const { userForm: userData, setUserForm, closeUpdatingDataHandler, isUserDataLoading, errors } = useFetchUserProfile(currentUser => {
+  const { getCameraAndLibraryAccessPermission } = useCameraAndLibraryAccessPermission();
+  const { userForm: userData, setUserForm, setUpdatedUserParams, formParams, closeUpdatingDataHandler, isUserDataLoading, errors } = useFetchUserProfile(currentUser => {
     return {
       id: currentUser?.id,
       firstName: currentUser?.firstName,
       lastName: currentUser?.lastName,
       fullName: `${currentUser?.firstName} ${currentUser?.lastName}`, // Read only
-      image: currentUser?.image, // Read only
+      image: currentUser?.image,
       email: currentUser?.email,
       birthDate: currentUser?.birthDate,
       gender: currentUser?.gender,
@@ -78,6 +81,7 @@ const UserProfileScreen = ({ navigation }) => {
 
     setIsEditProfile(false);
     inputRef.current?.blur();
+    console.log('Param-API-Call:: ', formParams);
     // API Amendments will be handled soon...!
   };
 
@@ -171,6 +175,8 @@ const UserProfileScreen = ({ navigation }) => {
       [updatedField]: value
     }));
 
+    setUpdatedUserParams(updatedField, value);
+
     setFormErrors(prevErrors => ({ ...prevErrors, [updatedField]: validateField(updatedField, value) }));
 
   }, [userData]);
@@ -194,6 +200,33 @@ const UserProfileScreen = ({ navigation }) => {
       updateFieldHandler('birthDate', formatDate(selectedBirthDate));
     }
     toggleDatePicker();
+  }
+
+
+  const imagePickerHandler = async () => {
+    try {
+      const isMediaAccessGranted = await getCameraAndLibraryAccessPermission();
+      if (!isMediaAccessGranted) return;
+
+      const results = await ImageCropPicker.openPicker({
+        width: 300,
+        height: 400,
+        cropping: true,
+        compressImageMaxWidth: 1000,
+        compressImageMaxHeight: 1000,
+        compressImageQuality: 0.8,
+        multiple: false,
+        mediaType: 'photo'
+      });
+      const imageURL = results?.path.startsWith('file://') ? results?.path : `file://${results?.path}`;
+      updateFieldHandler('image', imageURL);
+    } catch (error) {
+      if (error?.message?.includes('cancel')) {
+        console.log(error.message);
+        return;
+      }
+      console.log('Image picker error: ', error);
+    }
   }
 
 
@@ -250,12 +283,12 @@ const UserProfileScreen = ({ navigation }) => {
                     <MainFastImage
                       style={UserProfileScreenStyles.profileImageStyles}
                       imageSource={userData.image}
-                      resizeMode="contain"
                     />
                     {isEditProfile && (
                       <TouchableOpacity
                         activeOpacity={0.8}
-                        style={UserProfileScreenStyles.editProfileImgBtn}>
+                        style={UserProfileScreenStyles.editProfileImgBtn}
+                        onPress={imagePickerHandler}>
                         <MaterialCommunityIcons
                           name="image-edit"
                           size={30}

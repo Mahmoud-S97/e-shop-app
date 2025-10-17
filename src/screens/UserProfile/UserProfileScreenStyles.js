@@ -28,9 +28,11 @@ const UserProfileScreenStyles = StyleSheet.create({
     marginBottom: 25
   },
   profileImageStyles: {
-    width: 120,
-    height: 120,
-    borderRadius: 60
+    width: '100%',
+    height: '100%',
+    borderRadius: 60,
+    borderWidth: 3,
+    borderColor: COLORS.WHITE
   },
   editProfileImgBtn: {
     width: 45,

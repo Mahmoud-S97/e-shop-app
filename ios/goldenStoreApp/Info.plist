@@ -33,10 +33,20 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Golden Store app needs access to your photo library to select pictures.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Golden Store app needs camera access to take profile photos.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string></string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>E-Shop require to access your location in order to get you the stores locations</string>
+	<string>Golden Store app require to access your location in order to get you the stores locations.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Golden Store app needs permission to save edited photos to your library.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Golden Store app may need microphone access when recording videos.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>

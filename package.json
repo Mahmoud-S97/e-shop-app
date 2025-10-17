@@ -5,9 +5,10 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "install-ios-pods": "cd ios && pod install && cd ..",
-    "update-ios-pods": "cd ios && pod install --repo-update && cd ..",
-    "clean-android-gradlew": "cd android && ./gradlew clean && cd ..",
+    "install:ios-pods": "cd ios && pod install && cd ..",
+    "update:ios-pods": "cd ios && pod install --repo-update && cd ..",
+    "clean:ios": "rm -rf ios/build && mkdir ios/build && xattr -w com.apple.xcode.CreatedByBuildSystem true ios/build && rm -rf ~/Library/Developer/Xcode/DerivedData && cd ios && xcodebuild clean && cd ..",
+    "clean:android": "cd android && ./gradlew clean && cd ..",
     "lint": "eslint .",
     "start": "react-native start --reset-cache --experimental-debugger",
     "test": "jest --testPathIgnorePatterns=e2e"
@@ -30,6 +31,7 @@
     "react-native-fast-image": "^8.6.3",
     "react-native-geolocation-service": "^5.3.1",
     "react-native-gesture-handler": "^2.18.1",
+    "react-native-image-crop-picker": "^0.41.4",
     "react-native-maps": "^1.18.4",
     "react-native-maps-directions": "^1.9.0",
     "react-native-material-ripple": "^0.9.1",

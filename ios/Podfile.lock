@@ -1249,6 +1249,15 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - RNImageCropPicker (0.41.4):
+    - React-Core
+    - React-RCTImage
+    - RNImageCropPicker/QBImagePickerController (= 0.41.4)
+    - TOCropViewController (~> 2.7.4)
+  - RNImageCropPicker/QBImagePickerController (0.41.4):
+    - React-Core
+    - React-RCTImage
+    - TOCropViewController (~> 2.7.4)
   - RNPermissions (5.3.0):
     - React-Core
   - RNReanimated (3.14.0):
@@ -1360,6 +1369,7 @@ PODS:
     - StripeUICore (= 23.28.3)
   - StripeUICore (23.28.3):
     - StripeCore (= 23.28.3)
+  - TOCropViewController (2.7.4)
   - Yoga (0.0.0)
 
 DEPENDENCIES:
@@ -1431,6 +1441,7 @@ DEPENDENCIES:
   - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker`)"
   - RNFastImage (from `../node_modules/react-native-fast-image`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -1455,6 +1466,7 @@ SPEC REPOS:
     - StripePaymentSheet
     - StripePaymentsUI
     - StripeUICore
+    - TOCropViewController
 
 EXTERNAL SOURCES:
   boost:
@@ -1586,6 +1598,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-fast-image"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNImageCropPicker:
+    :path: "../node_modules/react-native-image-crop-picker"
   RNPermissions:
     :path: "../node_modules/react-native-permissions"
   RNReanimated:
@@ -1669,7 +1683,8 @@ SPEC CHECKSUMS:
   RNDateTimePicker: 8c12d12e8660697c2e176d2f98775764431c141f
   RNFastImage: 462a183c4b0b6b26fdfd639e1ed6ba37536c3b87
   RNGestureHandler: d5aafad9a7d1506a8bcab6fbc04384372c8ca86b
-  RNPermissions: 696cf3a18f94d73ef4e32c059d178e538ef3d0c3
+  RNImageCropPicker: 16af7b83cc65b4ce992454bfb92a4af17d59ec42
+  RNPermissions: 01a7934b12ceba78c742058b41b9845964a8366d
   RNReanimated: fe62058b0e1ecb46e252d63d27580f36cd6d9eb2
   RNScreens: 6584fce529be4800e3d12c8069376df9e12bafaf
   RNSVG: 2df577ee9762d1b6deef820173b59b064c2570fe
@@ -1686,8 +1701,9 @@ SPEC CHECKSUMS:
   StripePaymentSheet: d155dfde74e90784d054deffb4f561a1f6dd638f
   StripePaymentsUI: c24f990b03a68a7f6fe704b15dd487e7bb6b603e
   StripeUICore: f2d514e900c37436dc5427fdf2c29d68ab1c2935
+  TOCropViewController: 80b8985ad794298fb69d3341de183f33d1853654
   Yoga: 04f1db30bb810187397fa4c37dd1868a27af229c
 
-PODFILE CHECKSUM: fa096cfc4b826b80d5d03bf85687f4d909402131
+PODFILE CHECKSUM: c51551bf1c54d704466d98624b00b50e95d3e487
 
 COCOAPODS: 1.16.2
